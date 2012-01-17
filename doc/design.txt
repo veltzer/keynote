@@ -1,0 +1,10 @@
+The present tool aims to help in creating presentations.
+It works by accepting an XML file that describes the presentation and producing
+a pdf of that presentation. HTML and other formats may be supported in the future.
+
+Technologies:
+- itext for producing the pdf.
+- some kind of XML DOM parser for reading the input.
+- some kind of command line argument parser for command line integration.
+- ant for building easily on the command line.
+- some kind of tool for syntax highlighting of code snipplets.

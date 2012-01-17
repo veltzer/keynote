@@ -1,0 +1,3 @@
+- show example of a landscape document.
+- start reading the input from the command line.
+- start building from the command line (ant).
