@@ -33,4 +33,11 @@ public class ItexUtils {
             throw new RuntimeException(e);
 		}
     }
+	public static void add(PdfWriter writer, Element element) {
+    	try {
+			writer.add(element);
+		} catch (DocumentException e) {
+            throw new RuntimeException(e);
+		}
+	}
 }

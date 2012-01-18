@@ -21,6 +21,7 @@ public class Creator {
     private Font font_header;
     private Font font_bullet;
     private List l;
+ 
     public Creator(String output_file,Config config) {
         d=new Document(PageSize.LETTER.rotate());
         //Document d=new Document();
@@ -34,6 +35,10 @@ public class Creator {
         if(config.getFullCompressin()) {
             writer.setFullCompression();
         }
+        writer.setTagged();
+        writer.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
+        writer.setLinearPageMode();
+        writer.setCompressionLevel(3);
         d.open();
         // I did not see a difference between the next two...
         //canvas=writer.getDirectContent();
@@ -105,11 +110,14 @@ public class Creator {
             p.setSpacingAfter(config.getHeaderSpacingAfter());
         }
         ItexUtils.add(d,p);
+        //ItexUtils.add(writer,p);
         l=new List();
     }
     public void finish_slide() {
         ItexUtils.add(d,l);
         d.newPage();
+        //ItexUtils.add(writer,l);
+        //writer.newPage();
     }
 	public void finish() {
         d.close();

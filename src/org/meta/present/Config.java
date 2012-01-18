@@ -10,13 +10,21 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class Config {
     // bullet stuff
 	public String getBulletFontName() {
-        return BaseFont.HELVETICA;
+        //return BaseFont.HELVETICA;
+        //return BaseFont.TIMES_ROMAN;
+        //return "Yehuda";
+        //return "Arial";
+        return "/usr/share/fonts/truetype/msttcorefonts/arialbd.ttf";
 	}
 	public String getBulletFontEncoding() {
-        return BaseFont.CP1252;
+        //return BaseFont.CP1250;
+        //return "Cp1255";
+        //return "UTF-8";
+        return BaseFont.IDENTITY_H;
 	}
 	public boolean getBulletFontEmbedded() {
-        return BaseFont.NOT_EMBEDDED;
+        //return BaseFont.NOT_EMBEDDED;
+        return BaseFont.EMBEDDED;
 	}
     public float getBulletFontSize() {
     	return 30;
@@ -94,6 +102,7 @@ public class Config {
 	}
 	public PdfName getPdfVersion() {
         return PdfWriter.PDF_VERSION_1_7;
+        //return PdfWriter.VERSION_1_7;
 	}
     // pdf compression
 	public boolean getFullCompressin() {

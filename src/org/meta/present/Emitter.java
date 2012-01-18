@@ -31,6 +31,7 @@ public class Emitter {
             	if (n.getNodeType() == Node.ELEMENT_NODE) {
                 	Element cNode = (Element)n;
                     if(cNode.getNodeName().equals("bullet")) {
+                        //System.out.println(cNode.getTextContent());
                     	creator.make_bullet(cNode.getTextContent());
                     }
             	}
