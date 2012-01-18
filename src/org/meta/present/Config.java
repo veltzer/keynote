@@ -5,25 +5,14 @@ import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class Config {
-    // misc stuff
-    public float getHeaderSize() {
-    	return 40;
-    }
-    public float getBulletSize() {
+    // bullet stuff
+    public float getBulletFontSize() {
     	return 30;
     }
-	public float getHeaderLead() {
-        return 20;
-	}
-	public float getTopMargin() {
-		return 25;
-	}
-    // bullet stuff
 	public boolean useBulletAlignment() {
     	return false;
     }
     public int getBulletAlignment() {
-    	//return Paragraph.ALIGN_LEFT;
     	return Paragraph.ALIGN_JUSTIFIED;
     }
 	public boolean useBulletLeading() {
@@ -39,6 +28,9 @@ public class Config {
         return 15;
 	}
     // header stuff
+    public float getHeaderFontSize() {
+    	return 40;
+    }
     public boolean useHeaderAlignment() {
     	return true;
     }
