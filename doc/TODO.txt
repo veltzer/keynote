@@ -1,6 +1,32 @@
+functionality:
+==============
+- list bullet is ugly (that minus sign). Replace it.
+- if a list gets too long and we move on to a new slide then the header should be added automatically.
+- support for code inlined within text (different font).
+- support for emphasis within the text.
+- support for strike-though (wrong) within the text.
+- support for hyper links with different color or real hyperlinks?!?
+	(mail, url).
+- color for headers, bullets, background.
+- background image.
+- copyright at the bottom.
+- first page (main page).
+- support for sections.
+	A section is a collection of slides
+	A presentation is a collection of sections.
+- showing on which slide we are in (in the entire presentation, in the entire slide).
+- add barcode support.
+- support for images.
+- support for code inlined.
+- compress the pdf.
+- sign the pdf.
 - optimize the pdf (with the itext toolkit preferably).
-- make the heading bigger.
-	read sizes and other stuff from a config class.
+- the pdf should carry the meta data from the xml with it.
+- support for technical drawings within the presentation ?
+	or maybe with some other tool ?
+
+building the project:
+=====================
 - start building from the command line (ant).
 
 XML format:
@@ -9,3 +35,4 @@ XML format:
 - before processing the document validate it.
 - add external tool to validate the document.
 	(or maybe use an existing tool?!?)
+- document how to edit a presentation within eclipse say with XML support.
