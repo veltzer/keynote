@@ -6,9 +6,13 @@ import org.meta.present.exceptions.ItexUtils;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
@@ -19,6 +23,7 @@ public class Creator {
     private PdfContentByte canvas;
     private Font font_header;
     private Font font_bullet;
+    private List l;
     public Creator(String output_file,Config config) {
         d=new Document(PageSize.LETTER.rotate());
         //Document d=new Document();
@@ -26,9 +31,16 @@ public class Creator {
         		d,
                 IOUtils.open(output_file)
         );
+        if(config.usePdfVersion()) {
+            writer.setPdfVersion(config.getPdfVersion());
+        }
+        if(config.getFullCompressin()) {
+            writer.setFullCompression();
+        }
         d.open();
-        //canvas=writer.getDirectContent();
-        canvas=writer.getDirectContentUnder();
+        // I did not see a difference between the next two...
+        canvas=writer.getDirectContent();
+        //canvas=writer.getDirectContentUnder();
         this.config=config;
         create_fonts();
     }
@@ -58,33 +70,51 @@ public class Creator {
     	d.addTitle(title);
     }
     // real maker functions
-    public void make_header(String name) {
+    public void make_header_phrase(String content) {
+        Phrase p=new Phrase(content,font_header);
+        //canvas.saveState();
+        ColumnText.showTextAligned(canvas, Element.ALIGN_MIDDLE, p, config.getHeaderLead(), config.getTopMargin(), 0);
+        //canvas.restoreState();
+    }
+    public void make_header_old(String name) {
         // need to create a new page and put the slide name up
-        //Phrase p=new Phrase(
-        //p.setFont(font_header);
         //canvas.saveState();
         canvas.beginText();
-        canvas.moveText(20,300);
+        canvas.moveText(config.getHeaderLead(),300);
         canvas.setFontAndSize(font_header.getBaseFont(), font_header.getSize());
         canvas.showText(name);
         canvas.endText();
         //canvas.restoreState();
     }
-	public void make_bullet(String textContent) {
-        //Phrase p=new Phrase();
-        //p.setFont(font_bullet);
-        //canvas.saveState();
-        canvas.beginText();
-        canvas.moveText(20,20);
-        canvas.setFontAndSize(font_bullet.getBaseFont(), font_bullet.getSize());
-        canvas.showText(textContent);
-        canvas.endText();
-        //canvas.restoreState();
+	public void make_bullet(String content) {
+        ListItem li=new ListItem(content,font_bullet);
+        if(config.useBulletAlignment()) {
+            li.setAlignment(config.getBulletAlignment());
+        }
+        if(config.useBulletLeading()) {
+            li.setLeading(config.getBulletLeading());
+        }
+        if(config.useBulletSpaceAfter()) {
+            li.setSpacingAfter(config.getBulletSpaceAfter());
+        }
+        l.add(li);
 	}
-    public void make_paragraph(String text) {
-    	Paragraph p=new Paragraph();
-        p.setAlignment(config.getParagraphAlignment());
+    public void make_header(String content) {
+    	Paragraph p=new Paragraph(content,font_header);
+        if(config.useHeaderSpacingBefore()) {
+            p.setSpacingBefore(config.getHeaderSpacingBefore());
+        }
+        if(config.useHeaderAlignment()) {
+            p.setAlignment(config.getHeaderAlignment());
+        }
+        if(config.useHeaderLeading()) {
+            p.setLeading(config.getHeaderLeading());
+        }
+        if(config.useHeaderSpacingAfter()) {
+            p.setSpacingAfter(config.getHeaderSpacingAfter());
+        }
         ItexUtils.add(d,p);
+        l=new List();
     }
     public void make_demo() {
         canvas.beginText();
@@ -104,6 +134,7 @@ public class Creator {
         canvas.eoFill();
 	}
     public void finish_slide() {
+        ItexUtils.add(d,l);
         d.newPage();
     }
 	public void finish() {
