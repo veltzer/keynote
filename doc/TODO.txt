@@ -1,3 +1,11 @@
-- show example of a landscape document.
-- start reading the input from the command line.
+- optimize the pdf (with the itext toolkit preferably).
+- make the heading bigger.
+	read sizes and other stuff from a config class.
 - start building from the command line (ant).
+
+XML format:
+===========
+- add DTD and schema to validate the document.
+- before processing the document validate it.
+- add external tool to validate the document.
+	(or maybe use an existing tool?!?)

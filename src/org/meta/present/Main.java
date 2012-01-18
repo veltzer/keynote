@@ -1,13 +1,7 @@
 package org.meta.present;
 
-import org.meta.present.exceptions.IOUtils;
-import org.meta.present.exceptions.ItexUtils;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfWriter;
+import org.kohsuke.args4j.CmdLineException;
+import org.kohsuke.args4j.CmdLineParser;
 
 public class Main {
 
@@ -15,28 +9,19 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-        Document d=new Document();
-        PdfWriter writer=ItexUtils.create(
-        		d,
-                IOUtils.open("/tmp/out.pdf")
-        );
-        d.open();
-        PdfContentByte cb = writer.getDirectContent();
-        cb.beginText();
-        BaseFont bf=ItexUtils.createFont(
-            BaseFont.HELVETICA,
-            BaseFont.CP1252,
-            BaseFont.NOT_EMBEDDED
-		);
-        cb.setFontAndSize(bf, 39);
-        cb.setRGBColorFill(0xcc, 0x66, 0x66);
-        cb.showTextAligned(Element.ALIGN_LEFT, "Hello World :)", 36, 788, 0);
-        cb.endText();
-        cb.setRGBColorFill(0x9a, 0xe4, 0xe8);
-        for (int i = 0, j = 55; i < (j * 8); i += j) {
-            cb.roundRectangle(36 + i, 718, 50, 50, 5);
-        }
-        cb.eoFill();
-        d.close();
+        CmdLineValues values=new CmdLineValues();
+		CmdLineParser parser = new CmdLineParser(values);
+        parser.setUsageWidth(80);
+        try {
+			parser.parseArgument(args);
+		} catch (CmdLineException e) {
+            System.err.print(e.getMessage());
+            parser.printUsage(System.err);
+            return;
+		}
+        Config config=new Config();
+        Creator creator=new Creator(values.getOutput_file(),config);
+        Emitter e=new Emitter(values.getInput_file(),config,creator);
+        e.parse();
 	}
 }

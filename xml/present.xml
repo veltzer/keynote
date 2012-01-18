@@ -1,0 +1,21 @@
+<presentation>
+	<meta>
+		<author>
+			<firstname value="Mark"/>
+			<surname value="Veltzer"/>
+		</author>
+		<keywords>
+			<keyword value="one"/>
+			<keyword value="two"/>
+			<keyword value="three"/>
+		</keywords>
+	</meta>
+	<slide name="What is present ?">
+		<bullet>Present a cool tool</bullet>
+		<bullet>This is another cool bullet</bullet>
+	</slide>
+	<slide name="Why should I use present ?">
+		<bullet>Present a cool tool</bullet>
+		<bullet>This is another cool bullet</bullet>
+	</slide>
+</presentation>

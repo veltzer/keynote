@@ -1,0 +1,3 @@
+I tried viewing ppts with libre office and it looks like on a wide screen it looks the same
+as showing a ppt created with itext in landscape mode.
+Itext in portrait mode does look wrong (too thin).

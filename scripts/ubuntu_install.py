@@ -7,6 +7,8 @@ import subprocess
 packs=[
 	'libitext5-java',
 	'libitext5-java-doc',
+	'libargs4j-java',
+	'libargs4j-java-doc',
 ]
 args=['sudo','apt-get','install']
 args.extend(packs)
