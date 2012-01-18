@@ -4,27 +4,37 @@ import org.meta.present.exceptions.IOUtils;
 import org.meta.present.exceptions.ItexUtils;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.List;
-import com.itextpdf.text.ListItem;
-import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class Creator {
     private Document d;
     private PdfWriter writer;
     private Config config;
-    //private PdfContentByte canvas;
+    private PdfContentByte canvas;
     private Font font_header;
     private Font font_bullet;
     private List l;
  
     public Creator(String output_file,Config config) {
-        d=new Document(PageSize.LETTER.rotate());
-        //Document d=new Document();
+        if(config.getUseRectange()) {
+            Rectangle r=new Rectangle(config.getRectangleSize());
+            if(config.getUseBackgroundColor()) {
+                r.setBackgroundColor(config.getPdfBackgroundColor());
+            }
+            d=new Document(r);
+        } else {
+            d=new Document();
+        }
         writer=ItexUtils.create(
         		d,
                 IOUtils.open(output_file)
@@ -41,7 +51,7 @@ public class Creator {
         writer.setCompressionLevel(3);
         d.open();
         // I did not see a difference between the next two...
-        //canvas=writer.getDirectContent();
+        canvas=writer.getDirectContent();
         //canvas=writer.getDirectContentUnder();
         this.config=config;
         create_fonts();
@@ -83,6 +93,17 @@ public class Creator {
     	d.addTitle(title);
     }
 	public void make_bullet(String content) {
+        Phrase p=new Phrase(0,content,font_bullet);
+        ColumnText.showTextAligned(
+        	canvas,
+        	Element.ALIGN_RIGHT,
+        	p,
+        	350,
+        	50,
+        	0,
+            PdfWriter.RUN_DIRECTION_RTL,
+            0);
+        /*
         ListItem li=new ListItem(content,font_bullet);
         if(config.useBulletAlignment()) {
             li.setAlignment(config.getBulletAlignment());
@@ -94,6 +115,7 @@ public class Creator {
             li.setSpacingAfter(config.getBulletSpaceAfter());
         }
         l.add(li);
+        */
 	}
     public void make_header(String content) {
     	Paragraph p=new Paragraph(content,font_header);

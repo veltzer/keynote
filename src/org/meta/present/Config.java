@@ -2,7 +2,9 @@ package org.meta.present;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -104,8 +106,23 @@ public class Config {
         return PdfWriter.PDF_VERSION_1_7;
         //return PdfWriter.VERSION_1_7;
 	}
-    // pdf compression
+    // over all pdf options
 	public boolean getFullCompressin() {
 		return true;
+	}
+    public boolean getTagget() {
+    	return true;
+    }
+	public boolean getUseRectange() {
+        return true;
+	}
+	public Rectangle getRectangleSize() {
+        return PageSize.LETTER.rotate();
+	}
+	public boolean getUseBackgroundColor() {
+        return true;
+	}
+	public BaseColor getPdfBackgroundColor() {
+        return BaseColor.BLUE;
 	}
 }
