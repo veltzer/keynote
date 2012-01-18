@@ -5,6 +5,7 @@ import org.meta.present.exceptions.ItexUtils;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.PageSize;
@@ -41,13 +42,24 @@ public class Creator {
         create_fonts();
     }
     private void create_fonts() {
-        BaseFont bf=ItexUtils.createFont(
-            BaseFont.HELVETICA,
-            BaseFont.CP1252,
-            BaseFont.NOT_EMBEDDED
-		);
-        font_header=new Font(bf,config.getHeaderFontSize());
-        font_bullet=new Font(bf,config.getBulletFontSize());
+        font_header=FontFactory.getFont(
+            config.getHeaderFontName(),
+            config.getHeaderFontEncoding(),
+            config.getHeaderFontEmbedded(),
+        	config.getHeaderFontSize(),
+        	config.getHeaderFontStyle(),
+        	config.getHeaderFontColor(),
+            BaseFont.CACHED
+        );
+        font_bullet=FontFactory.getFont(
+            config.getBulletFontName(),
+            config.getBulletFontEncoding(),
+            config.getBulletFontEmbedded(),
+        	config.getBulletFontSize(),
+        	config.getBulletFontStyle(),
+        	config.getBulletFontColor(),
+            BaseFont.CACHED
+        );
     }
     // meta data functions
     public void addHeader(String key, String val) {
