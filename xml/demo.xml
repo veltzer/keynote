@@ -1,27 +1,29 @@
+<!--
+This presentation is here for me to test various features of present.
+
+	Mark Veltzer, 2011
+-->
 <presentation>
 	<meta>
 		<author>
 			<firstname value="Mark"/>
 			<surname value="Veltzer"/>
 		</author>
-		<copyright>Copyright (c) 2011, 2012 Mark Veltzer</copyright>
 		<keywords>
 			<keyword value="one"/>
 			<keyword value="two"/>
 			<keyword value="three"/>
 		</keywords>
 	</meta>
-	<!--
 	<slide name="title">
 		<center type="vertical" height="100%">
-			<bullet orientation="center">The present slide making software</center>
-			<bullet orientation="center">Mark Veltzer <email>mark.veltzer@gmail.com</email></center>
+			<bullet orientation="center">The present slide making software</bullet>
+			<bullet orientation="center">Mark Veltzer <email>mark.veltzer@gmail.com</email></bullet>
 		</center>
 	</slide>
-	-->
 	<topic name="Introduction">
 		<slide type="bullet" name="What is present ?">
-			<bullet>Present is tool to create presentations from text files.</bullet>
+			<bullet><concept>Present</concept> is tool to create presentations from text files.</bullet>
 			<bullet>The idea is to be able to edit presentations with a regular text editor.</bullet>
 		</slide>
 		<slide type="bullet" name="Why should I use present ?">
