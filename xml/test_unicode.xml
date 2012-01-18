@@ -1,0 +1,19 @@
+<presentation>
+	<meta>
+		<author>
+			<firstname value="מרק"/>
+			<surname value="ולצר"/>
+		</author>
+		<keywords>
+			<keyword value="אחד"/>
+			<keyword value="שנים"/>
+			<keyword value="שלוש"/>
+		</keywords>
+	</meta>
+	<topic name="Introduction">
+		<slide type="bullet" name="האם זה עובד בעיברית?">
+			<bullet>המון המון טקסט בעיבקית</bullet>
+			<bullet>המון המון טקסט בעיבקית</bullet>
+		</slide>
+	</topic>
+</presentation>

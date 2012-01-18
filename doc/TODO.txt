@@ -1,5 +1,6 @@
 functionality:
 ==============
+- take care of intenationalisation.
 - list bullet is ugly (that minus sign). Replace it.
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
 - support for code inlined within text (different font).
@@ -24,7 +25,6 @@ functionality:
 - the pdf should carry the meta data from the xml with it.
 - support for technical drawings within the presentation ?
 	or maybe with some other tool ?
-- take care of intenationalisation.
 
 building the project:
 =====================
