@@ -11,11 +11,13 @@
 		</keywords>
 	</meta>
 	<topic name="Introduction">
-		<slide type="bullet" name="האם זה עובד בעיברית?">
-			<bullet align="right">המון המון טקסט בעיברית</bullet>
-			<bullet align="left">המון המון טקסט בעיברית</bullet>
-			<bullet align="right">first bullet</bullet>
-			<bullet align="left">second bullet</bullet>
+		<slide type="bullet" rund="rtl" name="כותרת ללא צידוד?">
+			<bullet align="center" rund="rtl">אלמנט ממורכז</bullet>
+			<bullet align="left" rund="rtl">אלמנט מצודד לימין</bullet>
+			<bullet align="right" rund="rtl">אלמנט מצודד לשמאל</bullet>
+			<bullet align="right">right bullet</bullet>
+			<bullet align="left">left bullet</bullet>
+			<bullet align="center">center bullet</bullet>
 		</slide>
 		<slide type="bullet" name="some english too?">
 		</slide>

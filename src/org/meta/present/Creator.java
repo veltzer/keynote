@@ -49,9 +49,12 @@ public class Creator {
         if(config.getTagged()) {
             writer.setTagged();
         }
+        /*
+         * This does not seem to work. We need to set it on each individual element
         if(config.useRunDirection()) {
             writer.setRunDirection(config.getRunDirection());
         }
+         */
         if(config.getLinearPageMode()) {
             writer.setLinearPageMode();
         }
@@ -114,45 +117,98 @@ public class Creator {
         }
         l.add(li);
 	}
-    public void make_bullet(String content, String align) {
-        Paragraph par=new Paragraph(content,font_bullet);
-        PdfPCell p=new PdfPCell();
-        if(align.equals("left")) {
-            par.setAlignment(Element.ALIGN_LEFT);
-            p.setRunDirection(PdfWriter.RUN_DIRECTION_LTR);
-        } else {
-            par.setAlignment(Element.ALIGN_RIGHT);
-            p.setRunDirection(PdfWriter.RUN_DIRECTION_LTR);
-        }
-        p.setBorder(PdfPCell.NO_BORDER);
-        p.addElement(par);
-        table.addCell(p);
+    public int getAlign(String align) {
+    	if(align.equals("left")) {
+    		return Element.ALIGN_LEFT;
+    	}
+    	if(align.equals("right")) {
+    		return Element.ALIGN_RIGHT;
+    	}
+    	if(align.equals("center")) {
+    		return Element.ALIGN_CENTER;
+    	}
+    	if(align.equals("top")) {
+    		return Element.ALIGN_TOP;
+    	}
+    	if(align.equals("bottom")) {
+    		return Element.ALIGN_BOTTOM;
+    	}
+    	if(align.equals("baseline")) {
+    		return Element.ALIGN_BASELINE;
+    	}
+    	if(align.equals("middle")) {
+    		return Element.ALIGN_MIDDLE;
+    	}
+    	if(align.equals("justified")) {
+    		return Element.ALIGN_JUSTIFIED;
+    	}
+    	if(align.equals("justified_all")) {
+    		return Element.ALIGN_JUSTIFIED_ALL;
+    	}
+    	if(align.equals("undefined")) {
+    		return Element.ALIGN_UNDEFINED;
+    	}
+        throw new RuntimeException("not such align "+align);
     }
-    public void make_header(String content) {
-    	Paragraph p=new Paragraph(content,font_header);
-        if(config.useHeaderSpacingBefore()) {
-            p.setSpacingBefore(config.getHeaderSpacingBefore());
+    public int getRunDirection(String rund) {
+    	if(rund.equals("default")) {
+    		return PdfWriter.RUN_DIRECTION_DEFAULT;
+    	}
+    	if(rund.equals("ltr")) {
+    		return PdfWriter.RUN_DIRECTION_LTR;
+    	}
+    	if(rund.equals("rtl")) {
+    		return PdfWriter.RUN_DIRECTION_RTL;
+    	}
+    	if(rund.equals("no_bidi")) {
+    		return PdfWriter.RUN_DIRECTION_NO_BIDI;
+    	}
+        throw new RuntimeException("not such rund "+rund);
+    }
+    public PdfPCell make_cell(String rund) {
+        PdfPCell c=new PdfPCell();
+        c.setBorder(PdfPCell.NO_BORDER);
+        c.setRunDirection(getRunDirection(rund));
+        return c;
+    }
+    public void make_bullet(String content, String align,String rund) {
+        Paragraph paragraph=new Paragraph(content,font_bullet);
+        if(config.useBulletLeading()) {
+            paragraph.setLeading(config.getBulletLeading());
         }
-        if(config.useHeaderAlignment()) {
-            p.setAlignment(config.getHeaderAlignment());
+        if(config.useBulletSpaceAfter()) {
+            paragraph.setSpacingAfter(config.getBulletSpaceAfter());
+        }
+        paragraph.setAlignment(getAlign(align));
+        PdfPCell c=make_cell(rund);
+        c.addElement(paragraph);
+        table.addCell(c);
+    }
+    public void make_header(String content, String align,String rund) {
+    	Paragraph paragraph=new Paragraph(content,font_header);
+        paragraph.setAlignment(getAlign(align));
+        if(config.useHeaderSpacingBefore()) {
+            paragraph.setSpacingBefore(config.getHeaderSpacingBefore());
         }
         if(config.useHeaderLeading()) {
-            p.setLeading(config.getHeaderLeading());
+            paragraph.setLeading(config.getHeaderLeading());
         }
         if(config.useHeaderSpacingAfter()) {
-            p.setSpacingAfter(config.getHeaderSpacingAfter());
+            paragraph.setSpacingAfter(config.getHeaderSpacingAfter());
         }
-        ItexUtils.add(d,p);
         table=new PdfPTable(1);
         table.setWidthPercentage(100);
+        PdfPCell c=make_cell(rund);
+        c.addElement(paragraph);
+        table.addCell(c);
     }
     public void make_header_old(String content) {
     	Paragraph p=new Paragraph(content,font_header);
-        if(config.useHeaderSpacingBefore()) {
-            p.setSpacingBefore(config.getHeaderSpacingBefore());
-        }
         if(config.useHeaderAlignment()) {
             p.setAlignment(config.getHeaderAlignment());
+        }
+        if(config.useHeaderSpacingBefore()) {
+            p.setSpacingBefore(config.getHeaderSpacingBefore());
         }
         if(config.useHeaderLeading()) {
             p.setLeading(config.getHeaderLeading());

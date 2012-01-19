@@ -57,13 +57,16 @@ public class Config {
 	}
     // header stuff
 	public String getHeaderFontName() {
-        return BaseFont.HELVETICA;
+        return getBulletFontName();
+        //return BaseFont.HELVETICA;
 	}
 	public String getHeaderFontEncoding() {
-        return BaseFont.CP1252;
+        return getBulletFontEncoding();
+        //return BaseFont.CP1252;
 	}
 	public boolean getHeaderFontEmbedded() {
-        return BaseFont.NOT_EMBEDDED;
+        return getBulletFontEmbedded();
+        //return BaseFont.NOT_EMBEDDED;
 	}
     public float getHeaderFontSize() {
     	return 40;
@@ -81,22 +84,22 @@ public class Config {
     	return Paragraph.ALIGN_CENTER;
     }
 	public boolean useHeaderLeading() {
-    	return false;
+    	return true;
     }
 	public float getHeaderLeading() {
-        return 30;
+        return 35;
 	}
 	public boolean useHeaderSpacingBefore() {
-		return true;
+		return false;
 	}
 	public float getHeaderSpacingBefore() {
-        return 50;
+        return 100;
 	}
 	public boolean useHeaderSpacingAfter() {
 		return true;
 	}
 	public float getHeaderSpacingAfter() {
-        return 30;
+        return 35;
 	}
     // pdf version
 	public boolean usePdfVersion() {
@@ -123,7 +126,7 @@ public class Config {
         return true;
 	}
 	public BaseColor getPdfBackgroundColor() {
-        return BaseColor.LIGHT_GRAY;
+        return BaseColor.WHITE;
 	}
 	public boolean getLinearPageMode() {
         return true;
