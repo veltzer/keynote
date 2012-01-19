@@ -12,8 +12,12 @@
 	</meta>
 	<topic name="Introduction">
 		<slide type="bullet" name="האם זה עובד בעיברית?">
-			<bullet>המון המון טקסט בעיברית</bullet>
-			<bullet>המון המון טקסט בעיברית</bullet>
+			<bullet align="right">המון המון טקסט בעיברית</bullet>
+			<bullet align="left">המון המון טקסט בעיברית</bullet>
+			<bullet align="right">first bullet</bullet>
+			<bullet align="left">second bullet</bullet>
+		</slide>
+		<slide type="bullet" name="some english too?">
 		</slide>
 	</topic>
 </presentation>

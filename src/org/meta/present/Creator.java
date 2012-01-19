@@ -8,21 +8,22 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.pdf.ColumnText;
-import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class Creator {
     private Document d;
     private PdfWriter writer;
     private Config config;
-    private PdfContentByte canvas;
+    //private PdfContentByte canvas;
     private Font font_header;
     private Font font_bullet;
+    private PdfPTable table;
     private List l;
  
     public Creator(String output_file,Config config) {
@@ -45,13 +46,21 @@ public class Creator {
         if(config.getFullCompressin()) {
             writer.setFullCompression();
         }
-        writer.setTagged();
-        writer.setRunDirection(PdfWriter.RUN_DIRECTION_RTL);
-        writer.setLinearPageMode();
-        writer.setCompressionLevel(3);
+        if(config.getTagged()) {
+            writer.setTagged();
+        }
+        if(config.useRunDirection()) {
+            writer.setRunDirection(config.getRunDirection());
+        }
+        if(config.getLinearPageMode()) {
+            writer.setLinearPageMode();
+        }
+        if(config.useCompressionLevel()) {
+            writer.setCompressionLevel(config.getCompressionLevel());
+        }
         d.open();
         // I did not see a difference between the next two...
-        canvas=writer.getDirectContent();
+        //canvas=writer.getDirectContent();
         //canvas=writer.getDirectContentUnder();
         this.config=config;
         create_fonts();
@@ -92,18 +101,7 @@ public class Creator {
     public void addTitle(String title) {
     	d.addTitle(title);
     }
-	public void make_bullet(String content) {
-        Phrase p=new Phrase(0,content,font_bullet);
-        ColumnText.showTextAligned(
-        	canvas,
-        	Element.ALIGN_RIGHT,
-        	p,
-        	350,
-        	50,
-        	0,
-            PdfWriter.RUN_DIRECTION_RTL,
-            0);
-        /*
+	public void make_bullet_old(String content) {
         ListItem li=new ListItem(content,font_bullet);
         if(config.useBulletAlignment()) {
             li.setAlignment(config.getBulletAlignment());
@@ -115,8 +113,21 @@ public class Creator {
             li.setSpacingAfter(config.getBulletSpaceAfter());
         }
         l.add(li);
-        */
 	}
+    public void make_bullet(String content, String align) {
+        Paragraph par=new Paragraph(content,font_bullet);
+        PdfPCell p=new PdfPCell();
+        if(align.equals("left")) {
+            par.setAlignment(Element.ALIGN_LEFT);
+            p.setRunDirection(PdfWriter.RUN_DIRECTION_LTR);
+        } else {
+            par.setAlignment(Element.ALIGN_RIGHT);
+            p.setRunDirection(PdfWriter.RUN_DIRECTION_LTR);
+        }
+        p.setBorder(PdfPCell.NO_BORDER);
+        p.addElement(par);
+        table.addCell(p);
+    }
     public void make_header(String content) {
     	Paragraph p=new Paragraph(content,font_header);
         if(config.useHeaderSpacingBefore()) {
@@ -132,14 +143,30 @@ public class Creator {
             p.setSpacingAfter(config.getHeaderSpacingAfter());
         }
         ItexUtils.add(d,p);
-        //ItexUtils.add(writer,p);
+        table=new PdfPTable(1);
+        table.setWidthPercentage(100);
+    }
+    public void make_header_old(String content) {
+    	Paragraph p=new Paragraph(content,font_header);
+        if(config.useHeaderSpacingBefore()) {
+            p.setSpacingBefore(config.getHeaderSpacingBefore());
+        }
+        if(config.useHeaderAlignment()) {
+            p.setAlignment(config.getHeaderAlignment());
+        }
+        if(config.useHeaderLeading()) {
+            p.setLeading(config.getHeaderLeading());
+        }
+        if(config.useHeaderSpacingAfter()) {
+            p.setSpacingAfter(config.getHeaderSpacingAfter());
+        }
+        ItexUtils.add(d,p);
         l=new List();
     }
     public void finish_slide() {
-        ItexUtils.add(d,l);
+        //ItexUtils.add(d,l);
+        ItexUtils.add(d, table);
         d.newPage();
-        //ItexUtils.add(writer,l);
-        //writer.newPage();
     }
 	public void finish() {
         d.close();

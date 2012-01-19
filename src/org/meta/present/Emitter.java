@@ -31,7 +31,13 @@ public class Emitter {
             	if (n.getNodeType() == Node.ELEMENT_NODE) {
                 	Element cNode = (Element)n;
                     if(cNode.getNodeName().equals("bullet")) {
-                    	creator.make_bullet(cNode.getTextContent());
+                        String align;
+                        if(cNode.hasAttribute("align")) {
+                        	align=cNode.getAttribute("align");
+                        } else {
+                        	align="left";
+                        }
+                    	creator.make_bullet(cNode.getTextContent(),align);
                     }
             	}
             }

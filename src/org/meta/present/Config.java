@@ -110,7 +110,7 @@ public class Config {
 	public boolean getFullCompressin() {
 		return true;
 	}
-    public boolean getTagget() {
+    public boolean getTagged() {
     	return true;
     }
 	public boolean getUseRectange() {
@@ -123,6 +123,21 @@ public class Config {
         return true;
 	}
 	public BaseColor getPdfBackgroundColor() {
-        return BaseColor.BLUE;
+        return BaseColor.LIGHT_GRAY;
+	}
+	public boolean getLinearPageMode() {
+        return true;
+	}
+	public boolean useRunDirection() {
+        return true;
+	}
+	public int getRunDirection() {
+        return PdfWriter.RUN_DIRECTION_RTL;
+	}
+	public boolean useCompressionLevel() {
+        return true;
+	}
+	public int getCompressionLevel() {
+        return 9;
 	}
 }
