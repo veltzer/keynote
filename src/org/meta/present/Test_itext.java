@@ -18,7 +18,7 @@ import com.itextpdf.text.pdf.PdfWriter;
  */
 
 
-public class Test {
+public class Test_itext {
 
 	/**
 	 * @param args

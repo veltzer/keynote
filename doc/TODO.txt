@@ -24,6 +24,7 @@ functionality:
 - the pdf should carry the meta data from the xml with it.
 - support for technical drawings within the presentation ?
 	or maybe with some other tool ?
+- maybe the best way is to use SVG ?
 
 building the project:
 =====================
