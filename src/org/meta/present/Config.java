@@ -15,21 +15,21 @@ public class Config {
         //return BaseFont.HELVETICA;
         //return BaseFont.TIMES_ROMAN;
         //return "Yehuda";
-        //return "Arial";
-        return "/usr/share/fonts/truetype/msttcorefonts/arialbd.ttf";
+        return "Arial";
+        //return "/usr/share/fonts/truetype/msttcorefonts/arialbd.ttf";
 	}
 	public String getBulletFontEncoding() {
         //return BaseFont.CP1250;
         //return "Cp1255";
-        //return "UTF-8";
-        return BaseFont.IDENTITY_H;
+        return "UTF-8";
+        //return BaseFont.IDENTITY_H;
 	}
 	public boolean getBulletFontEmbedded() {
         //return BaseFont.NOT_EMBEDDED;
         return BaseFont.EMBEDDED;
 	}
     public float getBulletFontSize() {
-    	return 30;
+    	return 32;
     }
 	public int getBulletFontStyle() {
         return Font.NORMAL;
@@ -69,10 +69,11 @@ public class Config {
         //return BaseFont.NOT_EMBEDDED;
 	}
     public float getHeaderFontSize() {
-    	return 40;
+    	return 44;
     }
 	public int getHeaderFontStyle() {
-        return Font.BOLD;
+        //return Font.BOLD;
+        return Font.NORMAL;
 	}
 	public BaseColor getHeaderFontColor() {
         return BaseColor.BLACK;
@@ -87,7 +88,7 @@ public class Config {
     	return true;
     }
 	public float getHeaderLeading() {
-        return 35;
+        return 49;
 	}
 	public boolean useHeaderSpacingBefore() {
 		return false;
@@ -99,7 +100,7 @@ public class Config {
 		return true;
 	}
 	public float getHeaderSpacingAfter() {
-        return 35;
+        return 45;
 	}
     // pdf version
 	public boolean usePdfVersion() {
@@ -120,7 +121,8 @@ public class Config {
         return true;
 	}
 	public Rectangle getRectangleSize() {
-        return PageSize.LETTER.rotate();
+        //return PageSize.LETTER.rotate();
+        return PageSize.A4.rotate();
 	}
 	public boolean getUseBackgroundColor() {
         return true;
@@ -132,7 +134,7 @@ public class Config {
         return true;
 	}
 	public boolean useRunDirection() {
-        return true;
+        return false;
 	}
 	public int getRunDirection() {
         return PdfWriter.RUN_DIRECTION_RTL;
@@ -142,5 +144,32 @@ public class Config {
 	}
 	public int getCompressionLevel() {
         return 9;
+	}
+	public boolean useHeaderIndentationLeft() {
+		return true;
+	}
+	public float getHeaderIndentationLeft() {
+        return 3;
+	}
+	public boolean useHeaderIndentationRight() {
+		return true;
+	}
+	public float getHeaderIndentationRight() {
+        return 3;
+	}
+	public boolean useBulletIndentationLeft() {
+		return true;
+	}
+	public float getBulletIndentationLeft() {
+        return 3;
+	}
+	public boolean useBulletIndentationRight() {
+		return true;
+	}
+	public float getBulletIndentationRight() {
+        return 3;
+	}
+	public float getTablePercent() {
+        return 90;
 	}
 }

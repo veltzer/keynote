@@ -1,8 +1,7 @@
 functionality:
 ==============
-- take care of intenationalisation.
-- list bullet is ugly (that minus sign). Replace it.
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
+- list bullets are ugly (no sign). Add one.
 - support for code inlined within text (different font).
 - support for emphasis within the text.
 - support for strike-though (wrong) within the text.

@@ -49,12 +49,10 @@ public class Creator {
         if(config.getTagged()) {
             writer.setTagged();
         }
-        /*
-         * This does not seem to work. We need to set it on each individual element
+        //This does not seem to work. We need to set it on each individual element
         if(config.useRunDirection()) {
             writer.setRunDirection(config.getRunDirection());
         }
-         */
         if(config.getLinearPageMode()) {
             writer.setLinearPageMode();
         }
@@ -179,6 +177,12 @@ public class Creator {
         if(config.useBulletSpaceAfter()) {
             paragraph.setSpacingAfter(config.getBulletSpaceAfter());
         }
+        if(config.useBulletIndentationLeft()) {
+            paragraph.setIndentationLeft(config.getBulletIndentationLeft());
+        }
+        if(config.useBulletIndentationRight()) {
+            paragraph.setIndentationRight(config.getBulletIndentationRight());
+        }
         paragraph.setAlignment(getAlign(align));
         PdfPCell c=make_cell(rund);
         c.addElement(paragraph);
@@ -196,8 +200,14 @@ public class Creator {
         if(config.useHeaderSpacingAfter()) {
             paragraph.setSpacingAfter(config.getHeaderSpacingAfter());
         }
+        if(config.useHeaderIndentationLeft()) {
+            paragraph.setIndentationLeft(config.getHeaderIndentationLeft());
+        }
+        if(config.useHeaderIndentationRight()) {
+            paragraph.setIndentationRight(config.getHeaderIndentationRight());
+        }
         table=new PdfPTable(1);
-        table.setWidthPercentage(100);
+        table.setWidthPercentage(config.getTablePercent());
         PdfPCell c=make_cell(rund);
         c.addElement(paragraph);
         table.addCell(c);
@@ -215,6 +225,12 @@ public class Creator {
         }
         if(config.useHeaderSpacingAfter()) {
             p.setSpacingAfter(config.getHeaderSpacingAfter());
+        }
+        if(config.useHeaderIndentationLeft()) {
+            p.setIndentationLeft(config.getHeaderIndentationLeft());
+        }
+        if(config.useHeaderIndentationRight()) {
+            p.setIndentationRight(config.getHeaderIndentationRight());
         }
         ItexUtils.add(d,p);
         l=new List();

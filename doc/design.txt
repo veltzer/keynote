@@ -8,3 +8,11 @@ Technologies:
 - some kind of command line argument parser for command line integration.
 - ant for building easily on the command line.
 - some kind of tool for syntax highlighting of code snipplets.
+
+further approaches that I can try:
+xslt the presentation and then fop it.
+use the open office API and create an odp file
+	and then convert it to pdf or what ever.
+XSLT to create the openoffice presentation? after all openoffice
+	is an XML document.
+YAML could be used as input as well.
