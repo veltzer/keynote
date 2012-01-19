@@ -9,10 +9,14 @@ TODO:
 
 import sys
 import subprocess
+import glob
 
+files=glob.glob("lib/*.jar")
+files=':'.join(files)
+#print(files)
 args=[
 	'java',
-	'-classpath','bin:lib/itext5.jar:lib/args4j.jar:lib/itext-hyph-xml.jar',
+	'-classpath','bin:'+files,
 	'org.meta.present.Main',
 ]
 # give all command line args passed to the wrapper excluding the first (the program name)
