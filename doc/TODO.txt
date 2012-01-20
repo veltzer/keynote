@@ -1,5 +1,6 @@
 now:
 ====
+write a php script that runs keynote on a specific url.
 make the screen go black at the end of the presentation.
 install a web site for the project that shows how the project works.
 add pdmt to build to build this project and do mako on it.

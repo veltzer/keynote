@@ -22,7 +22,27 @@
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
 		<script src="keynote.js"></script>
+
+		<?php
+			if(array_key_exists('presentation',$_GET)) {
+		?>
+		<script>
+			$(document).ready(function() {
+				var mgr=new Mgr({
+					'source':'<?php echo $_GET['presentation'] ?>',
+					'transition':new FadeoutFadein({'delay':1000})
+				});
+			});
+		</script>
+		<?php
+			}
+		?>
 	</head>
 	<body>
+		<?php
+			if(!array_key_exists('presentation',$_GET)) {
+				echo "no presentation specified. Add ?presentation=[url]";
+			}
+		?>
 	</body>
 </html>

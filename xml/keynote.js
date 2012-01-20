@@ -288,9 +288,3 @@ Mgr.prototype.highlight=function() {
 	SyntaxHighlighter.defaults['toolbar'] = false;
 	SyntaxHighlighter.all();
 }
-$(document).ready(function() {
-	var mgr=new Mgr({
-		'source':'keynote.xml',
-		'transition':new FadeoutFadein({'delay':1000})
-	});
-});
