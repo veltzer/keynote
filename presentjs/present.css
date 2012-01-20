@@ -1,0 +1,31 @@
+.body {
+	background-color: blue;
+}
+.title {
+	font-size: 90px;
+	text-align: center;
+}
+.bullet {
+	font-size: 60px;
+}
+
+.code span, .code {
+	font-size: 20pt;
+/*	font-family: 'Courier New', Courier, Monospace, Fixed; */
+}
+.code {
+	border: 1px dashed #F26522;
+}
+
+/*
+.code {
+	margin: 10px;
+	font-size: 10pt;
+	padding: 10px;
+	background: #FAFAFA;
+	line-height: normal;
+	overflow: auto;
+	padding-bottom: 25px;
+	margin: 0px;
+}
+*/

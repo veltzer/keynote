@@ -12,3 +12,11 @@ http://www.whenbrainsfly.com/2009/05/args4j-is-magic/
 odftoolkit:
 ===========
 http://incubator.apache.org/odftoolkit/
+
+syntaxhighligher:
+=================
+http://alexgorbatchev.com/SyntaxHighlighter/
+
+highlight.js:
+=============
+http://softwaremaniacs.org/soft/highlight/en/
