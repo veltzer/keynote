@@ -80,4 +80,11 @@
 		<bullet>DocBook is nice but not tuned to slides.</bullet>
 		<!-- todo: talk about openoffice, pdf, other tools -->
 	</slide>
+	<slide>
+		<title>Browser support</title>
+		<bullet>Latest versions of chrome and firefox are supported</bullet>
+		<bullet>Other browsers will be supported as long as someone helps me</bullet>
+		<bullet>keynote.js does use jQuery at the bottom layer and browser independant
+		coding and so it is quite portable and bug fixes should not be hard</bullet>
+	</slide>
 </presentation>
