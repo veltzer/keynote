@@ -1,12 +1,12 @@
 now:
 ====
+make the screen go black at the end of the presentation.
 install a web site for the project that shows how the project works.
 add pdmt to build to build this project and do mako on it.
 
 keynote js:
 ===========
 - make the first slide look better.
-- make the screen go black at the end of the presentation.
 - stop the scroll bar from appearing.
 - handle the clicker button.
 

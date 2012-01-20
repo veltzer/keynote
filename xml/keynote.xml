@@ -45,6 +45,13 @@
 				return 0;
 			}]]></code>
 		</slide>
+		<slide type="bullet" name="Features">
+			<bullet>Syntax highlighting for pieces of code.</bullet>
+			<bullet>Presentations can be viewed over the web using a regular browser with no plugins.</bullet>
+			<bullet>Presentations are a lot sexier than pdf or powerpoint</bullet>
+			<bullet>Presentations are simple to create, no need for big software</bullet>
+			<bullet>Presentations look good on any screen size because of layout manager used within keynote</bullet>
+		</slide>
 		<slide type="bullet" name="Why should I use present ?">
 			<bullet>You want to keep the source of your presentation in source control.</bullet>
 			<bullet>You hate using a <concept>wysiwyg</concept> editor.</bullet>
