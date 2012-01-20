@@ -1,0 +1,16 @@
+- make the first slide look better.
+- make the screen go black at the end of the presentation.
+- stop the scroll bar from appearing.
+
+Layout managers:
+- create a layout manager for every slide type:
+	The center layout manager.
+	The flow layout manager (downwards).
+	Two columns.
+	Table
+
+Transitions:
+- do OO design for transitions and allow a user to select one of them.
+
+UI:
+Add a menu that pops up and allows one to jump to a slide number etc...
