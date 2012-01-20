@@ -232,7 +232,7 @@ Mgr.prototype.stopWait=function() {
 	document.title=this.title;
 }
 Mgr.prototype.gotoSlide=function(num) {
-	if(num>=0 && num<this.getSlideNum()) {
+	if(num>=0 && num<this.getSlideNum() && num!=this.currentSlideNum) {
 		this.transition.transitionOut(this.getCurrentElement());
 		this.currentSlideNum=num;
 		this.transition.transitionIn(this.getCurrentElement());

@@ -34,6 +34,14 @@ Concepts, urls, and more:
 - when a user hovers over a word, give a dictionary definiton for that word.
 	or wikipedia definiton for that concept.
 
+User customisation of style:
+============================
+- allow the user to customize EVERY SLIDE. The idea is that the user could give an id
+to every element (at the xml level). keynote will attach that id and turn it into an HTML
+id. Now the user can use that id in CSS to customize the slide show.
+- mention that this is not recommended since it's not the point of keynote to focus
+on presentation but rather on content.
+
 pdf functionality:
 ==================
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
