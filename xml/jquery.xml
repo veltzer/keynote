@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<presentation>
+	<meta>
+		<title>jQuery</title>
+		<author>
+			<firstname value="Mark"/>
+			<surname value="Veltzer"/>
+		</author>
+		<copyright>Copyright (c) 2011, 2012 Mark Veltzer</copyright>
+		<keywords>
+			<keyword value="jQuery"/>
+			<keyword value="Mark Veltzer"/>
+			<keyword value="introduction"/>
+			<keyword value="tutorial"/>
+			<keyword value="presentation"/>
+		</keywords>
+	</meta>
+	<slide>
+		<title>jQuery</title>
+		<bullet>Mark Veltzer<bullet>
+		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
+		<image url='jQuery.jpg' description='the jQuery logo'/>
+	</slide>
+</presentation>
