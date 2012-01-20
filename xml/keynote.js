@@ -2,6 +2,9 @@
 function HideShow(options) {
 	// no internal state
 }
+HideShow.prototype.postCreate=function(elem) {
+	elem.hide();
+}
 HideShow.prototype.transitionIn=function(elem) {
 	elem.show();
 }
@@ -16,6 +19,9 @@ function FadeoutFadein(options) {
 	}
 	this.delay=options.delay;
 }
+FadeoutFadein.prototype.postCreate=function(elem) {
+	elem.hide();
+}
 FadeoutFadein.prototype.transitionIn=function(elem) {
 	elem.show();
 	elem.css('display','none');
@@ -29,14 +35,13 @@ FadeoutFadein.prototype.transitionOut=function(elem) {
 // a single slide object
 function Slide() {
 	this.title='no title';
-	this.element=$('<div/>');
-	this.element.hide();
+	this.element=undefined;
 }
 
-Slide.prototype.addElement=function(d) {
-	this.element.append(d);
+Slide.prototype.setElement=function(elem) {
+	this.element=elem;
 }
-Slide.prototype.getElement=function(d) {
+Slide.prototype.getElement=function() {
 	return this.element;
 }
 
@@ -59,8 +64,8 @@ function Mgr(options) {
 	var ajax=$.get(
 		options.source,
 		'',
-		function(data) {
-			myobj.buildUp(data);
+		function(doc) {
+			myobj.buildUp(doc);
 			myobj.stopWait();
 			myobj.hookKeyboard();
 			myobj.highlight();
@@ -103,50 +108,95 @@ Mgr.prototype.hookKeyboard=function() {
 	$(document.body).keydown(onefunc);
 }
 // static methods
-Mgr.prototype.getTextFromSingleNode=function(data,name) {
-	var l=data.getElementsByTagName(name);
+Mgr.prototype.getTextFromSingleXpath=function(doc,xpath_expr) {
+	var l=doc.evaluate(xpath_expr,doc.documentElement,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
+	if(l.snapshotLength!=1) {
+		console.log(l.snapshotLength);
+		console.log(typeof(l));
+		console.log(l.constructor);
+		for (var i=0;i<l.snapshotLength;i++) {
+			console.log(l.snapshotItem(i));
+		}
+		throw 'wrong number ('+l.snapshotLength+') of elements for expression '+xpath_expr;
+	}
+	return l.snapshotItem(0).textContent;
+}
+Mgr.prototype.getTextFromSingleNode=function(doc,name) {
+	var l=doc.getElementsByTagName(name);
 	if(l.length!=1) {
 		throw 'too many elements of name '+name;
 	}
 	return l[0].textContent;
 }
-Mgr.prototype.buildUp=function(data) {
-	this.title=this.getTextFromSingleNode(data,'title');
-	this.copyright=this.getTextFromSingleNode(data,'copyright');
+Mgr.prototype.checkOneChild=function(node) {
+	if(node.childNodes.length!=1) {
+		throw 'wrong number of childern for node '+node;
+	}
+}
+Mgr.prototype.checkNoChildren=function(node) {
+	if(node.childNodes.length!=0) {
+		throw 'too many children for node '+node;
+	}
+}
+Mgr.prototype.createElement=function(node) {
+	// for closure
+	var mgr=this;
+	// debug
+	//console.log(node);
+	// 3 means text node
+	if(node.nodeType==3) {
+		var e_item=$('<span/>',{'class':'text'}).text(node.textContent);
+		return e_item;
+	}
+	// 1 means element 
+	if(node.nodeType==1) {
+		if(node.localName=='code') {
+			this.checkOneChild(node);
+			var e_item=$('<pre/>');
+			if(node.hasAttribute('language')) {
+				e_item.addClass('brush: '+node.getAttribute('language'));
+			}
+			e_item.text(node.textContent);
+			return e_item;
+		}
+		if(node.localName=='image') {
+			this.checkNoChildren(node);
+			// TODO: what about the height and width of the images ?
+			var e_item=$('<img/>',{
+				'class':node.localName,
+				'src':node.getAttribute('url'),
+				'alt':node.getAttribute('description'),
+			});
+			return e_item;
+		}
+		if(node.localName=='email') {
+			this.checkNoChildren(node);
+			var e_item=$('<a/>',{
+				'class':node.localName,
+				'href':'mailto:'+node.getAttribute('value'),
+			});
+			e_item.text(node.getAttribute('value'));
+			return e_item;
+		}
+		// non atomics (title, bullet)
+		var e_item=$('<div/>',{'class':node.localName});
+		$.each(node.childNodes,function(index,child) {
+			e_item.append(mgr.createElement(child));
+		});
+		return e_item;
+	}
+}
+Mgr.prototype.buildUp=function(doc) {
+	this.title=this.getTextFromSingleXpath(doc,'/presentation/meta/title');
+	this.copyright=this.getTextFromSingleNode(doc,'copyright');
 	// for closure
 	var mgr=this;
 	// create the various pages
-	$.each(data.getElementsByTagName('slide'),function(index,slide) {
+	$.each(doc.getElementsByTagName('slide'),function(index,slide) {
 		var s=new Slide();
-		var e_title=$('<div/>',{'class':'title'});
-		if(slide.hasAttribute('name')) {
-			e_title.text(slide.getAttribute('name'));
-		} else {
-			e_title.text('slide with no name');
-		}
-		s.addElement(e_title);
-		$.each(slide.childNodes,function(index,child) {
-			if(child.localName=='code') {
-				var e_item=$('<pre/>');
-				if(child.hasAttribute('language')) {
-					e_item.addClass('brush: '+child.getAttribute('language'));
-				}
-				e_item.text(child.textContent);
-				s.addElement(e_item);
-			}
-			if(child.localName=='bullet') {
-				var e_item=$('<div/>',{'class':child.localName});
-				e_item.text(child.textContent);
-				s.addElement(e_item);
-			}
-			if(child.localName=='image') {
-				var e_item=$('<div/>',{'class':child.localName});
-				// TODO: fix up this code
-				e_item.text(child.textContent);
-				s.addElement(e_item);
-			}
-		});
+		s.setElement(mgr.createElement(slide));
 		mgr.slides.push(s);
+		mgr.transition.postCreate(s.getElement());
 		$(document.body).append(s.getElement());
 	});
 	this.transition.transitionIn(this.getCurrentElement());
