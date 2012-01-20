@@ -21,7 +21,7 @@ FadeoutFadein.prototype.transitionIn=function(elem) {
 	elem.css('display','none');
 	elem.fadeIn(this.delay);
 }
-FadeoutFadein.prototype.trainsitionOut=function(elem) {
+FadeoutFadein.prototype.transitionOut=function(elem) {
 	elem.fadeOut(this.delay);
 	elem.hide();
 }
@@ -68,7 +68,8 @@ function Mgr(options) {
 		'xml'
 	);
 	ajax.error(function(ajax_object,error_string,t) {
-		alert('bad presentation with error ['+error_string+']['+String(t).substring(0,40)+']');
+		document.write('bad presentation with error ['+error_string+']['+String(t).substring(0,40)+']');
+		myobj.stopWait();
 	});
 }
 
@@ -229,6 +230,7 @@ Mgr.prototype.highlight=function() {
 }
 $(document).ready(function() {
 	var mgr=new Mgr({
-		'source':'present.xml'
+		'source':'present.xml',
+		'transition':new FadeoutFadein({'delay':1000})
 	});
 });

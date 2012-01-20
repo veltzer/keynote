@@ -1,6 +1,9 @@
+now:
+====
 - make the first slide look better.
 - make the screen go black at the end of the presentation.
 - stop the scroll bar from appearing.
+- handle the clicker button.
 
 Layout managers:
 - create a layout manager for every slide type:
