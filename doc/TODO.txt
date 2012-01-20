@@ -1,5 +1,7 @@
 now:
 ====
+install a web site for the project that shows how the project works.
+add pdmt to build to build this project and do mako on it.
 
 keynote js:
 ===========

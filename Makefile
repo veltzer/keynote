@@ -9,6 +9,8 @@ DO_MKDBG?=0
 SRC_DIR:=xml
 # do you want dependency on the makefile itself ?!?
 DO_ALL_DEPS:=1
+# what is the web dir for this project ?
+WEB_DIR:=/var/www/keynote
 
 #####################
 # end of parameters #
@@ -50,6 +52,12 @@ clean:
 	$(info doing [$@])
 	$(Q)rm -f $(PDF)
 
+.PHONY: install
+install: $(ALL_DEPS)
+	$(info doing [$@])
+	$(Q)sudo rm -rf $(WEB_DIR)
+	$(Q)sudo mkdir $(WEB_DIR)
+	$(Q)sudo cp -r xml/toolkits web/index.html xml/keynote.* $(WEB_DIR)
 
 #########
 # rules #
