@@ -82,8 +82,8 @@ Mgr.prototype.hookKeyboard=function() {
 	// for closure
 	var mgr=this;
 	var onefunc=function(e) {
-		//console.log(e.keyCode);
-		//console.log(e.which);
+		console.log(e.keyCode);
+		console.log(e.which);
 		// 32 is space, 39 is right arrow, 34 is page down, 40 is down
 		if(e.keyCode==32 || e.keyCode==39 || e.keyCode==34 || e.keyCode==40) {
 			mgr.gotoNext();
@@ -105,7 +105,9 @@ Mgr.prototype.hookKeyboard=function() {
 			e.preventDefault();
 		}
 	};
-	$(document.body).keydown(onefunc);
+	// DONT catch the event on 'body' since it does not capture key strokes in all browsers
+	// catching on the document is the best thing...
+	$(document).keydown(onefunc);
 }
 // static methods
 Mgr.prototype.getTextFromSingleXpath=function(doc,xpath_expr) {
@@ -156,6 +158,14 @@ Mgr.prototype.createElement=function(node) {
 			if(node.hasAttribute('language')) {
 				e_item.addClass('brush: '+node.getAttribute('language'));
 			}
+			e_item.text(node.textContent);
+			return e_item;
+		}
+		if(node.localName=='concept' || node.localName=='emphasis') {
+			this.checkOneChild(node);
+			var e_item=$('<span/>',{
+				'class':node.localName,
+			});
 			e_item.text(node.textContent);
 			return e_item;
 		}

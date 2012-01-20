@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <presentation>
 	<meta>
-		<title>The present slide manager</title>
+		<title>The keynote slide manager</title>
 		<author>
 			<firstname value="Mark"/>
 			<surname value="Veltzer"/>
@@ -39,7 +39,7 @@
 	</slide>
 	<slide>
 		<title>what is keynote?</title>
-		<bullet><emphasis>Present</emphasis> is tool to create presentations from text files.</bullet>
+		<bullet><emphasis>Keynote</emphasis> is tool to create presentations from text files.</bullet>
 		<bullet>The idea is to be able to edit presentations with a regular text editor.</bullet>
 		<code language="c"><![CDATA[
 		int main(int argc,char** argv, char** envp) {
