@@ -23,6 +23,17 @@ Transitions:
 UI:
 Add a menu that pops up and allows one to jump to a slide number etc...
 
+UI usability:
+Concepts, urls, and more:
+- when a user hovers over a concept show the definition of that concept.
+	The definition will be inserted by the author of the document.
+- when a user hovers over a url, show a small version of that url (there are libraries to
+	help you with that).
+- when a user hovers over an Image show help for that image.
+- when a user hovers over an email, give a dialog to send email to that address.
+- when a user hovers over a word, give a dictionary definiton for that word.
+	or wikipedia definiton for that concept.
+
 pdf functionality:
 ==================
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
