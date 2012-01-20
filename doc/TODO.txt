@@ -1,6 +1,5 @@
 now:
 ====
-change the name of the project to keynote.
 
 keynote js:
 ===========
