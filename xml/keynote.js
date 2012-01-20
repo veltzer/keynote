@@ -82,8 +82,8 @@ Mgr.prototype.hookKeyboard=function() {
 	// for closure
 	var mgr=this;
 	var onefunc=function(e) {
-		console.log(e.keyCode);
-		console.log(e.which);
+		//console.log(e.keyCode);
+		//console.log(e.which);
 		// 32 is space, 39 is right arrow, 34 is page down, 40 is down
 		if(e.keyCode==32 || e.keyCode==39 || e.keyCode==34 || e.keyCode==40) {
 			mgr.gotoNext();
@@ -113,12 +113,12 @@ Mgr.prototype.hookKeyboard=function() {
 Mgr.prototype.getTextFromSingleXpath=function(doc,xpath_expr) {
 	var l=doc.evaluate(xpath_expr,doc.documentElement,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
 	if(l.snapshotLength!=1) {
-		console.log(l.snapshotLength);
-		console.log(typeof(l));
-		console.log(l.constructor);
-		for (var i=0;i<l.snapshotLength;i++) {
-			console.log(l.snapshotItem(i));
-		}
+		//console.log(l.snapshotLength);
+		//console.log(typeof(l));
+		//console.log(l.constructor);
+		//for (var i=0;i<l.snapshotLength;i++) {
+		//	console.log(l.snapshotItem(i));
+		//}
 		throw 'wrong number ('+l.snapshotLength+') of elements for expression '+xpath_expr;
 	}
 	return l.snapshotItem(0).textContent;

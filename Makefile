@@ -57,7 +57,7 @@ install: $(ALL_DEPS)
 	$(info doing [$@])
 	$(Q)sudo rm -rf $(WEB_DIR)
 	$(Q)sudo mkdir $(WEB_DIR)
-	$(Q)sudo cp -r xml/toolkits web/index.html xml/keynote.* $(WEB_DIR)
+	$(Q)sudo cp -r xml/* web/index.html $(WEB_DIR)
 
 #########
 # rules #

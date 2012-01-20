@@ -21,4 +21,8 @@
 		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
 		<image url='jQuery.jpg' description='the jQuery logo'/>
 	</slide>
+	<slide>
+		<title>second jQuery slide</title>
+		<bullet>this is a bullet</bullet>
+	</slide>
 </presentation>
