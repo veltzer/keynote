@@ -1,7 +1,7 @@
-package org.meta.present;
+package org.meta.keynote;
 
-import org.meta.present.exceptions.IOUtils;
-import org.meta.present.exceptions.ItexUtils;
+import org.meta.keynote.exceptions.IOUtils;
+import org.meta.keynote.exceptions.ItexUtils;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;

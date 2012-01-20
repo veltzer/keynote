@@ -56,4 +56,4 @@ clean:
 #########
 $(PDF): %.pdf: %.xml $(ALL_DEPS)
 	$(info doing [$@])
-	$(Q)./scripts/present.py --input $< --output $@
+	$(Q)./scripts/keynote.py --input $< --output $@

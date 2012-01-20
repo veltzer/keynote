@@ -1,5 +1,29 @@
-functionality:
-==============
+now:
+====
+change the name of the project to keynote.
+
+keynote js:
+===========
+- make the first slide look better.
+- make the screen go black at the end of the presentation.
+- stop the scroll bar from appearing.
+- handle the clicker button.
+
+Layout managers:
+- create a layout manager for every slide type:
+	The center layout manager.
+	The flow layout manager (downwards).
+	Two columns.
+	Table
+
+Transitions:
+- do OO design for transitions and allow a user to select one of them.
+
+UI:
+Add a menu that pops up and allows one to jump to a slide number etc...
+
+pdf functionality:
+==================
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
 - list bullets are ugly (no sign). Add one.
 - support for code inlined within text (different font).

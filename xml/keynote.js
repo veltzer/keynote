@@ -230,7 +230,7 @@ Mgr.prototype.highlight=function() {
 }
 $(document).ready(function() {
 	var mgr=new Mgr({
-		'source':'present.xml',
+		'source':'keynote.xml',
 		'transition':new FadeoutFadein({'delay':1000})
 	});
 });

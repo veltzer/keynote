@@ -1,4 +1,4 @@
-package org.meta.present;
+package org.meta.keynote;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;

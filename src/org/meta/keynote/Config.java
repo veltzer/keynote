@@ -1,4 +1,4 @@
-package org.meta.present;
+package org.meta.keynote;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 """
-This is a wrapper for running the present tool.
+This is a wrapper for running the keynote java pdf convertor tool.
 
 TODO:
 - parse the class file from the .classpath and not hardcode it here.
@@ -17,7 +17,7 @@ files=':'.join(files)
 args=[
 	'java',
 	'-classpath','bin:'+files,
-	'org.meta.present.Main',
+	'org.meta.keynote.Main',
 ]
 # give all command line args passed to the wrapper excluding the first (the program name)
 args.extend(sys.argv[1:])

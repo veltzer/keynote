@@ -1,6 +1,6 @@
-package org.meta.present;
+package org.meta.keynote;
 
-import org.meta.present.exceptions.XMLUtils;
+import org.meta.keynote.exceptions.XMLUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

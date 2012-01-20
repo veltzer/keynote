@@ -1,8 +1,8 @@
-package org.meta.present;
+package org.meta.keynote;
 
 import java.util.List;
 
-import org.meta.present.exceptions.OdfUtils;
+import org.meta.keynote.exceptions.OdfUtils;
 import org.odftoolkit.simple.PresentationDocument;
 import org.odftoolkit.simple.PresentationDocument.PresentationClass;
 import org.odftoolkit.simple.draw.FrameRectangle;

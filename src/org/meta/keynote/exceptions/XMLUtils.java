@@ -1,4 +1,4 @@
-package org.meta.present.exceptions;
+package org.meta.keynote.exceptions;
 
 import java.io.IOException;
 
