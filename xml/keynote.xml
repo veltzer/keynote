@@ -82,9 +82,24 @@
 	</slide>
 	<slide>
 		<title>Browser support</title>
-		<bullet>Latest versions of chrome and firefox are supported</bullet>
-		<bullet>Other browsers will be supported as long as someone helps me</bullet>
+		<bullet>keynote is developed on a recent version of chrome and that is the browser that it supports the best</bullet>
+		<bullet>Latest versions of chrome and firefox are supported.</bullet>
+		<bullet>Other browsers will be supported only if users report and help out with bugs.</bullet>
 		<bullet>keynote.js does use jQuery at the bottom layer and browser independant
 		coding and so it is quite portable and bug fixes should not be hard</bullet>
+		<bullet>Browser support is an issue which is not of equal importance to all users</bullet>
+		<subbullet>presenters don't mind installing a browser that works</subbullet>
+		<subbullet>websites want keynote to work on all browsers</subbullet>
+		<bullet>This means that if you are a person doing presentations you have more incentive to work
+		with keynote even before it reaches maturity with all browsers</bullet>
+	</slide>
+	<slide>
+		<title>Keynote philosophy</title>
+		<bullet>Content should always be in text files.</bullet>
+		<bullet>Customisation of graphics and look and feel are not very important.</bullet>
+		<bullet>Separation of content and presentation is important.</bullet>
+		<bullet>Simplicity in UI is a good thing.</bullet>
+		<bullet>Big software is evil. Lots of small pieces of software is good.</bullet>
+		<bullet>Mark is always right, especially when he is dead wrong.</bullet>
 	</slide>
 </presentation>
