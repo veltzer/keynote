@@ -1,0 +1,14 @@
+This is a discussion of the presentation.xml syntax and it's reasoning:
+=======================================================================
+
+titles should be in their own <title>.
+- because I may want to do <title>this is <emphasis>my</emphasis> slide</title>
+
+lists should be done so:
+	<list template='presentation template'>
+		<listtitle>this is <strong>my</strong> list:</listtitle>
+		<listitem>one</listitem>
+		<listitem>two</listitem>
+		<listitem>three</listitem>
+	</list>
+lists inside lists are allowed.

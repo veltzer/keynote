@@ -11,3 +11,7 @@ TransitionHideShow.prototype.transitionIn=function(elem) {
 TransitionHideShow.prototype.transitionOut=function(elem) {
 	elem.hide();
 }
+TransitionHideShow.prototype.transitionOutIn=function(elem1,elem2) {
+	elem1.hide();
+	elem2.show();
+}

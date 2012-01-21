@@ -24,9 +24,11 @@
 		<script src="Utils.js"></script>
 		<script src="TransitionHideShow.js"></script>
 		<script src="TransitionFadeoutFadein.js"></script>
+		<script src="TransitionBlend.js"></script>
 		<script src="LayoutResolver.js"></script>
 		<script src="LayoutCenter.js"></script>
 		<script src="LayoutFlow.js"></script>
+		<script src="LayoutRelative.js"></script>
 		<script src="Slide.js"></script>
 		<script src="Mgr.js"></script>
 
@@ -37,7 +39,8 @@
 			$(document).ready(function() {
 				var mgr=new Mgr({
 					'source':'<?php echo $_GET['presentation'] ?>',
-					'transition':new TransitionFadeoutFadein({'delay':1000}),
+					'transition':new TransitionBlend({'delay':1000}),
+					//'transition':new TransitionFadeoutFadein({'delay':1000}),
 				});
 			});
 		</script>

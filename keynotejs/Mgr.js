@@ -223,7 +223,7 @@ Mgr.prototype.createElement=function(node) {
 			} else {
 				type='flow';
 			}
-			var config={ 'lines':8 };
+			var config={ 'lines': 11 };
 			layout=LayoutResolver.getInstance().createLayoutManager(type,config);
 			e_item.data('layout',layout);
 		}
@@ -285,10 +285,14 @@ Mgr.prototype.stopWait=function() {
 Mgr.prototype.gotoSlide=function(num) {
 	if(num>=0 && num<this.getSlideNum() && num!=this.currentSlideNum) {
 		if(this.currentSlideNum!=-1) {
-			this.transition.transitionOut(this.getCurrentElement());
+			var elem1=this.getCurrentElement();
+			this.currentSlideNum=num;
+			var elem2=this.getCurrentElement();
+			this.transition.transitionOutIn(elem1,elem2);
+		} else {
+			this.currentSlideNum=num;
+			this.transition.transitionIn(this.getCurrentElement());
 		}
-		this.currentSlideNum=num;
-		this.transition.transitionIn(this.getCurrentElement());
 	}
 	this.resize(true);
 }

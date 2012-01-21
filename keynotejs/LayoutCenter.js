@@ -37,7 +37,7 @@ LayoutCenter.prototype.resize=function(x,y,width,height) {
 	var y_start=(height-sum_height)/2;
 	var x_center=x+width/2;
 	$.each(this.elements,function(i,element) {
-		element.posAbs(y_start,x_center-element.width()/2);
+		element.posAbs(x_center-element.width()/2,y_start);
 		y_start+=element.height();
 	});
 	*/
@@ -51,7 +51,7 @@ LayoutCenter.prototype.resize=function(x,y,width,height) {
 	var x_center=x+width/2;
 	$.each(this.elements,function(i,element) {
 		element.css('font-size',row_height+'px');
-		element.posAbs(y_start,x_center-element.width()/2);
+		element.posAbs(x_center-element.width()/2,y_start);
 		y_start+=row_height;
 	});
 }

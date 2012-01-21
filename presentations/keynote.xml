@@ -13,6 +13,16 @@
 			<keyword value="three"/>
 		</keywords>
 	</meta>
+	<slide>
+		<bullet>1. this is a slide</bullet>
+		<bullet>2. with just bullets</bullet>
+		<bullet>3. each bullet should fit</bullet>
+		<bullet>4. into one line</bullet>
+		<bullet>5. you should see exactly</bullet>
+		<bullet>6. the number of lines</bullet>
+		<bullet>7. you configured to see in each</bullet>
+		<bullet>8. slide</bullet>
+	</slide>
 	<slide layout="center">
 		<title><concept>keynote</concept></title>
 		<bullet>slides made right</bullet>
@@ -59,6 +69,7 @@
 		<bullet>Presentations are a lot sexier than pdf or powerpoint</bullet>
 		<bullet>Presentations are simple to create, no need for big software</bullet>
 		<bullet>Presentations look good on any screen size because of layout manager used within keynote</bullet>
+		<bullet>Presentations stay small in size</bullet>
 	</slide>
 	<slide>
 		<title>Why should I use keynote ?</title>

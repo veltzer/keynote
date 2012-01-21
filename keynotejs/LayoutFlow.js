@@ -25,17 +25,22 @@ LayoutFlow.prototype.addElement=function(elem) {
  */
 LayoutFlow.prototype.resize=function(x,y,width,height) {
 	this.debug('resize: '+x+','+y+','+width+','+height+','+this.elements.length);
+	/*
+	 * We cannot know that we have too many lines.
+	 * We will calculate it
 	if(this.elements.length>this.lines) {
 		console.error('too many lines for slide '+this.elements.length+' > '+this.lines);
 	}
+	*/
 	var row_height=height/this.lines;
 	this.debug('row_height is '+row_height);
 	var sum_height=this.elements.length*row_height;
 	var y_start=0;
 	$.each(this.elements,function(i,element) {
-		element.css('font-size',row_height+'px');
-		element.posAbs(y_start,0);
-		y_start+=row_height;
+		element.css('font-size',row_height*0.83+'px');
+		element.posAbs(x,y_start);
+		//y_start+=row_height;
+		y_start+=element.height();
 	});
 }
 LayoutResolver.getInstance().addLayoutManager('flow',LayoutFlow);
