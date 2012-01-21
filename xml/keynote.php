@@ -28,7 +28,7 @@
 		<script src="LayoutCenter.js"></script>
 		<script src="LayoutFlow.js"></script>
 		<script src="Slide.js"></script>
-		<script src="keynote.js"></script>
+		<script src="Mgr.js"></script>
 
 		<?php
 			if(array_key_exists('presentation',$_GET)) {
