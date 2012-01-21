@@ -56,53 +56,78 @@ function Mgr(options) {
 	} else {
 		this.transition=options.transition;
 	}
+	this.doDebug=true;
 	this.doRealLinks=false;
 	this.startWait();
 	this.currentSlideNum=0;
 	this.slides=[];
+	this.old_width=undefined;
+	this.old_height=undefined;
 	// for closure
-	var myobj=this;
+	var object=this;
 	var ajax=$.get(
 		options.source,
 		'',
 		function(doc) {
-			myobj.buildUp(doc);
-			myobj.stopWait();
-			myobj.hookKeyboard();
-			myobj.highlight();
+			object.buildUp(doc);
+			object.stopWait();
+			object.hookKeyboard();
+			object.highlight();
+			object.hookResize();
 		},
 		'xml'
 	);
 	ajax.error(function(ajax_object,error_string,t) {
 		document.write('bad presentation with error ['+error_string+']['+String(t).substring(0,40)+']');
-		myobj.stopWait();
+		object.stopWait();
 	});
 }
+Mgr.prototype.debug=function() {
+	if(this.doDebug) {
+		$.each(arguments,function(i,msg) {
+			console.log(msg);
+		});
+	}
+}
 
+Mgr.prototype.hookResize=function() {
+	// for closure
+	var object=this;
+	$(window).resize(function() {
+		object.resize();
+	});
+}
+Mgr.prototype.resize=function() {
+	this.debug('resize',$(window).width(),$(window).height());
+	if($(window).width()!=this.old_width || $(window).height()!=this.old_height) {
+		this.debug('real resize');
+		this.old_width=$(window).width();
+		this.old_height=$(window).height();
+	}
+}
 Mgr.prototype.hookKeyboard=function() {
 	// for closure
-	var mgr=this;
+	var object=this;
 	var onefunc=function(e) {
-		//console.log(e.keyCode);
-		//console.log(e.which);
+		object.debug(e.keyCode,e.which);
 		// 32 is space, 39 is right arrow, 34 is page down, 40 is down
 		if(e.keyCode==32 || e.keyCode==39 || e.keyCode==34 || e.keyCode==40) {
-			mgr.gotoNext();
+			object.gotoNext();
 			e.preventDefault();
 		}
 		// 8 is backspace, 37 is left arrow, 33 is page up, 38 is up
 		if(e.keyCode==8 || e.keyCode==37 || e.keyCode==33 || e.keyCode==38) {
-			mgr.gotoPrev();
+			object.gotoPrev();
 			e.preventDefault();
 		}
 		// 36 is Home
 		if(e.keyCode==36) {
-			mgr.gotoBegin();
+			object.gotoBegin();
 			e.preventDefault();
 		}
 		// 35 is End
 		if(e.keyCode==35) {
-			mgr.gotoEnd();
+			object.gotoEnd();
 			e.preventDefault();
 		}
 	};
@@ -143,7 +168,7 @@ Mgr.prototype.checkNoChildren=function(node) {
 }
 Mgr.prototype.createElement=function(node) {
 	// for closure
-	var mgr=this;
+	var object=this;
 	// debug
 	//console.log(node);
 	// 3 means text node
@@ -208,7 +233,7 @@ Mgr.prototype.createElement=function(node) {
 		// non atomics (all others: title, bullet)
 		var e_item=$('<div/>',{'class':node.localName});
 		$.each(node.childNodes,function(index,child) {
-			e_item.append(mgr.createElement(child));
+			e_item.append(object.createElement(child));
 		});
 		return e_item;
 	}
@@ -217,13 +242,13 @@ Mgr.prototype.buildUp=function(doc) {
 	this.title=this.getTextFromSingleXpath(doc,'/presentation/meta/title');
 	this.copyright=this.getTextFromSingleNode(doc,'copyright');
 	// for closure
-	var mgr=this;
+	var object=this;
 	// create the various pages
 	$.each(doc.getElementsByTagName('slide'),function(index,slide) {
 		var s=new Slide();
-		s.setElement(mgr.createElement(slide));
-		mgr.slides.push(s);
-		mgr.transition.postCreate(s.getElement());
+		s.setElement(object.createElement(slide));
+		object.slides.push(s);
+		object.transition.postCreate(s.getElement());
 		$(document.body).append(s.getElement());
 		});
 		this.transition.transitionIn(this.getCurrentElement());
@@ -236,9 +261,6 @@ Mgr.prototype.getCurrentElement=function() {
 }
 Mgr.prototype.getSlideNum=function() {
 	return this.slides.length;
-}
-Mgr.prototype.debug=function() {
-	console.log('I have '+this.getSlideNum()+' slides');
 }
 Mgr.prototype.startWait=function() {
 	document.body.style.cursor='wait';
