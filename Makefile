@@ -6,7 +6,7 @@
 # set this from the command line and avoid changing the makefile...
 DO_MKDBG?=0
 # what is the source folder ?
-SRC_DIR:=xml
+SRC_DIR:=presentations
 # do you want dependency on the makefile itself ?!?
 DO_ALL_DEPS:=1
 # what is the web dir for this project ?
