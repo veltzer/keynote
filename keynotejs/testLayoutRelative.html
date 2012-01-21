@@ -1,0 +1,34 @@
+<html>
+	<head>
+		<!-- jQuery - we use this a lot -->
+		<script src="toolkits/jquery/jquery.js"></script>
+
+		<!-- my code -->
+		<script src="Utils.js"></script>
+		<script src="LayoutResolver.js"></script>
+		<script src="LayoutRelative.js"></script>
+		<script>
+			$(document).ready(function() {
+				var l=new LayoutRelative({});
+				l.addElement($('#myid1'),0.25);
+				l.addElement($('#myid2'),0.75);
+				l.resize(0,0,$(window).width(),$(window).height());
+				$(window).resize(function() {
+					l.resize(0,0,$(window).width(),$(window).height());
+				});
+			});
+		</script>
+		<style>
+		#myid1 {
+			background-color: blue;
+		}
+		#myid2 {
+			background-color: red;
+		}
+		</style>
+	</head>
+	<body>
+		<div id='myid1'></div>
+		<div id='myid2'></div>
+	</body>
+</html>

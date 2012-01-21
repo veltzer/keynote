@@ -1,5 +1,6 @@
 /*
  * This is a layout manager that divides it's vertical space in a relative way.
+ * This object currently takes no configuration options.
  */
 function LayoutRelative(config) {
 	this.elements=[];
@@ -35,13 +36,15 @@ LayoutRelative.prototype.checkAddToOne=function() {
 LayoutRelative.prototype.resize=function(x,y,width,height) {
 	// for closure
 	var object=this;
-	this.debug('resize: '+x+','+y+','+width+','+height+','+this.elements.length);
+	this.debug('resize: '+x+','+y+','+width+','+height);
+	this.debug('this.elements.length: '+this.elements.length);
 	this.checkAddToOne();
 	var y_start=y;
 	$.each(this.elements,function(i,element) {
 		var size=object.sizes[i];
 		var cur_size=height*size;
-		element.posAbs(x,start_y);
+		//element.posAbs(x,y_start);
+		element.posAbs4(x,y_start,width,y+cur_size);
 		y_start+=cur_size;
 	});
 }
