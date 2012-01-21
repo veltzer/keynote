@@ -5,6 +5,14 @@ make the screen go black at the end of the presentation.
 install a web site for the project that shows how the project works.
 add pdmt to build to build this project and do mako on it.
 
+Core functionality:
+===================
+Core functionality refers to the xml file for presentations, it's semantics, writing and validating it,
+packaging it. It does not concern showing it in any medium.
+
+- a feature that allow the author of a slideshow to add lecture notes to each slide to be viewed by the
+lecturer only. Maybe two browsers communicating? Maybe two tabs, one on each screen? chrome can do that!
+
 keynote js:
 ===========
 - make the first slide look better.
