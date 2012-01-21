@@ -3,7 +3,7 @@
  */
 function LayoutFlow(config) {
 	this.elements=[];
-	this.doDebug=true;
+	this.doDebug=false;
 	this.debug('created LayoutFlow');
 	this.protect=true;
 	this.lines=config.lines;

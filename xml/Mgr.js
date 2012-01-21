@@ -5,7 +5,7 @@ function Mgr(options) {
 	}
 	this.source=options.source;
 	if(!('transition' in options)) {
-		this.transition=new HideShow();
+		this.transition=new TransitionHideShow();
 	} else {
 		this.transition=options.transition;
 	}

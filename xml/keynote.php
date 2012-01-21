@@ -37,7 +37,7 @@
 			$(document).ready(function() {
 				var mgr=new Mgr({
 					'source':'<?php echo $_GET['presentation'] ?>',
-					//'transition':new FadeoutFadein({'delay':1000})
+					'transition':new TransitionFadeoutFadein({'delay':1000}),
 				});
 			});
 		</script>
