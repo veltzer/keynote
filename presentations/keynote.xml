@@ -13,7 +13,14 @@
 			<keyword value="three"/>
 		</keywords>
 	</meta>
+	<slide layout="center">
+		<bullet><concept>keynote</concept></bullet>
+		<bullet>slides made right</bullet>
+		<bullet>Mark Veltzer</bullet>
+		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
+	</slide>
 	<slide>
+		<title>this is the title</title>
 		<bullet>1. this is a slide</bullet>
 		<bullet>2. with just bullets</bullet>
 		<bullet>3. each bullet should fit</bullet>
@@ -22,12 +29,6 @@
 		<bullet>6. the number of lines</bullet>
 		<bullet>7. you configured to see in each</bullet>
 		<bullet>8. slide</bullet>
-	</slide>
-	<slide layout="center">
-		<title><concept>keynote</concept></title>
-		<bullet>slides made right</bullet>
-		<bullet>Mark Veltzer</bullet>
-		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
 	</slide>
 	<slide>
 		<title>slide created without a layout manager</title>
