@@ -57,7 +57,10 @@ function Mgr(options) {
 		this.transition=options.transition;
 	}
 	this.doDebug=true;
+	// should we do real <a> or <div> with callbacks
 	this.doRealLinks=false;
+	// should we actually redirect anywhere ?
+	this.doClickableLinks=false;
 	this.startWait();
 	this.currentSlideNum=0;
 	this.slides=[];
@@ -96,20 +99,26 @@ Mgr.prototype.hookResize=function() {
 	$(window).resize(function() {
 		object.resize();
 	});
+	this.resize(this.getCurrentElement(),0,0,$(window).width(),$(window).height());
 }
 Mgr.prototype.resize=function() {
-	this.debug('resize',$(window).width(),$(window).height());
+	// for closure
+	var object=this;
+	//this.debug('resize',$(window).width(),$(window).height());
 	if($(window).width()!=this.old_width || $(window).height()!=this.old_height) {
-		this.debug('real resize');
+		//this.debug('real resize');
 		this.old_width=$(window).width();
 		this.old_height=$(window).height();
+		$.each(this.slides,function(i,slide) {
+			slide.getElement().data('layout').resize(0,0,$(window).width(),$(window).height());
+		});
 	}
 }
 Mgr.prototype.hookKeyboard=function() {
 	// for closure
 	var object=this;
 	var onefunc=function(e) {
-		object.debug(e.keyCode,e.which);
+		//object.debug(e.keyCode,e.which);
 		// 32 is space, 39 is right arrow, 34 is page down, 40 is down
 		if(e.keyCode==32 || e.keyCode==39 || e.keyCode==34 || e.keyCode==40) {
 			object.gotoNext();
@@ -139,12 +148,9 @@ Mgr.prototype.hookKeyboard=function() {
 Mgr.prototype.getTextFromSingleXpath=function(doc,xpath_expr) {
 	var l=doc.evaluate(xpath_expr,doc.documentElement,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
 	if(l.snapshotLength!=1) {
-		//console.log(l.snapshotLength);
-		//console.log(typeof(l));
-		//console.log(l.constructor);
-		//for (var i=0;i<l.snapshotLength;i++) {
-		//	console.log(l.snapshotItem(i));
-		//}
+		//this.debug(l.snapshotLength);
+		//this.debug(typeof(l));
+		//this.debug(l.constructor);
 		throw 'wrong number ('+l.snapshotLength+') of elements for expression '+xpath_expr;
 	}
 	return l.snapshotItem(0).textContent;
@@ -157,9 +163,15 @@ Mgr.prototype.getTextFromSingleNode=function(doc,name) {
 	return l[0].textContent;
 }
 Mgr.prototype.checkOneChild=function(node) {
-	if(node.childNodes.length!=1) {
+	this.debug(node);
+	this.debug(node.nodeType);
+	if(node.nodeType!=3 && node.childNodes.length!=1) {
 		throw 'wrong number of childern for node '+node;
 	}
+}
+Mgr.prototype.getOneChild=function(node) {
+	this.checkOneChild(node);
+	return node.childNodes[0];
 }
 Mgr.prototype.checkNoChildren=function(node) {
 	if(node.childNodes.length!=0) {
@@ -170,9 +182,10 @@ Mgr.prototype.createElement=function(node) {
 	// for closure
 	var object=this;
 	// debug
-	//console.log(node);
+	this.debug(node.nodeType);
 	// 3 means text node
 	if(node.nodeType==3) {
+		throw 'I dont think I should be here';
 		var e_item=$('<span/>',{'class':'text'}).text(node.textContent);
 		return e_item;
 	}
@@ -223,20 +236,51 @@ Mgr.prototype.createElement=function(node) {
 					'class':node.localName,
 				});
 				e_item.addClass('fakemail');
-				e_item.click(function(e) {
-					window.location='mailto:'+node.getAttribute('value');
-				});
+				if(this.doClickableLinks) {
+					e_item.click(function(e) {
+						window.location='mailto:'+node.getAttribute('value');
+					});
+				}
 				e_item.text(node.getAttribute('value'));
 				return e_item;
 			}
 		}
+		var type;
+		if(node.localName=='title' || node.localName=='bullet') {
+			type='<span>';
+		} else {
+			type='<div/>';
+		}
 		// non atomics (all others: title, bullet)
-		var e_item=$('<div/>',{'class':node.localName});
+		var e_item=$(type,{'class':node.localName});
+		var layout;
+		if(node.hasAttribute('layout')) {
+			layout=new LayoutCenter();
+			e_item.data('layout',layout);
+		}
 		$.each(node.childNodes,function(index,child) {
-			e_item.append(object.createElement(child));
+			if(child.nodeType!=3 && child.nodeType!=1) {
+				return;
+			}
+			// no text under slides
+			if(node.localName=='slide' && child.nodeType==3) {
+				//object.debug(child);
+				return;
+			}
+			if((node.localName=='title' || node.localName=='bullet') && child.nodeType==3) {
+				e_item.append(child.textContent);
+				return;
+			}
+			// recursion
+			var newElement=object.createElement(child);
+			e_item.append(newElement);
+			if(node.hasAttribute('layout')) {
+				layout.addElement(newElement);
+			}
 		});
 		return e_item;
 	}
+	throw 'I really should not be here '+node;
 }
 Mgr.prototype.buildUp=function(doc) {
 	this.title=this.getTextFromSingleXpath(doc,'/presentation/meta/title');

@@ -4,7 +4,18 @@ body {
 }
 */
 
-/* disable the scroll bar */
+/*
+ * <body> by default takes about 8 pixels from every side. We don't want that
+ */
+
+body {
+	margin-bottom: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+/* disable the automatic scroll bar */
 html, body {
 	overflow: hidden;
 }

@@ -4,6 +4,7 @@
 function LayoutCenter() {
 	this.elements=[];
 	this.doDebug=true;
+	this.debug('created LayoutCenter');
 }
 LayoutCenter.prototype.debug=function() {
 	if(this.doDebug) {
@@ -13,6 +14,7 @@ LayoutCenter.prototype.debug=function() {
 	}
 }
 LayoutCenter.prototype.addElement=function(elem) {
+	this.debug('addElement '+elem);
 	this.elements.push(elem);
 }
 /*
@@ -20,9 +22,7 @@ LayoutCenter.prototype.addElement=function(elem) {
  * of this layout manger should be. He should do the rest.
  */
 LayoutCenter.prototype.resize=function(x,y,width,height) {
-	// closure
-	var object=this;
-	this.debug('resize',x,y,width,height);
+	this.debug('resize: '+x+','+y+','+width+','+height+','+this.elements.length);
 	var sum_height=0;
 	$.each(this.elements,function(i,element) {
 		sum_height+=element.height();
