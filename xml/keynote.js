@@ -56,6 +56,7 @@ function Mgr(options) {
 	} else {
 		this.transition=options.transition;
 	}
+	this.doRealLinks=false;
 	this.startWait();
 	this.currentSlideNum=0;
 	this.slides=[];
@@ -185,14 +186,26 @@ Mgr.prototype.createElement=function(node) {
 		}
 		if(node.localName=='email') {
 			this.checkNoChildren(node);
-			var e_item=$('<a/>',{
-				'class':node.localName,
-				'href':'mailto:'+node.getAttribute('value'),
-			});
-			e_item.text(node.getAttribute('value'));
-			return e_item;
+			if(this.doRealLinks) {
+				var e_item=$('<a/>',{
+					'class':node.localName,
+					'href':'mailto:'+node.getAttribute('value'),
+				});
+				e_item.text(node.getAttribute('value'));
+				return e_item;
+			} else {
+				var e_item=$('<span/>',{
+					'class':node.localName,
+				});
+				e_item.addClass('fakemail');
+				e_item.click(function(e) {
+					window.location='mailto:'+node.getAttribute('value');
+				});
+				e_item.text(node.getAttribute('value'));
+				return e_item;
+			}
 		}
-		// non atomics (title, bullet)
+		// non atomics (all others: title, bullet)
 		var e_item=$('<div/>',{'class':node.localName});
 		$.each(node.childNodes,function(index,child) {
 			e_item.append(mgr.createElement(child));
@@ -212,8 +225,8 @@ Mgr.prototype.buildUp=function(doc) {
 		mgr.slides.push(s);
 		mgr.transition.postCreate(s.getElement());
 		$(document.body).append(s.getElement());
-	});
-	this.transition.transitionIn(this.getCurrentElement());
+		});
+		this.transition.transitionIn(this.getCurrentElement());
 }
 Mgr.prototype.getCurrentSlide=function() {
 	return this.slides[this.currentSlideNum];

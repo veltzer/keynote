@@ -3,6 +3,12 @@ body {
 	background-color: grey;
 }
 */
+
+/* disable the scroll bar */
+html, body {
+	overflow: hidden;
+}
+
 .title {
 	font-size: 90px;
 	text-align: center;
@@ -21,4 +27,10 @@ body {
 }
 .emphasis, .concept {
 	font-weight: bold;
+}
+
+.fakemail {
+	color: -webkit-link;
+	text-decoration: underline;
+	cursor: hand;
 }
