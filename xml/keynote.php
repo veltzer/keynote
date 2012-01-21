@@ -21,10 +21,13 @@
 
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
-		<script src="jquery.js"></script>
+		<script src="Utils.js"></script>
+		<script src="TransitionHideShow.js"></script>
+		<script src="TransitionFadeoutFadein.js"></script>
 		<script src="LayoutResolver.js"></script>
 		<script src="LayoutCenter.js"></script>
 		<script src="LayoutFlow.js"></script>
+		<script src="Slide.js"></script>
 		<script src="keynote.js"></script>
 
 		<?php
@@ -34,7 +37,7 @@
 			$(document).ready(function() {
 				var mgr=new Mgr({
 					'source':'<?php echo $_GET['presentation'] ?>',
-					'transition':new FadeoutFadein({'delay':1000})
+					//'transition':new FadeoutFadein({'delay':1000})
 				});
 			});
 		</script>

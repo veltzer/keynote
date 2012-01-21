@@ -1,54 +1,3 @@
-// the hide/show transition manager
-function HideShow(options) {
-	// no internal state
-}
-HideShow.prototype.postCreate=function(elem) {
-	//elem.hide();
-	elem.fadeOut(0);
-}
-HideShow.prototype.transitionIn=function(elem) {
-	//elem.show();
-	elem.fadeIn(0);
-}
-HideShow.prototype.transitionOut=function(elem) {
-	//elem.hide();
-	elem.fadeOut(0);
-}
-
-// the fadeout/fadein transition manager
-function FadeoutFadein(options) {
-	if(!('delay' in options)) {
-		throw 'must pass delay';
-	}
-	this.delay=options.delay;
-}
-FadeoutFadein.prototype.postCreate=function(elem) {
-	//elem.hide();
-	elem.fadeOut(0);
-}
-FadeoutFadein.prototype.transitionIn=function(elem) {
-	//elem.show();
-	//elem.css('display','none');
-	elem.fadeIn(this.delay);
-}
-FadeoutFadein.prototype.transitionOut=function(elem) {
-	elem.fadeOut(this.delay);
-	//elem.hide();
-}
-
-// a single slide object
-function Slide() {
-	this.title='no title';
-	this.element=undefined;
-}
-
-Slide.prototype.setElement=function(elem) {
-	this.element=elem;
-}
-Slide.prototype.getElement=function() {
-	return this.element;
-}
-
 // the presentation manager object
 function Mgr(options) {
 	if(!('source' in options)) {
@@ -60,7 +9,7 @@ function Mgr(options) {
 	} else {
 		this.transition=options.transition;
 	}
-	this.doDebug=true;
+	this.doDebug=false;
 	// should we do real <a> or <div> with callbacks
 	this.doRealLinks=false;
 	// should we actually redirect anywhere ?
@@ -194,8 +143,6 @@ Mgr.prototype.createElement=function(node) {
 	// 3 means text node
 	if(node.nodeType==3) {
 		throw 'I dont think I should be here '+node.textContent;
-		var e_item=$('<span/>',{'class':'text'}).text(node.textContent);
-		return e_item;
 	}
 	// 1 means element 
 	if(node.nodeType==1) {
@@ -268,7 +215,14 @@ Mgr.prototype.createElement=function(node) {
 		});
 		var layout;
 		if(node.hasAttribute('layout') || node.localName=='slide') {
-			layout=new LayoutCenter();
+			var type;
+			if(node.hasAttribute('layout')) {
+				type=node.getAttribute('layout');
+			} else {
+				type='flow';
+			}
+			var config={ 'lines':8 };
+			layout=LayoutResolver.getInstance().createLayoutManager(type,config);
 			e_item.data('layout',layout);
 		}
 		$.each(node.childNodes,function(index,child) {

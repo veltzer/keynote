@@ -13,20 +13,20 @@
 			<keyword value="three"/>
 		</keywords>
 	</meta>
-	<slide>
-		<title>keynote</title>
+	<slide layout="center">
+		<title><concept>keynote</concept></title>
 		<bullet>slides made right</bullet>
 		<bullet>Mark Veltzer</bullet>
 		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
 	</slide>
 	<slide>
-		<title>This is a slide created without a layout manager</title>
+		<title>slide created without a layout manager</title>
 		<bullet>This means that this slide will have a flow layout manager</bullet>
 		<bullet>And this is yet another bullet</bullet>
 	</slide>
 	<slide>
 		<title>Long Slide</title>
-		<bullet>This slider</bullet>
+		<bullet>This slide</bullet>
 		<bullet>has many</bullet>
 		<bullet>many</bullet>
 		<bullet>and many</bullet>

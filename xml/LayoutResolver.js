@@ -20,14 +20,14 @@ LayoutResolver.prototype.debug=function() {
 	}
 }
 LayoutResolver.prototype.addLayoutManager=function(name,constructor) {
-	this.debug('addElement '+elem);
+	this.debug('addLaytoutManager: '+name+',',constructor);
 	this.map[name]=constructor;
 }
 /*
  * This is a the main function.
  */
 LayoutResolver.prototype.createLayoutManager=function(name,config) {
-	this.debug('createLayoutManager: '+name);
+	this.debug('createLayoutManager: '+name+','+config);
 	return new this.map[name](config);
 }
 /*

@@ -3,7 +3,7 @@
  */
 function LayoutCenter(config) {
 	this.elements=[];
-	this.doDebug=true;
+	this.doDebug=false;
 	this.debug('created LayoutCenter');
 	this.protect=true;
 	this.lines=config.lines;
@@ -41,7 +41,18 @@ LayoutCenter.prototype.resize=function(x,y,width,height) {
 		y_start+=element.height();
 	});
 	*/
+	if(this.elements.length>this.lines) {
+		console.error('too many lines for slide '+this.elements.length+' > '+this.lines);
+	}
 	var row_height=height/this.lines;
+	this.debug('row_height is '+row_height);
 	var sum_height=this.elements.length*row_height;
+	var y_start=(height-sum_height)/2;
+	var x_center=x+width/2;
+	$.each(this.elements,function(i,element) {
+		element.css('font-size',row_height+'px');
+		element.posAbs(y_start,x_center-element.width()/2);
+		y_start+=row_height;
+	});
 }
 LayoutResolver.getInstance().addLayoutManager('center',LayoutCenter);
