@@ -13,6 +13,7 @@
 			<keyword value="introduction"/>
 			<keyword value="tutorial"/>
 			<keyword value="presentation"/>
+			<keyword value="keynotejs"/>
 		</keywords>
 	</meta>
 	<slide layout="center">
@@ -22,7 +23,7 @@
 		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
 	<slide layout="flow">
-		<title>second jQuery slide</title>
+		<title>Second jQuery slide</title>
 		<bullet>this is a bullet</bullet>
 	</slide>
 </presentation>

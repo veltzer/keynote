@@ -47,3 +47,12 @@ body {
 	text-decoration: underline;
 	cursor: hand;
 }
+
+/*
+ * These are my own personal settings, for my own personal slides
+ *	Mark Veltzer
+ */
+.title {
+	font-weight: bold;
+	color: -webkit-link;
+}

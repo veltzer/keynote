@@ -16,8 +16,9 @@
 	<slide layout="center">
 		<bullet><concept>keynote</concept></bullet>
 		<bullet>slides made right</bullet>
-		<bullet>Mark Veltzer</bullet>
-		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
+		<bullet></bullet>
+		<bullet size="small">Mark Veltzer</bullet>
+		<bullet size="small"><email value='mark.veltzer@gmail.com'/></bullet>
 	</slide>
 	<slide>
 		<title>this is the title</title>
