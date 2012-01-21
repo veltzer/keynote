@@ -172,7 +172,11 @@ Mgr.prototype.createElement=function(node) {
 		if(node.localName=='image') {
 			this.checkNoChildren(node);
 			// TODO: what about the height and width of the images ?
-			var e_item=$('<img/>',{
+			var e_item=$('<img/>');
+			e_item.error(function() {
+				// currently do nothing on image load error
+			});
+			e_item.attr({
 				'class':node.localName,
 				'src':node.getAttribute('url'),
 				'alt':node.getAttribute('description'),

@@ -19,7 +19,7 @@
 		<title>jQuery</title>
 		<bullet>Mark Veltzer</bullet>
 		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
-		<image url='jQuery.jpg' description='the jQuery logo'/>
+		<image url='jquery.png' description='the jQuery logo'/>
 	</slide>
 	<slide>
 		<title>second jQuery slide</title>
