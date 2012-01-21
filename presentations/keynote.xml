@@ -41,11 +41,16 @@
 		<title>what is keynote?</title>
 		<bullet><emphasis>Keynote</emphasis> is tool to create presentations from text files.</bullet>
 		<bullet>The idea is to be able to edit presentations with a regular text editor.</bullet>
+	</slide>
+	<slide>
+		<title>This is a code slide</title>
+		<bullet>This is a sample of code:</bullet>
 		<code language="c"><![CDATA[
 		int main(int argc,char** argv, char** envp) {
-			printf("Hello, World!");
+			printf("Hello, World!\n");
 			return 0;
 		}]]></code>
+		<bullet>And this is a discussion of it</bullet>
 	</slide>
 	<slide>
 		<title>Features</title>
