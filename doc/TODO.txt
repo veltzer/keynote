@@ -1,19 +1,24 @@
 now:
 ====
-write a php script that runs keynote on a specific url.
-make the screen go black at the end of the presentation.
-install a web site for the project that shows how the project works.
-add pdmt to build to build this project and do mako on it.
+- center title lines.
+- make the screen go blank at the end of the presentation.
+
+Build system
+============
+- add pdmt to build this project and do mako on it.
+- start building from the command line (ant).
 
 Core functionality:
 ===================
-Core functionality refers to the xml file for presentations, it's semantics, writing and validating it,
-packaging it. It does not concern showing it in any medium.
-
 - a feature that allow the author of a slideshow to add lecture notes to each slide to be viewed by the
 lecturer only. Maybe two browsers communicating? Maybe two tabs, one on each screen? chrome can do that!
+- add DTD and schema to validate the document.
+- before processing the document validate it.
+- add external tool to validate the document.
+	(or maybe use an existing tool?!?)
+- document how to edit a presentation within eclipse say with XML support.
 
-keynote js:
+keynote/js:
 ===========
 - make the first slide look better.
 - stop the scroll bar from appearing.
@@ -30,29 +35,28 @@ Transitions:
 - do OO design for transitions and allow a user to select one of them.
 
 UI:
-Add a menu that pops up and allows one to jump to a slide number etc...
+- add a menu that pops up and allows one to jump to a slide number etc...
 
 UI usability:
-Concepts, urls, and more:
-- when a user hovers over a concept show the definition of that concept.
-	The definition will be inserted by the author of the document.
-- when a user hovers over a url, show a small version of that url (there are libraries to
-	help you with that).
-- when a user hovers over an Image show help for that image.
-- when a user hovers over an email, give a dialog to send email to that address.
-- when a user hovers over a word, give a dictionary definiton for that word.
-	or wikipedia definiton for that concept.
+- concepts, urls, links and more:
+	- when a user hovers over a concept show the definition of that concept.
+		The definition will be inserted by the author of the document.
+	- when a user hovers over a url, show a small version of that url (there are libraries to
+		help you with that).
+	- when a user hovers over an Image show help for that image.
+	- when a user hovers over an email, give a dialog to send email to that address.
+	- when a user hovers over a word, give a dictionary definiton for that word.
+		or wikipedia definiton for that concept.
 
 User customisation of style:
-============================
 - allow the user to customize EVERY SLIDE. The idea is that the user could give an id
 to every element (at the xml level). keynote will attach that id and turn it into an HTML
 id. Now the user can use that id in CSS to customize the slide show.
 - mention that this is not recommended since it's not the point of keynote to focus
 on presentation but rather on content.
 
-pdf functionality:
-==================
+keynode/pdf:
+============
 - if a list gets too long and we move on to a new slide then the header should be added automatically.
 - list bullets are ugly (no sign). Add one.
 - support for code inlined within text (different font).
@@ -78,15 +82,3 @@ pdf functionality:
 - support for technical drawings within the presentation ?
 	or maybe with some other tool ?
 - maybe the best way is to use SVG ?
-
-building the project:
-=====================
-- start building from the command line (ant).
-
-XML format:
-===========
-- add DTD and schema to validate the document.
-- before processing the document validate it.
-- add external tool to validate the document.
-	(or maybe use an existing tool?!?)
-- document how to edit a presentation within eclipse say with XML support.

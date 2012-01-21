@@ -148,11 +148,13 @@ Mgr.prototype.createElement=function(node) {
 	if(node.nodeType==1) {
 		if(node.localName=='code') {
 			this.checkOneChild(node);
-			var e_item=$('<pre/>');
+			var e_item=$('<div/>');
+			var e_code=$('<pre/>');
 			if(node.hasAttribute('language')) {
-				e_item.addClass('brush: '+node.getAttribute('language'));
+				e_code.addClass('brush: '+node.getAttribute('language'));
 			}
-			e_item.text(node.textContent);
+			e_code.text(node.textContent);
+			e_item.append(e_code);
 			return e_item;
 		}
 		if(node.localName=='concept' || node.localName=='emphasis') {

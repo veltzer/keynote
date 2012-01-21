@@ -26,3 +26,8 @@ where the user wants to set the number of columns and rows.
 
 Descision:
 Create a layout mananger for each object. They are small anyway.
+
+Core functionality:
+===================
+Core functionality refers to the xml file for presentations, it's semantics, writing and validating it,
+packaging it. It does not concern showing it in any medium.
