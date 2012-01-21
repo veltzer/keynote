@@ -3,13 +3,16 @@ function HideShow(options) {
 	// no internal state
 }
 HideShow.prototype.postCreate=function(elem) {
-	elem.hide();
+	//elem.hide();
+	elem.fadeOut(0);
 }
 HideShow.prototype.transitionIn=function(elem) {
-	elem.show();
+	//elem.show();
+	elem.fadeIn(0);
 }
 HideShow.prototype.transitionOut=function(elem) {
-	elem.hide();
+	//elem.hide();
+	elem.fadeOut(0);
 }
 
 // the fadeout/fadein transition manager
@@ -20,16 +23,17 @@ function FadeoutFadein(options) {
 	this.delay=options.delay;
 }
 FadeoutFadein.prototype.postCreate=function(elem) {
-	elem.hide();
+	//elem.hide();
+	elem.fadeOut(0);
 }
 FadeoutFadein.prototype.transitionIn=function(elem) {
-	elem.show();
-	elem.css('display','none');
+	//elem.show();
+	//elem.css('display','none');
 	elem.fadeIn(this.delay);
 }
 FadeoutFadein.prototype.transitionOut=function(elem) {
 	elem.fadeOut(this.delay);
-	elem.hide();
+	//elem.hide();
 }
 
 // a single slide object
@@ -62,10 +66,11 @@ function Mgr(options) {
 	// should we actually redirect anywhere ?
 	this.doClickableLinks=false;
 	this.startWait();
-	this.currentSlideNum=0;
+	this.currentSlideNum=-1;
 	this.slides=[];
 	this.old_width=undefined;
 	this.old_height=undefined;
+	this.topElem=$(document.body)
 	// for closure
 	var object=this;
 	var ajax=$.get(
@@ -73,10 +78,12 @@ function Mgr(options) {
 		'',
 		function(doc) {
 			object.buildUp(doc);
-			object.stopWait();
 			object.hookKeyboard();
 			object.highlight();
 			object.hookResize();
+			object.stopWait();
+			object.resize(true);
+			object.gotoBegin();
 		},
 		'xml'
 	);
@@ -92,21 +99,22 @@ Mgr.prototype.debug=function() {
 		});
 	}
 }
-
 Mgr.prototype.hookResize=function() {
 	// for closure
 	var object=this;
 	$(window).resize(function() {
-		object.resize();
+		//object.resize(false);
+		object.resize(true);
 	});
-	this.resize(this.getCurrentElement(),0,0,$(window).width(),$(window).height());
+	// now lets call resize once ourselves...
+	object.resize(true);
 }
-Mgr.prototype.resize=function() {
+Mgr.prototype.resize=function(force) {
 	// for closure
 	var object=this;
 	//this.debug('resize',$(window).width(),$(window).height());
-	if($(window).width()!=this.old_width || $(window).height()!=this.old_height) {
-		//this.debug('real resize');
+	if($(window).width()!=this.old_width || $(window).height()!=this.old_height || force) {
+		this.debug('real resize');
 		this.old_width=$(window).width();
 		this.old_height=$(window).height();
 		$.each(this.slides,function(i,slide) {
@@ -163,8 +171,8 @@ Mgr.prototype.getTextFromSingleNode=function(doc,name) {
 	return l[0].textContent;
 }
 Mgr.prototype.checkOneChild=function(node) {
-	this.debug(node);
-	this.debug(node.nodeType);
+	//this.debug(node);
+	//this.debug(node.nodeType);
 	if(node.nodeType!=3 && node.childNodes.length!=1) {
 		throw 'wrong number of childern for node '+node;
 	}
@@ -182,10 +190,10 @@ Mgr.prototype.createElement=function(node) {
 	// for closure
 	var object=this;
 	// debug
-	this.debug(node.nodeType);
+	//this.debug(node.nodeType);
 	// 3 means text node
 	if(node.nodeType==3) {
-		throw 'I dont think I should be here';
+		throw 'I dont think I should be here '+node.textContent;
 		var e_item=$('<span/>',{'class':'text'}).text(node.textContent);
 		return e_item;
 	}
@@ -247,14 +255,19 @@ Mgr.prototype.createElement=function(node) {
 		}
 		var type;
 		if(node.localName=='title' || node.localName=='bullet') {
-			type='<span>';
+			type='<span/>';
 		} else {
 			type='<div/>';
 		}
 		// non atomics (all others: title, bullet)
-		var e_item=$(type,{'class':node.localName});
+		var e_item=$(type,{
+			'class':node.localName,
+			'position': 'absolute', // to make sure it's absolute
+			'marginLeft': 0, // to make sure there are no margins
+			'marginTop': 0, // to make sure there are no margins
+		});
 		var layout;
-		if(node.hasAttribute('layout')) {
+		if(node.hasAttribute('layout') || node.localName=='slide') {
 			layout=new LayoutCenter();
 			e_item.data('layout',layout);
 		}
@@ -274,7 +287,7 @@ Mgr.prototype.createElement=function(node) {
 			// recursion
 			var newElement=object.createElement(child);
 			e_item.append(newElement);
-			if(node.hasAttribute('layout')) {
+			if(node.hasAttribute('layout') || node.localName=='slide') {
 				layout.addElement(newElement);
 			}
 		});
@@ -283,19 +296,18 @@ Mgr.prototype.createElement=function(node) {
 	throw 'I really should not be here '+node;
 }
 Mgr.prototype.buildUp=function(doc) {
-	this.title=this.getTextFromSingleXpath(doc,'/presentation/meta/title');
-	this.copyright=this.getTextFromSingleNode(doc,'copyright');
 	// for closure
 	var object=this;
+	this.title=this.getTextFromSingleXpath(doc,'/presentation/meta/title');
+	this.copyright=this.getTextFromSingleNode(doc,'copyright');
 	// create the various pages
 	$.each(doc.getElementsByTagName('slide'),function(index,slide) {
 		var s=new Slide();
 		s.setElement(object.createElement(slide));
 		object.slides.push(s);
+		object.topElem.append(s.getElement());
 		object.transition.postCreate(s.getElement());
-		$(document.body).append(s.getElement());
-		});
-		this.transition.transitionIn(this.getCurrentElement());
+	});
 }
 Mgr.prototype.getCurrentSlide=function() {
 	return this.slides[this.currentSlideNum];
@@ -316,10 +328,13 @@ Mgr.prototype.stopWait=function() {
 }
 Mgr.prototype.gotoSlide=function(num) {
 	if(num>=0 && num<this.getSlideNum() && num!=this.currentSlideNum) {
-		this.transition.transitionOut(this.getCurrentElement());
+		if(this.currentSlideNum!=-1) {
+			this.transition.transitionOut(this.getCurrentElement());
+		}
 		this.currentSlideNum=num;
 		this.transition.transitionIn(this.getCurrentElement());
 	}
+	this.resize(true);
 }
 Mgr.prototype.gotoNext=function() {
 	this.gotoSlide(this.currentSlideNum+1);

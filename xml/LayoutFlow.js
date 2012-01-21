@@ -1,21 +1,21 @@
 /*
  * This is a center layout manager. It puts a collection of elements smack in the middle of its display.
  */
-function LayoutCenter(config) {
+function LayoutFlow(config) {
 	this.elements=[];
 	this.doDebug=true;
-	this.debug('created LayoutCenter');
+	this.debug('created LayoutFlow');
 	this.protect=true;
 	this.lines=config.lines;
 }
-LayoutCenter.prototype.debug=function() {
+LayoutFlow.prototype.debug=function() {
 	if(this.doDebug) {
 		$.each(arguments,function(i,msg) {
 			console.log(msg);
 		});
 	}
 }
-LayoutCenter.prototype.addElement=function(elem) {
+LayoutFlow.prototype.addElement=function(elem) {
 	this.debug('addElement '+elem);
 	this.elements.push(elem);
 }
@@ -23,9 +23,8 @@ LayoutCenter.prototype.addElement=function(elem) {
  * This is a the main function. It receives where the widgets under the control
  * of this layout manger should be. He should do the rest.
  */
-LayoutCenter.prototype.resize=function(x,y,width,height) {
+LayoutFlow.prototype.resize=function(x,y,width,height) {
 	this.debug('resize: '+x+','+y+','+width+','+height+','+this.elements.length);
-	/*
 	var sum_height=0;
 	$.each(this.elements,function(i,element) {
 		sum_height+=element.height();
@@ -40,8 +39,5 @@ LayoutCenter.prototype.resize=function(x,y,width,height) {
 		element.posAbs(y_start,x_center-element.width()/2);
 		y_start+=element.height();
 	});
-	*/
-	var row_height=height/this.lines;
-	var sum_height=this.elements.length*row_height;
 }
-LayoutResolver.getInstance().addLayoutManager('center',LayoutCenter);
+LayoutResolver.getInstance().addLayoutManager('flow',LayoutFlow);

@@ -16,10 +16,11 @@ body {
 }
 
 /* disable the automatic scroll bar */
-html, body {
+body {
 	overflow: hidden;
 }
 
+/*
 .title {
 	font-size: 90px;
 	text-align: center;
@@ -28,10 +29,10 @@ html, body {
 	font-size: 60px;
 }
 
-/* to make the code snipplets be larger */
 .syntaxhighlighter {
 	font-size: 30px;
 }
+*/
 
 .email {
 	color: #0066cc;
@@ -40,6 +41,7 @@ html, body {
 	font-weight: bold;
 }
 
+/* to make my fake links look real */
 .fakemail {
 	color: -webkit-link;
 	text-decoration: underline;

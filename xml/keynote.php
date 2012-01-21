@@ -21,7 +21,10 @@
 
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
+		<script src="jquery.js"></script>
+		<script src="LayoutResolver.js"></script>
 		<script src="LayoutCenter.js"></script>
+		<script src="LayoutFlow.js"></script>
 		<script src="keynote.js"></script>
 
 		<?php
