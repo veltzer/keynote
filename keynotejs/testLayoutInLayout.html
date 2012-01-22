@@ -1,0 +1,54 @@
+<!--
+This is a test to see if a layout inside a layout will work.
+-->
+
+<html>
+	<head>
+		<!-- jQuery - we use this a lot -->
+		<script src="toolkits/jquery/jquery.js"></script>
+
+		<!-- my code -->
+		<script src="Utils.js"></script>
+		<script src="LayoutResolver.js"></script>
+		<script src="LayoutRelative.js"></script>
+		<script>
+			$(document).ready(function() {
+				var l1=new LayoutRelative({
+					'orientation':'vertical',
+				});
+				l1.addElement($('#myid1'),0.25);
+				l1.addElement($('#myid2'),0.65);
+				l1.addElement($('#myid3'),0.10);
+				var l2=new LayoutRelative({
+					'orientation':'horizontal',
+				});
+				l2.addElement($('#myid4'),0.10);
+				l2.addElement($('#myid5'),0.80);
+				l2.addElement($('#myid6'),0.10);
+				$('#myid2').data('layout',l2);
+				l1.resize(0,0,$(window).width(),$(window).height());
+				$(window).resize(function() {
+					l1.resize(0,0,$(window).width(),$(window).height());
+				});
+			});
+		</script>
+		<style>
+			/* these are here to make sure we see that all is well on the screen */
+			#myid1 { background-color: blue; }
+			/* #myid2 { background-color: red; } */
+			#myid3 { background-color: yellow; }
+			#myid4 { background-color: crimson; }
+			#myid5 { background-color: green; }
+			#myid6 { background-color: brown; }
+		</style>
+	</head>
+	<body>
+		<div id='myid1'></div>
+		<div id='myid2'>
+			<div id='myid4'></div>
+			<div id='myid5'></div>
+			<div id='myid6'></div>
+		</div>
+		<div id='myid3'></div>
+	</body>
+</html>

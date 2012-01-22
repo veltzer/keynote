@@ -12,9 +12,10 @@ $.fn.posAbs=function(pos_left,pos_top) {
 	});
 }
 $.fn.posAbs4=function(x,y,width,height) {
+	console.debug('posAbs4: '+x+','+y+','+width+','+height);
 	return this.each(function() {
 		$(this).css({
-			'position': 'absolute', // to make sure it's absolute
+			'position': 'fixed', // to make sure it's fixed
 			'marginLeft': 0, // to make sure there are no margins
 			'marginTop': 0, // to make sure there are no margins
 			'left': x,
@@ -22,6 +23,12 @@ $.fn.posAbs4=function(x,y,width,height) {
 			'width': width,
 			'height': height,
 		});
+		if('layout' in $(this).data()) {
+			var l=$(this).data('layout');
+			console.debug(l);
+			var l=$(this).data('layout');
+			l.resize(x,y,width,height);
+		}
 	});
 }
 

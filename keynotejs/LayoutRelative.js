@@ -7,7 +7,7 @@ function LayoutRelative(config) {
 	this.orientation=config.orientation;
 	this.elements=[];
 	this.sizes=[];
-	this.doDebug=false;
+	this.doDebug=true;
 	this.debug('created LayoutRelative');
 }
 LayoutRelative.orientation={
@@ -54,8 +54,7 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 		var y_start=y;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			var cur_size=height*size;
-			//element.posAbs(x,y_start);
+			var cur_size=Math.round(height*size);
 			element.posAbs4(x,y_start,width,y+cur_size);
 			y_start+=cur_size;
 		});
@@ -63,8 +62,7 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 		var x_start=x;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			var cur_size=width*size;
-			//element.posAbs(x_start,y);
+			var cur_size=Math.round(width*size);
 			element.posAbs4(x_start,y,x+cur_size,height);
 			x_start+=cur_size;
 		});

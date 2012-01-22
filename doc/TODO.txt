@@ -1,6 +1,7 @@
 now:
 ====
-- center title lines.
+- do a test that simulates a real slide and see that it is good.
+	(new test).
 - make the screen go blank at the end of the presentation.
 
 Build system
