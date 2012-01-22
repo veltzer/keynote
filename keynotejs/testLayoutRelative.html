@@ -9,7 +9,10 @@
 		<script src="LayoutRelative.js"></script>
 		<script>
 			$(document).ready(function() {
-				var l=new LayoutRelative({});
+				var l=new LayoutRelative({
+					//'orientation':'vertical',
+					'orientation':'horizontal',
+				});
 				l.addElement($('#myid1'),0.25);
 				l.addElement($('#myid2'),0.75);
 				l.resize(0,0,$(window).width(),$(window).height());

@@ -1,12 +1,23 @@
 /*
  * This is a layout manager that divides it's vertical space in a relative way.
- * This object currently takes no configuration options.
+ * This object must receive orientation as parameter in the config.
  */
 function LayoutRelative(config) {
+	this.checkOrientation(config.orientation);
+	this.orientation=config.orientation;
 	this.elements=[];
 	this.sizes=[];
-	this.doDebug=true;
+	this.doDebug=false;
 	this.debug('created LayoutRelative');
+}
+LayoutRelative.orientation={
+	'horizontal':null,
+	'vertical':null,
+};
+LayoutRelative.prototype.checkOrientation=function(orientation) {
+	if(!(orientation in LayoutRelative.orientation)) {
+		throw 'bad orientation '+orientation;
+	}
 }
 LayoutRelative.prototype.debug=function() {
 	if(this.doDebug) {
@@ -39,13 +50,24 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 	this.debug('resize: '+x+','+y+','+width+','+height);
 	this.debug('this.elements.length: '+this.elements.length);
 	this.checkAddToOne();
-	var y_start=y;
-	$.each(this.elements,function(i,element) {
-		var size=object.sizes[i];
-		var cur_size=height*size;
-		//element.posAbs(x,y_start);
-		element.posAbs4(x,y_start,width,y+cur_size);
-		y_start+=cur_size;
-	});
+	if(this.orientation=='vertical') {
+		var y_start=y;
+		$.each(this.elements,function(i,element) {
+			var size=object.sizes[i];
+			var cur_size=height*size;
+			//element.posAbs(x,y_start);
+			element.posAbs4(x,y_start,width,y+cur_size);
+			y_start+=cur_size;
+		});
+	} else {
+		var x_start=x;
+		$.each(this.elements,function(i,element) {
+			var size=object.sizes[i];
+			var cur_size=width*size;
+			//element.posAbs(x_start,y);
+			element.posAbs4(x_start,y,x+cur_size,height);
+			x_start+=cur_size;
+		});
+	}
 }
 LayoutResolver.getInstance().addLayoutManager('relative',LayoutRelative);
