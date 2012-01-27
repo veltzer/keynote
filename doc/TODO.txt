@@ -1,6 +1,13 @@
 now:
 ====
 - get ridd of the template creating divs.
+- get to good background specification for the template.
+- do a demo of a slide show which is not full screen and see what needs to be
+	fixed to get it to work.
+	- how to catch resize events on regular elements and not just on the whole
+		window.
+	- how to catch keyboard events on a part of the screen.
+	- how to pop up a toolbar in order to allow various commands and issues.
 - use the template in my application.
 - make the template creation code simpler.
 - make two more templates and demo them.
