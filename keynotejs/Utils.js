@@ -69,3 +69,8 @@ function checkHasOnly(o,set) {
 		}
 	}
 }
+function checkCloseTo(v,u,e) {
+	if(!(u-e<v && v<u+e)) {
+			throw 'value out of bounds';
+	}
+}

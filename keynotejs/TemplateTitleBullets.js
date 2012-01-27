@@ -31,8 +31,8 @@ function TemplateTitleBullets(options) {
 	this.l1=new LayoutRelative({
 		'orientation':'vertical',
 	});
-	this.l1.addElement(this.d1,0.25);
-	this.l1.addElement(this.d2,0.65);
+	this.l1.addElement(this.d1,0.20);
+	this.l1.addElement(this.d2,0.70);
 	this.l1.addElement(this.d3,0.10);
 	this.l2=new LayoutRelative({
 		'orientation':'horizontal',

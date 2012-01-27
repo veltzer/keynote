@@ -36,7 +36,7 @@ LayoutRelative.prototype.checkAddToOne=function() {
 	$.each(this.sizes,function(i,size) {
 		sum+=size;
 	});
-	if(sum!=1) {
+	if(checkCloseTo(sum,1,0.00001)) {
 		throw 'sum!=1, sum='+sum;
 	}
 }
