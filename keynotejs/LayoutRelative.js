@@ -2,12 +2,13 @@
  * This is a layout manager that divides it's vertical space in a relative way.
  * This object must receive orientation as parameter in the config.
  */
-function LayoutRelative(config) {
-	this.checkOrientation(config.orientation);
-	this.orientation=config.orientation;
+function LayoutRelative(options) {
+	checkHasOnly(options,new Set('orientation'));
+	this.checkOrientation(options.orientation);
+	this.orientation=options.orientation;
 	this.elements=[];
 	this.sizes=[];
-	this.doDebug=false;
+	this.doDebug=true;
 	this.debug('created LayoutRelative');
 }
 LayoutRelative.orientation={
@@ -47,6 +48,7 @@ LayoutRelative.prototype.checkAddToOne=function() {
 LayoutRelative.prototype.resize=function(x,y,width,height) {
 	// for closure
 	var object=this;
+	// debug
 	this.debug('resize: '+x+','+y+','+width+','+height);
 	this.debug('this.elements.length: '+this.elements.length);
 	this.checkAddToOne();
@@ -54,16 +56,18 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 		var y_start=y;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			var cur_size=Math.round(height*size);
-			element.posAbs4(x,y_start,width,y+cur_size);
+			//var cur_size=Math.round(height*size);
+			var cur_size=height*size;
+			element.posAbs4(x,y_start,width,cur_size);
 			y_start+=cur_size;
 		});
 	} else {
 		var x_start=x;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			var cur_size=Math.round(width*size);
-			element.posAbs4(x_start,y,x+cur_size,height);
+			//var cur_size=Math.round(width*size);
+			var cur_size=width*size;
+			element.posAbs4(x_start,y,cur_size,height);
 			x_start+=cur_size;
 		});
 	}

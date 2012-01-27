@@ -36,7 +36,7 @@ LayoutFlow.prototype.resize=function(x,y,width,height) {
 	var row_height=height/this.lines;
 	this.debug('row_height is '+row_height);
 	var sum_height=this.elements.length*row_height;
-	var y_start=0;
+	var y_start=y;
 	$.each(this.elements,function(i,element) {
 		element.css('font-size',row_height*0.83+'px');
 		element.posAbs(x,y_start);

@@ -13,6 +13,7 @@ This is a test to see if a layout inside a layout will work.
 		<script src="LayoutResolver.js"></script>
 		<script src="LayoutFlow.js"></script>
 		<script src="LayoutRelative.js"></script>
+		<script src="LayoutRatio.js"></script>
 		<script src="TemplateTitleBullets.js"></script>
 		<script>
 			$(document).ready(function() {
@@ -20,19 +21,21 @@ This is a test to see if a layout inside a layout will work.
 					'id': '#myid',
 				});
 				t.addElement('title',$('<div/>').text('this is title'));
-				t.addElement('bullet',$('<div/>').text('this is bullet2'));
-				t.addElement('bullet',$('<div/>').text('this is bullet3'));
-				t.addElement('bullet',$('<div/>').text('this is bullet4'));
+				t.addElement('bullet',$('<div/>').text('This is bullet2'));
+				t.addElement('bullet',$('<div/>').text('This is bullet3'));
+				t.addElement('bullet',$('<div/>').text('This is bullet4'));
+				t.addElement('bullet',$('<div/>').text('This is a very long long long long long long long bullet4'));
+				t.addElement('bullet',$('<div/>').text('This is bullet4'));
 			});
 		</script>
 		<style>
 			/* these are here to make sure we see that all is well on the screen */
-			myid1 { background-color: blue; }
-			/* myid2 { background-color: red; } */
-			myid3 { background-color: yellow; }
-			myid4 { background-color: crimson; }
-			myid5 { background-color: green; }
-			myid6 { background-color: brown; }
+			.myid1 { background-color: blue; }
+			/* .myid2 { background-color: red; } */
+			.myid3 { background-color: yellow; }
+			.myid4 { background-color: crimson; }
+			.myid5 { background-color: green; }
+			.myid6 { background-color: brown; }
 		</style>
 	</head>
 	<body id='myid'>

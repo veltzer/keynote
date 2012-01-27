@@ -1,5 +1,7 @@
 /*
  * This is a center layout manager. It puts a collection of elements smack in the middle of its display.
+ *
+ * 	Mark Veltzer
  */
 function LayoutCenter(config) {
 	this.elements=[];

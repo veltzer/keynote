@@ -14,23 +14,34 @@ function TemplateTitleBullets(options) {
 	// handle arguments
 	checkHasOnly(options,new Set('id'));
 	this.id=options.id;
+
 	// create the structure
-	this.top=$('<div/>');
-	this.d1=$('<div/>');
-	this.d2=$('<div/>');
-	this.d3=$('<div/>');
-	this.d4=$('<div/>');
-	this.d5=$('<div/>');
-	this.d6=$('<div/>');
-	this.top.append(this.d1);
-	this.top.append(this.d2);
-	this.top.append(this.d3);
-	this.d2.append(this.d4);
-	this.d2.append(this.d5);
-	this.d2.append(this.d6);
+	this.d_top=$('<div/>');
+	this.lr=new LayoutRatio({
+		'ratio':1.4,
+	});
+	this.d_top.data('data',this.lr);
+
+	this.d=$('<div/>');
 	this.l1=new LayoutRelative({
 		'orientation':'vertical',
 	});
+	this.d.data('layout',this.l1);
+	this.d_top.append(this.d);
+	this.lr.addElement(this.d);
+
+	this.d1=$('<div/>').addClass('myid1');
+	this.d2=$('<div/>').addClass('myid2');
+	this.d3=$('<div/>').addClass('myid3');
+	this.d4=$('<div/>').addClass('myid4');
+	this.d5=$('<div/>').addClass('myid5');
+	this.d6=$('<div/>').addClass('myid6');
+	this.d.append(this.d1);
+	this.d.append(this.d2);
+	this.d.append(this.d3);
+	this.d.append(this.d4);
+	this.d.append(this.d5);
+	this.d.append(this.d6);
 	this.l1.addElement(this.d1,0.20);
 	this.l1.addElement(this.d2,0.70);
 	this.l1.addElement(this.d3,0.10);
@@ -44,17 +55,22 @@ function TemplateTitleBullets(options) {
 	// connect the flow layout
 	this.l3=new LayoutFlow({ 'lines':8 });
 	this.d5.data('layout',this.l3);
+	// connect the flow layout
+	this.l4=new LayoutFlow({ 'lines':1 });
+	this.d1.data('layout',this.l4);
 	// handle resizes
 	this.resize();
 	$(window).resize(function() {
 		object.resize();
 	});
 	// append
-	$(this.id).append(this.top);
+	$(this.id).append(this.d_top);
 }
 TemplateTitleBullets.prototype.addElement=function(role,element) {
 	if(role=='title') {
 		this.d1.append(element);
+		this.l4.addElement(element);
+		this.resize();
 	}
 	if(role=='bullet') {
 		this.d5.append(element);
@@ -63,5 +79,5 @@ TemplateTitleBullets.prototype.addElement=function(role,element) {
 	}
 }
 TemplateTitleBullets.prototype.resize=function() {
-	this.l1.resize(0,0,$(window).width(),$(window).height());
+	this.lr.resize(0,0,$(window).width(),$(window).height());
 }
