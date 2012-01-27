@@ -1,3 +1,7 @@
+Core functionality:
+===================
+Core functionality refers to the xml file for presentations, it's semantics, writing and validating it,
+
 This is a discussion of the presentation.xml syntax and it's reasoning:
 =======================================================================
 

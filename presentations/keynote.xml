@@ -8,12 +8,13 @@
 		</author>
 		<copyright>Copyright (c) 2011, 2012 Mark Veltzer</copyright>
 		<keywords>
-			<keyword value="one"/>
-			<keyword value="two"/>
-			<keyword value="three"/>
+			<keyword value="keynote"/>
+			<keyword value="Mark Veltzer"/>
+			<keyword value="presentations"/>
+			<keyword value="power point"/>
 		</keywords>
 	</meta>
-	<slide layout="center">
+	<slide template="center">
 		<bullet><concept>keynote</concept></bullet>
 		<bullet>slides made right</bullet>
 		<bullet></bullet>

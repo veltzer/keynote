@@ -1,0 +1,20 @@
+keynote-js is the javascript code that knows how to show keynote presentations
+==============================================================================
+
+Layout managers
+===============
+Do I need a layout manager per slide or per element? Or in other words: do layout managers have
+info of their own? Well - yes. In theory they could. For instance the 'lines' attribute which translates
+to density of text could be potentially overridden by the user. Another example is table layour manager
+where the user wants to set the number of columns and rows.
+
+Descision:
+Create a layout mananger for each object. They are small anyway.
+
+Templates in keynotejs are based on the following ideas:
+========================================================
+Each template is a bunch of layout managers arranged together to get a certain effect.
+Examples of templates are:
+1. Title with Bullets
+2. Title and two columns of bullets.
+3. Title and image/drawing.
