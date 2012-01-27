@@ -55,3 +55,17 @@ function measureElem(e,fontsize) {
 	elem.detach();
 	return ret;
 }
+function checkMustHave(o,set) {
+	for(var item in set.items) {
+		if(!(item in o)) {
+			throw 'must have item '+item;
+		}
+	}
+}
+function checkHasOnly(o,set) {
+	for(var item in o) {
+		if(!(item in set.items)) {
+			throw 'unrecognized item '+item;
+		}
+	}
+}

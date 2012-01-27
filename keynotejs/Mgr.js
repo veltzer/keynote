@@ -1,8 +1,7 @@
 // the presentation manager object
 function Mgr(options) {
-	if(!('source' in options)) {
-		throw 'must pass source';
-	}
+	checkMustHave(options,new Set('source'));
+	checkHasOnly(options,new Set('source','transition'));
 	this.source=options.source;
 	if(!('transition' in options)) {
 		this.transition=new TransitionHideShow();

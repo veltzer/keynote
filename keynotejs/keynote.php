@@ -21,6 +21,7 @@
 
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
+		<script src="Set.js"></script>
 		<script src="Utils.js"></script>
 		<script src="TransitionHideShow.js"></script>
 		<script src="TransitionFadeoutFadein.js"></script>
