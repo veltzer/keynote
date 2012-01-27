@@ -13,27 +13,26 @@ $.fn.posAbs=function(pos_left,pos_top) {
 	});
 }
 $.fn.posAbs4=function(x,y,width,height) {
-	//x=Math.round(x);
-	//y=Math.round(y);
-	//width=Math.round(width);
-	//height=Math.round(height);
-	console.debug('posAbs4: '+x+','+y+','+width+','+height);
-	return this.each(function() {
-		$(this).css({
-			'position': 'fixed', // to make sure it's fixed
-			'marginLeft': 0, // to make sure there are no margins
-			'marginTop': 0, // to make sure there are no margins
-			'left': x,
-			'top': y,
-			'width': width,
-			'height': height,
-		});
-		if('layout' in $(this).data()) {
-			//console.debug(l);
-			var l=$(this).data('layout');
-			l.resize(x,y,width,height);
-		}
+	x=Math.round(x);
+	y=Math.round(y);
+	width=Math.round(width);
+	height=Math.round(height);
+	//console.debug('posAbs4: '+x+','+y+','+width+','+height);
+	this.css({
+		'position': 'fixed', // to make sure it's fixed
+		'marginLeft': 0, // to make sure there are no margins
+		'marginTop': 0, // to make sure there are no margins
+		'overflow': 'hidden', // to make sure that we don't step out of bounds
+		'left': x,
+		'top': y,
+		'width': width,
+		'height': height,
 	});
+	if('layout' in this.data()) {
+		//console.debug(l);
+		var l=this.data('layout');
+		l.resize(x,y,width,height);
+	}
 }
 
 function measureText(text,fontsize) {

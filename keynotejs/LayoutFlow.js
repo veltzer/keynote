@@ -39,7 +39,7 @@ LayoutFlow.prototype.resize=function(x,y,width,height) {
 	var y_start=y;
 	$.each(this.elements,function(i,element) {
 		element.css('font-size',row_height*0.83+'px');
-		element.posAbs(x,y_start);
+		element.posAbs4(x,y_start,width,row_height);
 		//y_start+=row_height;
 		y_start+=element.height();
 	});

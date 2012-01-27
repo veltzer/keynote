@@ -8,7 +8,7 @@ function LayoutRelative(options) {
 	this.orientation=options.orientation;
 	this.elements=[];
 	this.sizes=[];
-	this.doDebug=true;
+	this.doDebug=false;
 	this.debug('created LayoutRelative');
 }
 LayoutRelative.orientation={
@@ -48,6 +48,11 @@ LayoutRelative.prototype.checkAddToOne=function() {
 LayoutRelative.prototype.resize=function(x,y,width,height) {
 	// for closure
 	var object=this;
+	// round up
+	x=Math.round(x);
+	y=Math.round(y);
+	width=Math.round(width);
+	height=Math.round(height);
 	// debug
 	this.debug('resize: '+x+','+y+','+width+','+height);
 	this.debug('this.elements.length: '+this.elements.length);
@@ -56,8 +61,8 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 		var y_start=y;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			//var cur_size=Math.round(height*size);
-			var cur_size=height*size;
+			var cur_size=Math.round(height*size);
+			//var cur_size=height*size;
 			element.posAbs4(x,y_start,width,cur_size);
 			y_start+=cur_size;
 		});
@@ -65,8 +70,8 @@ LayoutRelative.prototype.resize=function(x,y,width,height) {
 		var x_start=x;
 		$.each(this.elements,function(i,element) {
 			var size=object.sizes[i];
-			//var cur_size=Math.round(width*size);
-			var cur_size=width*size;
+			var cur_size=Math.round(width*size);
+			//var cur_size=width*size;
 			element.posAbs4(x_start,y,cur_size,height);
 			x_start+=cur_size;
 		});
