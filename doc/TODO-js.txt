@@ -1,5 +1,5 @@
-now:
-====
+keynote-js:
+===========
 - get ridd of the template creating divs.
 - get to good background specification for the template.
 - do a demo of a slide show which is not full screen and see what needs to be
@@ -12,27 +12,6 @@ now:
 - make the template creation code simpler.
 - make two more templates and demo them.
 - make the screen go blank at the end of the presentation.
-
-Build system
-============
-- add pdmt to build this project and do mako on it.
-- start building from the command line (ant).
-
-Core functionality:
-===================
-- a feature that allow the author of a slideshow to add lecture notes to each slide to be viewed by the
-lecturer only. Maybe two browsers communicating? Maybe two tabs, one on each screen? chrome can do that!
-- add DTD and schema to validate the document.
-- before processing the document validate it.
-- add external tool to validate the document.
-	(or maybe use an existing tool?!?)
-- document how to edit a presentation within eclipse say with XML support.
-
-keynote/js:
-===========
-- make the first slide look better.
-- stop the scroll bar from appearing.
-- handle the clicker button.
 
 Layout managers:
 - create a layout manager for every slide type:
@@ -64,31 +43,3 @@ to every element (at the xml level). keynote will attach that id and turn it int
 id. Now the user can use that id in CSS to customize the slide show.
 - mention that this is not recommended since it's not the point of keynote to focus
 on presentation but rather on content.
-
-keynode/pdf:
-============
-- if a list gets too long and we move on to a new slide then the header should be added automatically.
-- list bullets are ugly (no sign). Add one.
-- support for code inlined within text (different font).
-- support for emphasis within the text.
-- support for strike-though (wrong) within the text.
-- support for hyper links with different color or real hyperlinks?!?
-	(mail, url).
-- color for headers, bullets, background.
-- background image.
-- copyright at the bottom.
-- first page (main page).
-- support for sections.
-	A section is a collection of slides
-	A presentation is a collection of sections.
-- showing on which slide we are in (in the entire presentation, in the entire slide).
-- add barcode support.
-- support for images.
-- support for code inlined.
-- compress the pdf.
-- sign the pdf.
-- optimize the pdf (with the itext toolkit preferably).
-- the pdf should carry the meta data from the xml with it.
-- support for technical drawings within the presentation ?
-	or maybe with some other tool ?
-- maybe the best way is to use SVG ?

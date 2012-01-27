@@ -1,0 +1,10 @@
+Core functionality:
+===================
+- a feature that allow the author of a slideshow to add lecture notes to each slide to be viewed by the
+lecturer only. Maybe two browsers communicating? Maybe two tabs, one on each screen? chrome can do that!
+- add DTD and schema to validate the document.
+- before processing the document validate it.
+- add external tool to validate the document.
+	(or maybe use an existing tool?!?)
+- document how to edit a presentation within eclipse say with XML support.
+
