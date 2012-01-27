@@ -1,13 +1,9 @@
 now:
 ====
-- introduce the concept of a template. A template is an object that other objects are added to
-	it they are added with a role. A role is just a string.
-	Examples of templates:
-	- title / bullets
-	- title / two columns
-	- center bullets
-- do a test that simulates a real slide and see that it is good.
-	(new test).
+- get ridd of the template creating divs.
+- use the template in my application.
+- make the template creation code simpler.
+- make two more templates and demo them.
 - make the screen go blank at the end of the presentation.
 
 Build system

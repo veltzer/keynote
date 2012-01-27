@@ -16,9 +16,9 @@ function TemplateTitleBullets(options) {
 	this.id=options.id;
 
 	// create the structure
-	this.d_top=$('<div/>');
+	this.d_top=$('<div/>').addClass('templateTop');
 	this.lr=new LayoutRatio({
-		'ratio':1.4,
+		'ratio':1.33,
 	});
 	this.d_top.data('data',this.lr);
 
@@ -30,30 +30,30 @@ function TemplateTitleBullets(options) {
 	this.d_top.append(this.d);
 	this.lr.addElement(this.d);
 
-	this.d1=$('<div/>').addClass('myid1');
-	this.d2=$('<div/>').addClass('myid2');
-	this.d3=$('<div/>').addClass('myid3');
-	this.d4=$('<div/>').addClass('myid4');
-	this.d5=$('<div/>').addClass('myid5');
-	this.d6=$('<div/>').addClass('myid6');
+	this.d1=$('<div/>').addClass('template1');
+	this.d2=$('<div/>').addClass('template2');
+	this.d3=$('<div/>').addClass('template3');
+	this.d4=$('<div/>').addClass('template4');
+	this.d5=$('<div/>').addClass('template5');
+	this.d6=$('<div/>').addClass('template6');
 	this.d.append(this.d1);
 	this.d.append(this.d2);
 	this.d.append(this.d3);
 	this.d.append(this.d4);
 	this.d.append(this.d5);
 	this.d.append(this.d6);
-	this.l1.addElement(this.d1,0.20);
-	this.l1.addElement(this.d2,0.70);
+	this.l1.addElement(this.d1,0.23);
+	this.l1.addElement(this.d2,0.67);
 	this.l1.addElement(this.d3,0.10);
 	this.l2=new LayoutRelative({
 		'orientation':'horizontal',
 	});
-	this.l2.addElement(this.d4,0.10);
-	this.l2.addElement(this.d5,0.80);
-	this.l2.addElement(this.d6,0.10);
+	this.l2.addElement(this.d4,0.08);
+	this.l2.addElement(this.d5,0.84);
+	this.l2.addElement(this.d6,0.08);
 	this.d2.data('layout',this.l2);
 	// connect the flow layout
-	this.l3=new LayoutFlow({ 'lines':8 });
+	this.l3=new LayoutFlow({ 'lines':10 });
 	this.d5.data('layout',this.l3);
 	// connect the flow layout
 	this.l4=new LayoutFlow({ 'lines':1 });
