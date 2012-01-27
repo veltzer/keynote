@@ -7,7 +7,7 @@ function LayoutRelative(config) {
 	this.orientation=config.orientation;
 	this.elements=[];
 	this.sizes=[];
-	this.doDebug=true;
+	this.doDebug=false;
 	this.debug('created LayoutRelative');
 }
 LayoutRelative.orientation={

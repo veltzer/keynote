@@ -1,12 +1,13 @@
 /*
  * This is a center layout manager. It puts a collection of elements smack in the middle of its display.
  */
-function LayoutFlow(config) {
+function LayoutFlow(options) {
+	checkMustHave(options,new Set('lines'));
+	this.lines=options.lines;
 	this.elements=[];
 	this.doDebug=false;
 	this.debug('created LayoutFlow');
 	this.protect=true;
-	this.lines=config.lines;
 }
 LayoutFlow.prototype.debug=function() {
 	if(this.doDebug) {

@@ -1,0 +1,40 @@
+<!--
+This is a test to see if a layout inside a layout will work.
+-->
+
+<html>
+	<head>
+		<!-- jQuery - we use this a lot -->
+		<script src="toolkits/jquery/jquery.js"></script>
+
+		<!-- my code -->
+		<script src="Set.js"></script>
+		<script src="Utils.js"></script>
+		<script src="LayoutResolver.js"></script>
+		<script src="LayoutFlow.js"></script>
+		<script src="LayoutRelative.js"></script>
+		<script src="TemplateTitleBullets.js"></script>
+		<script>
+			$(document).ready(function() {
+				var t=new TemplateTitleBullets({
+					'id': '#myid',
+				});
+				t.addElement('title',$('<div/>').text('this is title'));
+				t.addElement('bullet',$('<div/>').text('this is bullet2'));
+				t.addElement('bullet',$('<div/>').text('this is bullet3'));
+				t.addElement('bullet',$('<div/>').text('this is bullet4'));
+			});
+		</script>
+		<style>
+			/* these are here to make sure we see that all is well on the screen */
+			myid1 { background-color: blue; }
+			/* myid2 { background-color: red; } */
+			myid3 { background-color: yellow; }
+			myid4 { background-color: crimson; }
+			myid5 { background-color: green; }
+			myid6 { background-color: brown; }
+		</style>
+	</head>
+	<body id='myid'>
+	</body>
+</html>

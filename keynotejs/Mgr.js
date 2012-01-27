@@ -1,7 +1,11 @@
-// the presentation manager object
+/*
+ * The presentation manager object
+ *
+ * 	Mark Veltzer
+ */
 function Mgr(options) {
-	checkMustHave(options,new Set('source'));
 	checkHasOnly(options,new Set('source','transition'));
+	checkMustHave(options,new Set('source'));
 	this.source=options.source;
 	if(!('transition' in options)) {
 		this.transition=new TransitionHideShow();

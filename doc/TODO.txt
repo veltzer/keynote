@@ -1,6 +1,6 @@
 now:
 ====
-- introduce the concept of a template. A template is an object that other object are added to
+- introduce the concept of a template. A template is an object that other objects are added to
 	it they are added with a role. A role is just a string.
 	Examples of templates:
 	- title / bullets

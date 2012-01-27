@@ -12,7 +12,7 @@ $.fn.posAbs=function(pos_left,pos_top) {
 	});
 }
 $.fn.posAbs4=function(x,y,width,height) {
-	console.debug('posAbs4: '+x+','+y+','+width+','+height);
+	//console.debug('posAbs4: '+x+','+y+','+width+','+height);
 	return this.each(function() {
 		$(this).css({
 			'position': 'fixed', // to make sure it's fixed
@@ -25,7 +25,7 @@ $.fn.posAbs4=function(x,y,width,height) {
 		});
 		if('layout' in $(this).data()) {
 			var l=$(this).data('layout');
-			console.debug(l);
+			//console.debug(l);
 			var l=$(this).data('layout');
 			l.resize(x,y,width,height);
 		}
