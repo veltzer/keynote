@@ -1,0 +1,7 @@
+syntaxhighligher:
+=================
+http://alexgorbatchev.com/SyntaxHighlighter/
+
+highlight.js:
+=============
+http://softwaremaniacs.org/soft/highlight/en/
