@@ -1,5 +1,9 @@
 keynote-js:
 ===========
+- the long bullet in the test of the new template doesn't look good.
+- fix the stuff that doesnt look good.
+- there are a lot of paramters.
+	get some kind of config in order.
 - get ridd of the template creating divs.
 - get to good background specification for the template.
 - do a demo of a slide show which is not full screen and see what needs to be

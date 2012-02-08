@@ -14,24 +14,26 @@ This is a test to see if a layout inside a layout will work.
 		<script src="LayoutFlow.js"></script>
 		<script src="LayoutRelative.js"></script>
 		<script src="LayoutRatio.js"></script>
+		<script src="LayoutFull.js"></script>
 		<script src="TemplateTitleBullets.js"></script>
 		<script>
 			$(document).ready(function() {
 				var t=new TemplateTitleBullets({
 					'id': '#myid',
 				});
-				t.addElement('title',$('<div/>').text('this is title'));
-				t.addElement('bullet',$('<div/>').text('This is bullet2'));
-				t.addElement('bullet',$('<div/>').text('This is bullet3'));
-				t.addElement('bullet',$('<div/>').text('This is bullet4'));
-				t.addElement('bullet',$('<div/>').text('This is a very long long long long long long long bullet4'));
-				t.addElement('bullet',$('<div/>').text('This is bullet4'));
+				t.addElement('title',$('<span/>').text('This is the title'));
+				t.addElement('bullet',$('<span/>').text('This is bullet2'));
+				t.addElement('bullet',$('<span/>').text('This is bullet3'));
+				t.addElement('bullet',$('<span/>').text('This is bullet4'));
+				t.addElement('bullet',$('<span/>').text('This is a very long long long long long long long bullet4'));
+				t.addElement('bullet',$('<span/>').text('This is bullet4'));
 			});
 		</script>
 		<style>
 			/* these are here to make sure we see that all is well on the screen */
 			body { background-color: black; }
-			div { background-color: white; }
+			/* div { background-color: white; } */
+			.templateSlide { background-color: white; }
 			/* .template2 { background-color: red; } */
 			/*
 			.template1 { background-color: blue; }
