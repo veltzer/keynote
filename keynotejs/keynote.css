@@ -45,7 +45,8 @@ body {
  */
 .title {
 	font-weight: bold;
-	color: -webkit-link;
+	/* color: -webkit-link; */
+	color: blue;
 }
 
 /* nice fonts with shadow */
@@ -55,8 +56,7 @@ body {
 	font-family: 'Lucida Grande';
 	font: 14px "Lucida Grande","Trebuchet MS",Verdana,sans-serif;
 	text-shadow: 0pt 2px 5px rgba(0, 0, 0, 0.2); 
-	background: -webkit-linear-gradient(top , #ffffff, #aaddff);
-	background: -moz-linear-gradient(top, #ffffff, #aaddff);
+	background: -webkit-linear-gradient(top , white, blue 350%);
+	background: -moz-linear-gradient(top, white, blue 350%);
 	/* background-color: grey; */
 }
-

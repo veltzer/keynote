@@ -15,14 +15,14 @@
 		</keywords>
 	</meta>
 	<slide template="center">
-		<bullet><concept>keynote</concept></bullet>
+		<bullet><concept>Keynote</concept></bullet>
 		<bullet>slides made right</bullet>
 		<bullet></bullet>
 		<bullet size="small">Mark Veltzer</bullet>
 		<bullet size="small"><email value='mark.veltzer@gmail.com'/></bullet>
 	</slide>
 	<slide>
-		<title>this is the title</title>
+		<title>This is the title</title>
 		<bullet>1. this is a slide</bullet>
 		<bullet>2. with just bullets</bullet>
 		<bullet>3. each bullet should fit</bullet>
@@ -33,7 +33,7 @@
 		<bullet>8. slide</bullet>
 	</slide>
 	<slide>
-		<title>slide created without a layout manager</title>
+		<title>Slide created without a layout manager</title>
 		<bullet>This means that this slide will have a flow layout manager</bullet>
 		<bullet>And this is yet another bullet</bullet>
 	</slide>
@@ -51,7 +51,7 @@
 		<bullet>They are intended to make the flow layout break it into a couple of slides</bullet>
 	</slide>
 	<slide>
-		<title>what is keynote?</title>
+		<title>What is keynote?</title>
 		<bullet><emphasis>Keynote</emphasis> is tool to create presentations from text files.</bullet>
 		<bullet>The idea is to be able to edit presentations with a regular text editor.</bullet>
 	</slide>
@@ -95,7 +95,7 @@
 </presentation>]]></code>
 	</slide>
 	<slide>
-		<title>comparison to other solutions</title>
+		<title>Comparison to other solutions</title>
 		<bullet>DocBook is nice but not tuned to slides.</bullet>
 		<!-- todo: talk about openoffice, pdf, other tools -->
 	</slide>
