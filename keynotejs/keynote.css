@@ -1,13 +1,4 @@
-/*
-body {
-	background-color: grey;
-}
-*/
-
-/*
- * <body> by default takes about 8 pixels from every side. We don't want that
- */
-
+/* <body> by default takes about 8 pixels from every side. We don't want that */
 body {
 	margin-bottom: 0px;
 	margin-top: 0px;
@@ -56,3 +47,16 @@ body {
 	font-weight: bold;
 	color: -webkit-link;
 }
+
+/* nice fonts with shadow */
+body {
+	/* without this -moz browsers will render the body as having 0 height */
+	height: 100%;
+	font-family: 'Lucida Grande';
+	font: 14px "Lucida Grande","Trebuchet MS",Verdana,sans-serif;
+	text-shadow: 0pt 2px 5px rgba(0, 0, 0, 0.2); 
+	background: -webkit-linear-gradient(top , #ffffff, #aaddff);
+	background: -moz-linear-gradient(top, #ffffff, #aaddff);
+	/* background-color: grey; */
+}
+
