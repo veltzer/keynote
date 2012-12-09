@@ -11,6 +11,10 @@ SRC_DIR:=presentations
 DO_ALL_DEPS:=1
 # what is the web dir for this project ?
 WEB_DIR:=/var/www/keynote
+# what is the local web folder ?
+WEB_FOLDER:=web
+# what is the js folder ?
+JS_FOLDER:=keynotejs
 
 #####################
 # end of parameters #
@@ -46,6 +50,10 @@ all: $(ALL)
 debug:
 	$(info SRC is $(SRC))
 	$(info PDF is $(PDF))
+	$(info SRC_DIR is $(SRC_DIR))
+	$(info WEB_DIR is $(WEB_DIR))
+	$(info WEB_FOLDER is $(WEB_FOLDER))
+	$(info JS_FOLDER is $(JS_FOLDER))
 
 .PHONY: clean
 clean:
@@ -57,7 +65,7 @@ install: $(ALL_DEPS)
 	$(info doing [$@])
 	$(Q)sudo rm -rf $(WEB_DIR)
 	$(Q)sudo mkdir $(WEB_DIR)
-	$(Q)sudo cp -r xml/* web/* $(WEB_DIR)
+	$(Q)sudo cp -r index.html $(SRC_DIR) $(JS_FOLDER) $(WEB_FOLDER) $(WEB_DIR)
 
 #########
 # rules #
