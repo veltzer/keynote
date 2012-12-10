@@ -17,7 +17,7 @@
 	<slide template="center">
 		<bullet><concept>Keynote</concept></bullet>
 		<bullet>slides made right</bullet>
-		<bullet></bullet>
+		<vspace/>
 		<bullet size="small">Mark Veltzer</bullet>
 		<bullet size="small"><email value='mark.veltzer@gmail.com'/></bullet>
 	</slide>
@@ -62,7 +62,8 @@
 		int main(int argc,char** argv, char** envp) {
 			printf("Hello, World!\n");
 			return 0;
-		}]]></code>
+			}
+		]]></code>
 		<!--bullet>And this is a discussion of it</bullet-->
 	</slide>
 	<slide>
@@ -88,11 +89,13 @@
 		<title>Writing presentations in keynote</title>
 		<bullet>You can use any editor you like (I use vim)</bullet>
 		<bullet>An empty presentation would look like this:</bullet>
-		<code language="xml"><![CDATA[<?xml version="1.0" encoding="ISO-8859-1"?>
-<presentation
-	xmlns:xsi="http://veltzer.net/keynote/"
-	xsi:noNamespaceSchemaLocation="keynote.xsd">
-</presentation>]]></code>
+		<code language="xml"><![CDATA[
+		<?xml version="1.0" encoding="ISO-8859-1"?>
+		<presentation
+			xmlns:xsi="http://veltzer.net/keynote/"
+			xsi:noNamespaceSchemaLocation="keynote.xsd">
+		</presentation>
+		]]></code>
 	</slide>
 	<slide>
 		<title>Comparison to other solutions</title>
