@@ -1,1 +1,3 @@
-- do code sanity + compression.
+- release the flags for documentation checks on the code.
+	(and write the documentation).
+- add generation of documentation.

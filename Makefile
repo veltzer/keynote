@@ -20,23 +20,25 @@ JAVA_OUT_DIR:=bin
 # what is the java compile stamp file ?
 JAVA_COMPILE_STAMP:=java_compile.stamp
 
-# what is the web dir for this project ?
-WEB_DIR:=/var/www/keynote
 # what is the local web folder ?
-WEB_FOLDER:=web
+WEB_DIR:=web
+# what is the web dir for this project ?
+WEB_OUT_DIR:=/var/www/keynote
 
 # what is the js folder ?
+JS_DIR:=keynotejs
+# what is our source folder ?
 JS_SRC_DIR:=keynotejs/src
 # where is the out folder ?
-JS_OUT_FOLDER:=jsout
+JS_OUT_DIR:=jsout
 # what is the project name ?
 JS_PROJECT_NAME:=keynotejs
 # what is the check file ?
 JS_CHECK_STAMP:=js_check.stamp
 # what is the out full file ?
-JS_FULL:=$(JS_OUT_FOLDER)/$(JS_PROJECT_NAME)-$(VER).js
+JS_FULL:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).js
 # what is the minified file name ?
-JS_MIN:=$(JS_OUT_FOLDER)/$(JS_PROJECT_NAME)-$(VER).min.js
+JS_MIN:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).min.js
 
 #####################
 # end of parameters #
@@ -98,7 +100,7 @@ debug:
 	$(info ALL_DEP is $(ALL_DEP))
 	$(info VER is $(VER))
 	$(info WEB_DIR is $(WEB_DIR))
-	$(info WEB_FOLDER is $(WEB_FOLDER))
+	$(info WEB_OUT_DIR is $(WEB_OUT_DIR))
 	$(info XML_SRC_DIR is $(XML_SRC_DIR))
 	$(info XML_SRC is $(XML_SRC))
 	$(info XML_PDF is $(XML_PDF))
@@ -108,7 +110,7 @@ debug:
 	$(info JAVA_CLASSPATH is $(JAVA_CLASSPATH))
 	$(info JS_SRC_DIR is $(JS_SRC_DIR))
 	$(info JS_SRC is $(JS_SRC))
-	$(info JS_OUT_FOLDER is $(JS_OUT_FOLDER))
+	$(info JS_OUT_DIR is $(JS_OUT_DIR))
 	$(info JS_PROJECT_NAME is $(JS_PROJECT_NAME))
 	$(info JS_CHECK_STAMP is $(JS_CHECK_STAMP))
 	$(info JS_FULL is $(JS_FULL))
@@ -117,14 +119,14 @@ debug:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(PDF) $(JS_OUT_FOLDER) $(JS_CHECK_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_FOLDER)
+	$(Q)rm -rf $(PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR)
 
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)sudo rm -rf $(WEB_DIR)
 	$(Q)sudo mkdir $(WEB_DIR)
-	$(Q)sudo cp -r index.html $(XML_SRC_DIR) $(JS_SRC_DIR) $(WEB_FOLDER) $(WEB_DIR)
+	$(Q)sudo cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR) $(WEB_OUT_DIR)
 
 .PHONY: java_compile
 java_compile: $(JAVA_COMPILE_STAMP)
