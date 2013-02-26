@@ -26,20 +26,20 @@ LayoutRelative.prototype.checkOrientation = function(orientation) {
 };
 LayoutRelative.prototype.debug = function() {
   if (this.doDebug) {
-    $.each(arguments, function(i,msg) {
+    jQuery.each(arguments, function(i, msg) {
       Utils.fakeUse(i);
       console.log(msg);
     });
   }
 };
-LayoutRelative.prototype.addElement = function(elem,size) {
+LayoutRelative.prototype.addElement = function(elem, size) {
   this.debug('addElement ' + elem + ',' + size);
   this.elements.push(elem);
   this.sizes.push(size);
 };
 LayoutRelative.prototype.checkAddToOne = function() {
   var sum = 0;
-  $.each(this.sizes, function(i,size) {
+  jQuery.each(this.sizes, function(i, size) {
     Utils.fakeUse(i);
     sum += size;
   });
@@ -51,7 +51,7 @@ LayoutRelative.prototype.checkAddToOne = function() {
  * This is a the main function. It receives where the widgets under the control
  * of this layout manger should be. It should do the rest.
  */
-LayoutRelative.prototype.resize = function(x,y,width,height) {
+LayoutRelative.prototype.resize = function(x, y, width, height) {
   // for closure
   var object = this;
   // round up
@@ -65,7 +65,7 @@ LayoutRelative.prototype.resize = function(x,y,width,height) {
   this.checkAddToOne();
   if (this.orientation == 'vertical') {
     var y_start = y;
-    $.each(this.elements, function(i,element) {
+    jQuery.each(this.elements, function(i, element) {
       var size = object.sizes[i];
       var cur_size = Math.round(height * size);
       //var cur_size=height*size;
@@ -74,7 +74,7 @@ LayoutRelative.prototype.resize = function(x,y,width,height) {
     });
   } else {
     var x_start = x;
-    $.each(this.elements, function(i,element) {
+    jQuery.each(this.elements, function(i, element) {
       var size = object.sizes[i];
       var cur_size = Math.round(width * size);
       //var cur_size=width*size;

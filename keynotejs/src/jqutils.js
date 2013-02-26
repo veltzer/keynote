@@ -1,7 +1,16 @@
-// A few enhancements to jQuery
-$.fn.posAbs = function(pos_left, pos_top) {
+
+
+/**
+  Put an element in an absolute position.
+  @param {int} pos_left left position of the element.
+  @param {int} pos_top top position of the element.
+  @return {jQuery elements} the elements the op was done on.
+  @this jQuery
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
+jQuery.fn.posAbs = function(pos_left, pos_top) {
   return this.each(function() {
-    $(this).css({
+    jQuery(this).css({
       //position: 'absolute', // to make sure it's absolute
       position: 'fixed', // to make sure it's absolute
       marginLeft: 0, // to make sure there are no margins
@@ -11,7 +20,18 @@ $.fn.posAbs = function(pos_left, pos_top) {
     });
   });
 };
-$.fn.posAbs4 = function(x, y, width, height) {
+
+
+/**
+  Put an element in an absolute position and resize it.
+  @param {int} x x position of the element.
+  @param {int} y y position of the element.
+  @param {int} width width of the element.
+  @param {int} height height of the element.
+  @this jQuery
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
+jQuery.fn.posAbs4 = function(x, y, width, height) {
   x = Math.round(x);
   y = Math.round(y);
   width = Math.round(width);
@@ -35,9 +55,9 @@ $.fn.posAbs4 = function(x, y, width, height) {
 };
 
 function measureText(text, fontsize) {
-  var elem = $('<span>').text(text).css('font-size', fontsize + 'px');
+  var elem = jQuery('<span>').text(text).css('font-size', fontsize + 'px');
   elem.hide();
-  $('body').append(elem);
+  jQuery('body').append(elem);
   var ret = {
     width: elem.width(),
     height: elem.height()
@@ -49,7 +69,7 @@ function measureText(text, fontsize) {
 function measureElem(e, fontsize) {
   var elem = e.clone().css('font-size', fontsize + 'px');
   elem.hide();
-  $('body').append(elem);
+  jQuery('body').append(elem);
   var ret = {
     width: elem.width(),
     height: elem.height()

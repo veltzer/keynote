@@ -15,13 +15,13 @@ function LayoutFull(options) {
 }
 LayoutFull.prototype.debug = function() {
   if (this.doDebug) {
-    $.each(arguments, function(i,msg) {
+    jQuery.each(arguments, function(i, msg) {
       Utils.fakeUse(i);
       console.log(msg);
     });
   }
 };
-LayoutFull.prototype.addElement = function(elem,size) {
+LayoutFull.prototype.addElement = function(elem, size) {
   this.debug('addElement ' + elem + ',' + size);
   if (this.element != undefined) {
     throw 'already have element';
@@ -32,7 +32,7 @@ LayoutFull.prototype.addElement = function(elem,size) {
  * This is a the main function. It receives where the widgets under the control
  * of this layout manger should be. It should do the rest.
  */
-LayoutFull.prototype.resize = function(x,y,width,height) {
+LayoutFull.prototype.resize = function(x, y, width, height) {
   this.element.posAbs4(x, y, width, height);
 };
 LayoutResolver.getInstance().addLayoutManager('ratio', LayoutFull);

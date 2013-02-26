@@ -23,7 +23,7 @@ function TemplateTitleBullets(options) {
   this.id = options.id;
 
   // create the structure
-  this.d_top = $('<div/>').addClass('templateTop');
+  this.d_top = jQuery('<div/>').addClass('templateTop');
 
   this.layout = new LayoutFull();
   this.layout.addElement(this.d_top);
@@ -33,7 +33,7 @@ function TemplateTitleBullets(options) {
   });
   this.d_top.data('layout', this.ld_top);
 
-  this.d = $('<div/>').addClass('templateSlide');
+  this.d = jQuery('<div/>').addClass('templateSlide');
   this.d_top.append(this.d);
   this.ld_top.addElement(this.d);
 
@@ -42,9 +42,9 @@ function TemplateTitleBullets(options) {
   });
   this.d.data('layout', this.ld);
 
-  this.d1 = $('<div/>').addClass('template1');
-  this.d2 = $('<div/>').addClass('template2');
-  this.d3 = $('<div/>').addClass('template3');
+  this.d1 = jQuery('<div/>').addClass('template1');
+  this.d2 = jQuery('<div/>').addClass('template2');
+  this.d3 = jQuery('<div/>').addClass('template3');
   this.d.append(this.d1);
   this.d.append(this.d2);
   this.d.append(this.d3);
@@ -52,9 +52,9 @@ function TemplateTitleBullets(options) {
   this.ld.addElement(this.d2, 0.67);
   this.ld.addElement(this.d3, 0.10);
 
-  this.d4 = $('<div/>').addClass('template4');
-  this.d5 = $('<div/>').addClass('template5');
-  this.d6 = $('<div/>').addClass('template6');
+  this.d4 = jQuery('<div/>').addClass('template4');
+  this.d5 = jQuery('<div/>').addClass('template5');
+  this.d6 = jQuery('<div/>').addClass('template6');
   this.d2.append(this.d4);
   this.d2.append(this.d5);
   this.d2.append(this.d6);
@@ -75,11 +75,11 @@ function TemplateTitleBullets(options) {
 
   // handle resizes
   this.resize();
-  $(window).resize(function() {
+  jQuery(window).resize(function() {
     object.resize();
   });
   // append
-  $(this.id).append(this.d_top);
+  jQuery(this.id).append(this.d_top);
 }
 TemplateTitleBullets.prototype.addElement = function(role, element) {
   if (role == 'title') {
@@ -94,5 +94,5 @@ TemplateTitleBullets.prototype.addElement = function(role, element) {
   }
 };
 TemplateTitleBullets.prototype.resize = function() {
-  this.layout.resize(0, 0, $(window).width(), $(window).height());
+  this.layout.resize(0, 0, jQuery(window).width(), jQuery(window).height());
 };

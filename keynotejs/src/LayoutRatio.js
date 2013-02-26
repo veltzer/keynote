@@ -15,13 +15,13 @@ function LayoutRatio(options) {
 }
 LayoutRatio.prototype.debug = function() {
   if (this.doDebug) {
-    $.each(arguments, function(i,msg) {
+    jQuery.each(arguments, function(i, msg) {
       Utils.fakeUse(i);
       console.log(msg);
     });
   }
 };
-LayoutRatio.prototype.addElement = function(elem,size) {
+LayoutRatio.prototype.addElement = function(elem, size) {
   this.debug('addElement ' + elem + ',' + size);
   if (this.element != undefined) {
     throw 'already have element';
@@ -32,7 +32,7 @@ LayoutRatio.prototype.addElement = function(elem,size) {
  * This is a the main function. It receives where the widgets under the control
  * of this layout manger should be. It should do the rest.
  */
-LayoutRatio.prototype.resize = function(x,y,width,height) {
+LayoutRatio.prototype.resize = function(x, y, width, height) {
   // debug
   this.debug('resize: ' + x + ',' + y + ',' + width + ',' + height);
   // lets check what is the situation...

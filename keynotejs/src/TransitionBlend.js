@@ -18,7 +18,7 @@ TransitionBlend.prototype.transitionOut = function(elem) {
   elem.fadeOut(this.delay);
   //elem.hide();
 };
-TransitionBlend.prototype.transitionOutIn = function(elem1,elem2) {
+TransitionBlend.prototype.transitionOutIn = function(elem1, elem2) {
   elem1.fadeOut(this.delay);
   elem2.fadeIn(this.delay);
 };

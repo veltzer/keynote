@@ -36,32 +36,33 @@ function Mgr(options) {
   this.slides = [];
   this.old_width = undefined;
   this.old_height = undefined;
-  this.topElem = $(document.body);
+  this.topElem = jQuery(document.body);
   // for closure
   var object = this;
-  var ajax = $.get(
-    options.source,
-    '',
-    function(doc) {
-      object.buildUp(doc);
-      object.hookKeyboard();
-      object.highlight();
-      object.hookResize();
-      object.stopWait();
-      object.resize(true);
-      object.gotoBegin();
-    },
-    'xml'
-  );
-  ajax.error(function(ajax_object,error_string,t) {
+  var ajax = jQuery.get(
+      options.source,
+      '',
+      function(doc) {
+        object.buildUp(doc);
+        object.hookKeyboard();
+        object.highlight();
+        object.hookResize();
+        object.stopWait();
+        object.resize(true);
+        object.gotoBegin();
+      },
+      'xml'
+      );
+  ajax.error(function(ajax_object, error_string, t) {
     Utils.fakeUse(ajax_object);
-    document.write('bad presentation with error [' + error_string + '][' + String(t).substring(0, 40) + ']');
+    document.write('bad presentation with error [' + error_string + '][' +
+        String(t).substring(0, 40) + ']');
     object.stopWait();
   });
 }
 Mgr.prototype.debug = function() {
   if (this.doDebug) {
-    $.each(arguments, function(i,msg) {
+    jQuery.each(arguments, function(i, msg) {
       Utils.fakeUse(i);
       console.log(msg);
     });
@@ -70,7 +71,7 @@ Mgr.prototype.debug = function() {
 Mgr.prototype.hookResize = function() {
   // for closure
   var object = this;
-  $(window).resize(function() {
+  jQuery(window).resize(function() {
     //object.resize(false);
     object.resize(true);
   });
@@ -78,14 +79,16 @@ Mgr.prototype.hookResize = function() {
   object.resize(true);
 };
 Mgr.prototype.resize = function(force) {
-  //this.debug('resize',$(window).width(),$(window).height());
-  if ($(window).width() != this.old_width || $(window).height() != this.old_height || force) {
+  //this.debug('resize',jQuery(window).width(),jQuery(window).height());
+  if (jQuery(window).width() != this.old_width || jQuery(window).height() !=
+      this.old_height || force) {
     this.debug('real resize');
-    this.old_width = $(window).width();
-    this.old_height = $(window).height();
-    $.each(this.slides, function(i,slide) {
+    this.old_width = jQuery(window).width();
+    this.old_height = jQuery(window).height();
+    jQuery.each(this.slides, function(i, slide) {
       Utils.fakeUse(i);
-      slide.getElement().data('layout').resize(0, 0, $(window).width(), $(window).height());
+      slide.getElement().data('layout').resize(0, 0, jQuery(window).width(),
+          jQuery(window).height());
     });
   }
 };
@@ -95,12 +98,14 @@ Mgr.prototype.hookKeyboard = function() {
   var onefunc = function(e) {
     //object.debug(e.keyCode,e.which);
     // 32 is space, 39 is right arrow, 34 is page down, 40 is down
-    if (e.keyCode == 32 || e.keyCode == 39 || e.keyCode == 34 || e.keyCode == 40) {
+    if (e.keyCode == 32 || e.keyCode == 39 || e.keyCode == 34 ||
+        e.keyCode == 40) {
       object.gotoNext();
       e.preventDefault();
     }
     // 8 is backspace, 37 is left arrow, 33 is page up, 38 is up
-    if (e.keyCode == 8 || e.keyCode == 37 || e.keyCode == 33 || e.keyCode == 38) {
+    if (e.keyCode == 8 || e.keyCode == 37 || e.keyCode == 33 ||
+        e.keyCode == 38) {
       object.gotoPrev();
       e.preventDefault();
     }
@@ -115,22 +120,24 @@ Mgr.prototype.hookKeyboard = function() {
       e.preventDefault();
     }
   };
-  // DONT catch the event on 'body' since it does not capture key strokes in all browsers
-  // catching on the document is the best thing...
-  $(document).keydown(onefunc);
+  // DONT catch the event on 'body' since it does not capture key
+  // strokes in all browsers catching on the document is the best thing...
+  jQuery(document).keydown(onefunc);
 };
 // static methods
-Mgr.prototype.getTextFromSingleXpath = function(doc,xpath_expr) {
-  var l = doc.evaluate(xpath_expr, doc.documentElement, null, window.XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+Mgr.prototype.getTextFromSingleXpath = function(doc, xpath_expr) {
+  var l = doc.evaluate(xpath_expr, doc.documentElement, null,
+      window.XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
   if (l.snapshotLength != 1) {
     //this.debug(l.snapshotLength);
     //this.debug(typeof(l));
     //this.debug(l.constructor);
-    throw 'wrong number (' + l.snapshotLength + ') of elements for expression ' + xpath_expr;
+    throw 'wrong number (' + l.snapshotLength + ') of elements for expr ' +
+        xpath_expr;
   }
   return l.snapshotItem(0).textContent;
 };
-Mgr.prototype.getTextFromSingleNode = function(doc,name) {
+Mgr.prototype.getTextFromSingleNode = function(doc, name) {
   var l = doc.getElementsByTagName(name);
   if (l.length != 1) {
     throw 'too many elements of name ' + name;
@@ -166,8 +173,8 @@ Mgr.prototype.createElement = function(node) {
   if (node.nodeType == 1) {
     if (node.localName == 'code') {
       this.checkOneChild(node);
-      var e_item_div = $('<div/>');
-      var e_code = $('<pre/>');
+      var e_item_div = jQuery('<div/>');
+      var e_code = jQuery('<pre/>');
       if (node.hasAttribute('language')) {
         e_code.addClass('brush: ' + node.getAttribute('language'));
       }
@@ -177,7 +184,7 @@ Mgr.prototype.createElement = function(node) {
     }
     if (node.localName == 'concept' || node.localName == 'emphasis') {
       this.checkOneChild(node);
-      var e_item_concept = $('<span/>', {
+      var e_item_concept = jQuery('<span/>', {
         class: node.localName
       });
       e_item_concept.text(node.textContent);
@@ -186,7 +193,7 @@ Mgr.prototype.createElement = function(node) {
     if (node.localName == 'image') {
       this.checkNoChildren(node);
       // TODO: what about the height and width of the images ?
-      var e_item_img = $('<img/>');
+      var e_item_img = jQuery('<img/>');
       e_item_img.error(function() {
         // currently do nothing on image load error
       });
@@ -200,14 +207,14 @@ Mgr.prototype.createElement = function(node) {
     if (node.localName == 'email') {
       this.checkNoChildren(node);
       if (this.doRealLinks) {
-        var e_item_a = $('<a/>', {
+        var e_item_a = jQuery('<a/>', {
           class: node.localName,
           href: 'mailto:' + node.getAttribute('value')
         });
         e_item_a.text(node.getAttribute('value'));
         return e_item_a;
       } else {
-        var e_item_span = $('<span/>', {
+        var e_item_span = jQuery('<span/>', {
           class: node.localName
         });
         e_item_span.addClass('fakemail');
@@ -228,7 +235,7 @@ Mgr.prototype.createElement = function(node) {
       type = '<div/>';
     }
     // non atomics (all others: title, bullet)
-    var e_item_full = $(type, {
+    var e_item_full = jQuery(type, {
       class: node.localName,
       position: 'absolute', // to make sure it's absolute
       marginLeft: 0, // to make sure there are no margins
@@ -246,7 +253,7 @@ Mgr.prototype.createElement = function(node) {
       layout = LayoutResolver.getInstance().createLayoutManager(l_type, config);
       e_item_full.data('layout', layout);
     }
-    $.each(node.childNodes, function(index,child) {
+    jQuery.each(node.childNodes, function(index, child) {
       Utils.fakeUse(index);
       if (child.nodeType != 3 && child.nodeType != 1) {
         return;
@@ -256,7 +263,8 @@ Mgr.prototype.createElement = function(node) {
         //object.debug(child);
         return;
       }
-      if ((node.localName == 'title' || node.localName == 'bullet') && child.nodeType == 3) {
+      if ((node.localName == 'title' || node.localName == 'bullet') &&
+          child.nodeType == 3) {
         e_item_full.append(child.textContent);
         return;
       }
@@ -277,7 +285,7 @@ Mgr.prototype.buildUp = function(doc) {
   this.title = this.getTextFromSingleXpath(doc, '/presentation/meta/title');
   this.copyright = this.getTextFromSingleNode(doc, 'copyright');
   // create the various pages
-  $.each(doc.getElementsByTagName('slide'), function(index,slide) {
+  jQuery.each(doc.getElementsByTagName('slide'), function(index, slide) {
     Utils.fakeUse(index);
     var s = new Slide();
     s.setElement(object.createElement(slide));
@@ -339,31 +347,31 @@ Mgr.prototype.highlight = function() {
     return result;
   }
   SyntaxHighlighter.autoloader.apply(null, path(
-    'applescript @shBrushAppleScript.js',
-    'actionscript3 as3 @shBrushAS3.js',
-    'bash shell @shBrushBash.js',
-    'coldfusion cf @shBrushColdFusion.js',
-    'cpp c @shBrushCpp.js',
-    'c# c-sharp csharp @shBrushCSharp.js',
-    'css @shBrushCss.js',
-    'delphi pascal @shBrushDelphi.js',
-    'diff patch pas @shBrushDiff.js',
-    'erl erlang @shBrushErlang.js',
-    'groovy @shBrushGroovy.js',
-    'java @shBrushJava.js',
-    'jfx javafx @shBrushJavaFX.js',
-    'js jscript javascript @shBrushJScript.js',
-    'perl pl @shBrushPerl.js',
-    'php @shBrushPhp.js',
-    'text plain @shBrushPlain.js',
-    'py python @shBrushPython.js',
-    'ruby rails ror rb @shBrushRuby.js',
-    'sass scss @shBrushSass.js',
-    'scala @shBrushScala.js',
-    'sql @shBrushSql.js',
-    'vb vbnet @shBrushVb.js',
-    'xml xhtml xslt html @shBrushXml.js'
-  ));
+      'applescript @shBrushAppleScript.js',
+      'actionscript3 as3 @shBrushAS3.js',
+      'bash shell @shBrushBash.js',
+      'coldfusion cf @shBrushColdFusion.js',
+      'cpp c @shBrushCpp.js',
+      'c# c-sharp csharp @shBrushCSharp.js',
+      'css @shBrushCss.js',
+      'delphi pascal @shBrushDelphi.js',
+      'diff patch pas @shBrushDiff.js',
+      'erl erlang @shBrushErlang.js',
+      'groovy @shBrushGroovy.js',
+      'java @shBrushJava.js',
+      'jfx javafx @shBrushJavaFX.js',
+      'js jscript javascript @shBrushJScript.js',
+      'perl pl @shBrushPerl.js',
+      'php @shBrushPhp.js',
+      'text plain @shBrushPlain.js',
+      'py python @shBrushPython.js',
+      'ruby rails ror rb @shBrushRuby.js',
+      'sass scss @shBrushSass.js',
+      'scala @shBrushScala.js',
+      'sql @shBrushSql.js',
+      'vb vbnet @shBrushVb.js',
+      'xml xhtml xslt html @shBrushXml.js'
+      ));
   SyntaxHighlighter.defaults['toolbar'] = false;
   SyntaxHighlighter.all();
 };

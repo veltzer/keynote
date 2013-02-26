@@ -18,7 +18,7 @@ JAVA_SRC_DIR:=src
 # what is the java target folder ?
 JAVA_OUT_DIR:=bin
 # what is the java compile stamp file ?
-JAVA_COMPILE_STAMP:=compile.stamp
+JAVA_COMPILE_STAMP:=java_compile.stamp
 
 # what is the web dir for this project ?
 WEB_DIR:=/var/www/keynote
@@ -32,7 +32,7 @@ JS_OUT_FOLDER:=jsout
 # what is the project name ?
 JS_PROJECT_NAME:=keynotejs
 # what is the check file ?
-JS_CHECK:=$(JS_OUT_FOLDER)/$(JS_PROJECT_NAME)-$(VER).stamp
+JS_CHECK_STAMP:=js_check.stamp
 
 #####################
 # end of parameters #
@@ -42,7 +42,7 @@ JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
-ALL:=$(XML_PDF) $(JS_CHECK)
+ALL:=$(XML_PDF) $(JS_CHECK_STAMP)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -67,12 +67,12 @@ endif
 .PHONY: all
 all: $(ALL) $(ALL_DEP)
 
-$(JS_CHECK): $(JS_SRC) $(ALL_DEP)
+$(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)~/install/jsl/jsl --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
-	$(Q)scripts/wrapper.py gjslint --strict $(JS_SRC)
+	$(Q)scripts/wrapper.py gjslint --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $(JS_CHECK)
+	$(Q)touch $(JS_CHECK_STAMP)
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
@@ -96,12 +96,12 @@ debug:
 	$(info JS_SRC is $(JS_SRC))
 	$(info JS_OUT_FOLDER is $(JS_OUT_FOLDER))
 	$(info JS_PROJECT_NAME is $(JS_PROJECT_NAME))
-	$(info JS_CHECK is $(JS_CHECK))
+	$(info JS_CHECK_STAMP is $(JS_CHECK_STAMP))
 
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(PDF) $(JS_OUT_FOLDER) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_FOLDER)
+	$(Q)rm -rf $(PDF) $(JS_OUT_FOLDER) $(JS_CHECK_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_FOLDER)
 
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
