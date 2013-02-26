@@ -62,9 +62,9 @@
 		int main(int argc,char** argv, char** envp) {
 			printf("Hello, World!\n");
 			return 0;
-			}
+		}
 		]]></code>
-		<!--bullet>And this is a discussion of it</bullet-->
+		<bullet>And this is a discussion of it</bullet>
 	</slide>
 	<slide>
 		<title>Features</title>

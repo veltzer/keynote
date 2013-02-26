@@ -1,3 +1,9 @@
+/*jsl:import jqutils.js*/
+/*jsl:import LayoutFull.js*/
+/*jsl:import LayoutRelative.js*/
+/*jsl:import LayoutRatio.js*/
+/*jsl:import LayoutFlow.js*/
+
 /*
  * Layout:
  * d1
@@ -23,7 +29,7 @@ function TemplateTitleBullets(options) {
 	this.layout.addElement(this.d_top);
 
 	this.ld_top=new LayoutRatio({
-		'ratio':1.33,
+		ratio:1.33
 	});
 	this.d_top.data('layout',this.ld_top);
 
@@ -32,7 +38,7 @@ function TemplateTitleBullets(options) {
 	this.ld_top.addElement(this.d);
 
 	this.ld=new LayoutRelative({
-		'orientation':'vertical',
+		orientation:'vertical'
 	});
 	this.d.data('layout',this.ld);
 
@@ -53,7 +59,7 @@ function TemplateTitleBullets(options) {
 	this.d2.append(this.d5);
 	this.d2.append(this.d6);
 	this.ld2=new LayoutRelative({
-		'orientation':'horizontal',
+		orientation:'horizontal'
 	});
 	this.ld2.addElement(this.d4,0.08);
 	this.ld2.addElement(this.d5,0.84);
@@ -61,10 +67,10 @@ function TemplateTitleBullets(options) {
 	this.d2.data('layout',this.ld2);
 
 	// connect the flow layout
-	this.ld5=new LayoutFlow({ 'lines':10 });
+	this.ld5=new LayoutFlow({ lines:10 });
 	this.d5.data('layout',this.ld5);
 	// connect the flow layout
-	this.ld1=new LayoutFlow({ 'lines':1 });
+	this.ld1=new LayoutFlow({ lines:1 });
 	this.d1.data('layout',this.ld1);
 
 	// handle resizes
@@ -86,7 +92,7 @@ TemplateTitleBullets.prototype.addElement=function(role,element) {
 		this.ld5.addElement(element);
 		this.resize();
 	}
-}
+};
 TemplateTitleBullets.prototype.resize=function() {
 	this.layout.resize(0,0,$(window).width(),$(window).height());
-}
+};

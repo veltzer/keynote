@@ -38,10 +38,12 @@
 		?>
 		<script>
 			$(document).ready(function() {
+				var p_source='<?php echo $_GET['presentation'] ?>'
+				var p_transition=new TransitionBlend({'delay':1000})
+				//var p_transition=new TransitionFadeoutFadein({'delay':1000})
 				var mgr=new Mgr({
-					'source':'<?php echo $_GET['presentation'] ?>',
-					'transition':new TransitionBlend({'delay':1000}),
-					//'transition':new TransitionFadeoutFadein({'delay':1000}),
+					source:p_source,
+					transition:p_transition
 				});
 			});
 		</script>

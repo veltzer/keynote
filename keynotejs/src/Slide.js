@@ -9,7 +9,7 @@ function Slide() {
 }
 Slide.prototype.setElement=function(elem) {
 	this.element=elem;
-}
+};
 Slide.prototype.getElement=function() {
 	return this.element;
-}
+};
