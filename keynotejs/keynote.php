@@ -2,6 +2,8 @@
 	<head>
 		<title>Keynote: No presentation loaded...</title>
 
+		<!-- prototype - we use this a lot -->
+		<script src="toolkits/prototype.js"></script>
 		<!-- jQuery - we use this a lot -->
 		<script src="toolkits/jquery/jquery.js"></script>
 
@@ -21,17 +23,18 @@
 
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
-		<script src="Set.js"></script>
-		<script src="Utils.js"></script>
-		<script src="TransitionHideShow.js"></script>
-		<script src="TransitionFadeoutFadein.js"></script>
-		<script src="TransitionBlend.js"></script>
-		<script src="LayoutResolver.js"></script>
-		<script src="LayoutCenter.js"></script>
-		<script src="LayoutFlow.js"></script>
-		<script src="LayoutRelative.js"></script>
-		<script src="Slide.js"></script>
-		<script src="Mgr.js"></script>
+		<script src="src/Set.js"></script>
+		<script src="src/jqutils.js"></script>
+		<script src="src/Utils.js"></script>
+		<script src="src/TransitionHideShow.js"></script>
+		<script src="src/TransitionFadeoutFadein.js"></script>
+		<script src="src/TransitionBlend.js"></script>
+		<script src="src/LayoutResolver.js"></script>
+		<script src="src/LayoutCenter.js"></script>
+		<script src="src/LayoutFlow.js"></script>
+		<script src="src/LayoutRelative.js"></script>
+		<script src="src/Slide.js"></script>
+		<script src="src/Mgr.js"></script>
 
 		<?php
 			if(array_key_exists('presentation',$_GET)) {
