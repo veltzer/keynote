@@ -1,5 +1,4 @@
-keynote-js:
-===========
+- use prototype.js for object oriented (it's already here)
 - the long bullet in the test of the new template doesn't look good.
 - fix the stuff that doesnt look good.
 - there are a lot of paramters.
