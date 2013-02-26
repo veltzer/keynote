@@ -184,9 +184,8 @@ Mgr.prototype.createElement = function(node) {
     }
     if (node.localName == 'concept' || node.localName == 'emphasis') {
       this.checkOneChild(node);
-      var e_item_concept = jQuery('<span/>', {
-        class: node.localName
-      });
+      var e_item_concept = jQuery('<span/>');
+      e_item_concept.addClass(node.localName);
       e_item_concept.text(node.textContent);
       return e_item_concept;
     }
@@ -198,25 +197,24 @@ Mgr.prototype.createElement = function(node) {
         // currently do nothing on image load error
       });
       e_item_img.attr({
-        class: node.localName,
         src: node.getAttribute('url'),
         alt: node.getAttribute('description')
       });
+      e_item_img.addClass(node.localName);
       return e_item_img;
     }
     if (node.localName == 'email') {
       this.checkNoChildren(node);
       if (this.doRealLinks) {
         var e_item_a = jQuery('<a/>', {
-          class: node.localName,
           href: 'mailto:' + node.getAttribute('value')
         });
+        e_item_a.addClass(node.localName);
         e_item_a.text(node.getAttribute('value'));
         return e_item_a;
       } else {
-        var e_item_span = jQuery('<span/>', {
-          class: node.localName
-        });
+        var e_item_span = jQuery('<span/>');
+        e_item_span.addClass(node.localName);
         e_item_span.addClass('fakemail');
         if (this.doClickableLinks) {
           e_item_span.click(function(e) {
@@ -236,11 +234,11 @@ Mgr.prototype.createElement = function(node) {
     }
     // non atomics (all others: title, bullet)
     var e_item_full = jQuery(type, {
-      class: node.localName,
       position: 'absolute', // to make sure it's absolute
       marginLeft: 0, // to make sure there are no margins
       marginTop: 0 // to make sure there are no margins
     });
+    e_item_full.addClass(node.localName);
     var layout;
     if (node.hasAttribute('layout') || node.localName == 'slide') {
       var l_type;

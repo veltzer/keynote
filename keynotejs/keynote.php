@@ -23,6 +23,11 @@
 
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
+		<!-- minified version -->
+		<!--script src="../jsout/keynotejs-test.min.js"></script-->
+		<!-- full version -->
+		<script src="../jsout/keynotejs-test.js"></script>
+		<!--
 		<script src="src/Set.js"></script>
 		<script src="src/jqutils.js"></script>
 		<script src="src/Utils.js"></script>
@@ -35,6 +40,7 @@
 		<script src="src/LayoutRelative.js"></script>
 		<script src="src/Slide.js"></script>
 		<script src="src/Mgr.js"></script>
+		-->
 
 		<?php
 			if(array_key_exists('presentation',$_GET)) {

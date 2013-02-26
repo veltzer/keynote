@@ -15,6 +15,9 @@ Set.prototype.add = function(o) {
 Set.prototype.remove = function(o) {
   delete this.items[o];
 };
+Set.prototype.hasElem = function(o) {
+  return o in this.items;
+};
 Set.prototype.addObject = function(o) {
   for (var prop in o) {
     this.add(prop);

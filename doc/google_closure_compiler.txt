@@ -1,0 +1,6 @@
+download it from:
+	http://closure-compiler.googlecode.com/files/compiler-latest.zip
+unzip it.
+chmod +x the resulting jar file.
+(or you can just run it via 'java -jar' every time).
+put it in some place you have access to.

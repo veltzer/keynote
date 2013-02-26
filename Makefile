@@ -33,6 +33,10 @@ JS_OUT_FOLDER:=jsout
 JS_PROJECT_NAME:=keynotejs
 # what is the check file ?
 JS_CHECK_STAMP:=js_check.stamp
+# what is the out full file ?
+JS_FULL:=$(JS_OUT_FOLDER)/$(JS_PROJECT_NAME)-$(VER).js
+# what is the minified file name ?
+JS_MIN:=$(JS_OUT_FOLDER)/$(JS_PROJECT_NAME)-$(VER).min.js
 
 #####################
 # end of parameters #
@@ -42,7 +46,7 @@ JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
-ALL:=$(XML_PDF) $(JS_CHECK_STAMP)
+ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -73,6 +77,16 @@ $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(Q)scripts/wrapper.py gjslint --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
+$(JS_FULL): $(JS_SRC) $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)mkdir -p $(dir $@)
+	$(Q)cat `cat support/order.txt` > $@
+$(JS_MIN): $(JS_FULL) $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)mkdir -p $(dir $@)
+	$(Q)#jsmin < $< > $@
+	$(Q)#yui-compressor $< -o $@
+	$(Q)~/install/bin/compiler.jar $< --js_output_file $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
@@ -97,6 +111,8 @@ debug:
 	$(info JS_OUT_FOLDER is $(JS_OUT_FOLDER))
 	$(info JS_PROJECT_NAME is $(JS_PROJECT_NAME))
 	$(info JS_CHECK_STAMP is $(JS_CHECK_STAMP))
+	$(info JS_FULL is $(JS_FULL))
+	$(info JS_MIN is $(JS_MIN))
 
 .PHONY: clean
 clean:

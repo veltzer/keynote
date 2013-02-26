@@ -1,0 +1,12 @@
+keynotejs/src/Set.js
+keynotejs/src/jqutils.js
+keynotejs/src/Utils.js
+keynotejs/src/TransitionHideShow.js
+keynotejs/src/TransitionFadeoutFadein.js
+keynotejs/src/TransitionBlend.js
+keynotejs/src/LayoutResolver.js
+keynotejs/src/LayoutCenter.js
+keynotejs/src/LayoutFlow.js
+keynotejs/src/LayoutRelative.js
+keynotejs/src/Slide.js
+keynotejs/src/Mgr.js
