@@ -26,9 +26,9 @@ WEB_DIR:=web
 WEB_OUT_DIR:=/var/www/keynote
 
 # what is the js folder ?
-JS_DIR:=keynotejs
+JS_DIR:=jssrc
 # what is our source folder ?
-JS_SRC_DIR:=keynotejs/src
+JS_SRC_DIR:=$(JS_DIR)/src
 # where is the out folder ?
 JS_OUT_DIR:=jsout
 # what is the project name ?
@@ -39,6 +39,10 @@ JS_CHECK_STAMP:=js_check.stamp
 JS_FULL:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).js
 # what is the minified file name ?
 JS_MIN:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).min.js
+# where to put javascript documentation ?
+JS_DOC_DIR:=jsdoc
+# what file to check for modifications ?
+JS_DOC_STAMP:=js_doc.stamp
 
 #####################
 # end of parameters #
@@ -48,7 +52,7 @@ JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
-ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN)
+ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -73,6 +77,15 @@ endif
 .PHONY: all
 all: $(ALL) $(ALL_DEP)
 
+# phony js targets
+.PHONY: jsdoc
+jsdoc: $(JS_DOC_STAMP) $(ALL_DEP)
+	$(info doing [$@])
+.PHONY: jscheck
+jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
+	$(info doing [$@])
+
+# real js targets
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)~/install/jsl/jsl --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
@@ -89,6 +102,15 @@ $(JS_MIN): $(JS_FULL) $(ALL_DEP)
 	$(Q)#jsmin < $< > $@
 	$(Q)#yui-compressor $< -o $@
 	$(Q)~/install/bin/compiler.jar $< --js_output_file $@
+$(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)-rm -rf $(JS_DOC_DIR)
+	$(Q)mkdir -p $(dir $@)
+	$(Q)~/install/jsdoc/jsdoc -d $(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
+	$(Q)# 2.4 (ubuntu default) jsdoc
+	$(Q)#$(Q)jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
+	$(Q)touch $(JS_DOC_STAMP)
+
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
@@ -115,11 +137,13 @@ debug:
 	$(info JS_CHECK_STAMP is $(JS_CHECK_STAMP))
 	$(info JS_FULL is $(JS_FULL))
 	$(info JS_MIN is $(JS_MIN))
+	$(info JS_DOC_DIR is $(JS_DOC_DIR))
+	$(info JS_DOC_STAMP is $(JS_DOC_STAMP))
 
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR)
+	$(Q)rm -rf $(PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
 
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
