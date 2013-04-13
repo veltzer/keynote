@@ -20,6 +20,8 @@ JAVA_OUT_DIR:=bin
 # what is the java compile stamp file ?
 JAVA_COMPILE_STAMP:=java_compile.stamp
 
+# what is the local web folder ?
+WEB_LOCAL:=web
 # what is the web dir for this project ?
 WEB_DIR:=~/public_html/public/keynote
 
@@ -119,6 +121,7 @@ $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
 debug:
 	$(info ALL_DEP is $(ALL_DEP))
 	$(info VER is $(VER))
+	$(info WEB_LOCAL is $(WEB_LOCAL))
 	$(info WEB_DIR is $(WEB_DIR))
 	$(info XML_SRC_DIR is $(XML_SRC_DIR))
 	$(info XML_SRC is $(XML_SRC))
@@ -145,16 +148,16 @@ clean:
 .PHONY: chmod
 chmod:
 	$(info doing [$@])
-	$(Q)chmod -R go+r `find $(JS_OUT_DIR) $(WEB_DIR) $(XML_SRC_DIR) -type f`
+	$(Q)chmod -R go+r `find $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) -type f`
 	$(Q)chmod -R go+r index.html
-	$(Q)chmod -R go+rx `find $(JS_OUT_DIR) $(WEB_DIR) $(XML_SRC_DIR) -type d`
+	$(Q)chmod -R go+rx `find $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) -type d`
 
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)rm -rf $(WEB_DIR)
 	$(Q)mkdir $(WEB_DIR)
-	$(Q)cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR)
+	$(Q)cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) $(WEB_DIR)
 	$(Q)chmod -R go+rx $(WEB_DIR)
 
 .PHONY: java_compile
