@@ -23,7 +23,7 @@ JAVA_COMPILE_STAMP:=java_compile.stamp
 # what is the local web folder ?
 WEB_DIR:=web
 # what is the web dir for this project ?
-WEB_OUT_DIR:=/var/www/keynote
+WEB_OUT_DIR:=~/public_html/public/keynote
 
 # what is the js folder ?
 JS_DIR:=jssrc
@@ -101,7 +101,7 @@ $(JS_MIN): $(JS_FULL) $(ALL_DEP)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)#jsmin < $< > $@
 	$(Q)#yui-compressor $< -o $@
-	$(Q)~/install/bin/compiler.jar $< --js_output_file $@
+	$(Q)~/install/closure/compiler.jar $< --js_output_file $@
 $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
@@ -148,9 +148,10 @@ clean:
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)sudo rm -rf $(WEB_DIR)
-	$(Q)sudo mkdir $(WEB_DIR)
-	$(Q)sudo cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR) $(WEB_OUT_DIR)
+	$(Q)rm -rf $(WEB_OUT_DIR)
+	$(Q)mkdir $(WEB_OUT_DIR)
+	$(Q)cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR) $(WEB_OUT_DIR)
+	$(Q)chmod -R go+rx $(WEB_OUT_DIR)
 
 .PHONY: java_compile
 java_compile: $(JAVA_COMPILE_STAMP)
