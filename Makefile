@@ -20,10 +20,8 @@ JAVA_OUT_DIR:=bin
 # what is the java compile stamp file ?
 JAVA_COMPILE_STAMP:=java_compile.stamp
 
-# what is the local web folder ?
-WEB_DIR:=web
 # what is the web dir for this project ?
-WEB_OUT_DIR:=~/public_html/public/keynote
+WEB_DIR:=~/public_html/public/keynote
 
 # what is the js folder ?
 JS_DIR:=jssrc
@@ -122,7 +120,6 @@ debug:
 	$(info ALL_DEP is $(ALL_DEP))
 	$(info VER is $(VER))
 	$(info WEB_DIR is $(WEB_DIR))
-	$(info WEB_OUT_DIR is $(WEB_OUT_DIR))
 	$(info XML_SRC_DIR is $(XML_SRC_DIR))
 	$(info XML_SRC is $(XML_SRC))
 	$(info XML_PDF is $(XML_PDF))
@@ -145,13 +142,20 @@ clean:
 	$(info doing [$@])
 	$(Q)rm -rf $(PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
 
+.PHONY: chmod
+chmod:
+	$(info doing [$@])
+	$(Q)chmod -R go+r `find $(JS_OUT_DIR) $(WEB_DIR) $(XML_SRC_DIR) -type f`
+	$(Q)chmod -R go+r index.html
+	$(Q)chmod -R go+rx `find $(JS_OUT_DIR) $(WEB_DIR) $(XML_SRC_DIR) -type d`
+
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)rm -rf $(WEB_OUT_DIR)
-	$(Q)mkdir $(WEB_OUT_DIR)
-	$(Q)cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR) $(WEB_OUT_DIR)
-	$(Q)chmod -R go+rx $(WEB_OUT_DIR)
+	$(Q)rm -rf $(WEB_DIR)
+	$(Q)mkdir $(WEB_DIR)
+	$(Q)cp -r index.html $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_DIR)
+	$(Q)chmod -R go+rx $(WEB_DIR)
 
 .PHONY: java_compile
 java_compile: $(JAVA_COMPILE_STAMP)
