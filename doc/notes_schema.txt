@@ -2,3 +2,5 @@ Blog entry about creating xsd and xml files in eclipse:
 	http://michielv.eu/2012/01/30/xml-schema-with-eclipse
 W3C tutorial on schemas:
 	http://www.w3schools.com/schema/schema_example.asp
+Add XML validation to an Eclipse project:
+	http://www.eclipse.org/webtools/community/tutorials/XMLValidation/XMLValidationTutorial.html
