@@ -4,3 +4,5 @@ W3C tutorial on schemas:
 	http://www.w3schools.com/schema/schema_example.asp
 Add XML validation to an Eclipse project:
 	http://www.eclipse.org/webtools/community/tutorials/XMLValidation/XMLValidationTutorial.html
+Complex XSD:
+	http://www.brainbell.com/tutorials/XML/Digging_Into_Complex_Types.htm

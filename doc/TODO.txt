@@ -1,2 +1,1 @@
-- add .xsd file and get to validated xml files which also show in the js.
-- add validation to the manual build system (the eclipse project already has it)
+- make sure the js runs fine
