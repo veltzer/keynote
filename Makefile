@@ -53,7 +53,7 @@ JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
 XML_STAMP:=$(addsuffix .stamp,$(basename $(XML_SRC)))
-ALL:=$(XML_PDF) $(XML_STAMP) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
+ALL:=$(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -145,7 +145,7 @@ debug:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(XML_PDF) $(XML_STAMP) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
+	$(Q)rm -rf $(XML_STAMP) $(XML_PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
 
 .PHONY: chmod
 chmod:
