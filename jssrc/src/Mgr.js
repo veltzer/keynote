@@ -126,7 +126,12 @@ Mgr.prototype.hookKeyboard = function() {
 };
 // static methods
 Mgr.prototype.getTextFromSingleXpath = function(doc, xpath_expr) {
-  var l = doc.evaluate(xpath_expr, doc.documentElement, null,
+  Utils.fakeUse(doc);
+  Utils.fakeUse(xpath_expr);
+  /*
+   * TODO: this code throws an exception...
+  //var l = doc.evaluate(xpath_expr, doc.documentElement, null,
+  var l = doc.evaluate(xpath_expr, doc, null,
       window.XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
   if (l.snapshotLength != 1) {
     //this.debug(l.snapshotLength);
@@ -136,6 +141,8 @@ Mgr.prototype.getTextFromSingleXpath = function(doc, xpath_expr) {
         xpath_expr;
   }
   return l.snapshotItem(0).textContent;
+  */
+  return 'foobar';
 };
 Mgr.prototype.getTextFromSingleNode = function(doc, name) {
   var l = doc.getElementsByTagName(name);
@@ -204,13 +211,13 @@ Mgr.prototype.createElement = function(node) {
       return e_item_img;
     }
     if (node.localName == 'email') {
-      this.checkNoChildren(node);
+      this.checkOneChild(node);
       if (this.doRealLinks) {
         var e_item_a = jQuery('<a/>', {
-          href: 'mailto:' + node.getAttribute('value')
+          href: 'mailto:' + node.textContent
         });
         e_item_a.addClass(node.localName);
-        e_item_a.text(node.getAttribute('value'));
+        e_item_a.text(node.textContent);
         return e_item_a;
       } else {
         var e_item_span = jQuery('<span/>');

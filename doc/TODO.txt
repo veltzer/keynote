@@ -1,1 +1,1 @@
-- make sure the js runs fine
+- install the xsd file to the web.
