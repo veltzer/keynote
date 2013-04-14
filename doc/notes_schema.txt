@@ -6,3 +6,5 @@ Add XML validation to an Eclipse project:
 	http://www.eclipse.org/webtools/community/tutorials/XMLValidation/XMLValidationTutorial.html
 Complex XSD:
 	http://www.brainbell.com/tutorials/XML/Digging_Into_Complex_Types.htm
+versions of schema:
+	http://stackoverflow.com/questions/2138705/where-to-add-a-version-to-an-xsd-schema
