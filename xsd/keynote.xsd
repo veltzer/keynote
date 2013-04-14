@@ -1,12 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://veltze.net/keynote" xmlns:tns="http://www.example.org/keynote" elementFormDefault="qualified">
-	<element name="presentation">
-		<complexType>
-			<sequence>
-    			<element name="orderperson" type="string"/>
-    			<element name="shipto" type="string"/>
-    			<element name="item" maxOccurs="unbounded" type="string"/>
-  			</sequence>
-  		</complexType>
-	</element>
-</schema>
+<xsd:schema
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://veltzer.net/keynote"
+	xmlns:tns="http://veltzer.net/keynote"
+	elementFormDefault="qualified">
+
+	<xsd:element name="presentation" type="tns:Presentation">
+		<xsd:annotation>
+			<xsd:documentation>
+				This is the presentation element
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="Slide">
+		<xsd:sequence>
+			<xsd:element name="title" maxOccurs="1" minOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence></xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="bullet" maxOccurs="unbounded" minOccurs="1">
+				<xsd:complexType>
+					<xsd:sequence></xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="template" type="xsd:string">
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="Keywords">
+		<xsd:sequence>
+			<xsd:element name="keyword" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						This is a single keyword
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Author">
+		<xsd:sequence>
+			<xsd:element name="firstname">
+				<xsd:complexType>
+					<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="surname">
+				<xsd:complexType>
+					<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Meta">
+		<xsd:annotation>
+			<xsd:documentation>
+				This is the meta element
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="title" maxOccurs="1" minOccurs="0">
+				<xsd:complexType></xsd:complexType>
+			</xsd:element>
+			<xsd:element name="author" type="tns:Author" maxOccurs="1" minOccurs="0"></xsd:element>	
+			<xsd:element name="copyright" maxOccurs="1" minOccurs="0">
+				<xsd:complexType></xsd:complexType>
+			</xsd:element>
+			<xsd:element name="keywords" type="tns:Keywords" maxOccurs="1" minOccurs="0"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="Presentation">
+		<xsd:annotation>
+			<xsd:documentation>
+			This is a full keynote presentation
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="meta" type="tns:Meta" maxOccurs="1"/>
+			<xsd:element name="slide" type="tns:Slide" maxOccurs="unbounded"/>
+  		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

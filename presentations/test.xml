@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<presentation xmlns="http://veltze.net/keynote" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://veltze.net/keynote ../xsd/keynote.xsd ">
+<presentation
+	xmlns="http://veltzer.net/keynote"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://veltzer.net/keynote ../xsd/keynote.xsd"
+	>
+	<meta>
+		<title>This is the title</title>
+	</meta>
 	<slide layout="center">
 		<title>jQuery</title>
 		<bullet>Mark Veltzer</bullet>
 		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
-		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
 </presentation>

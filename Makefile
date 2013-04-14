@@ -52,7 +52,8 @@ JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
-ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
+XML_STAMP:=$(addsuffix .stamp,$(basename $(XML_SRC)))
+ALL:=$(XML_PDF) $(XML_STAMP) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -126,6 +127,7 @@ debug:
 	$(info XML_SRC_DIR is $(XML_SRC_DIR))
 	$(info XML_SRC is $(XML_SRC))
 	$(info XML_PDF is $(XML_PDF))
+	$(info XML_STAMP is $(XML_STAMP))
 	$(info JAVA_SRC_DIR is $(JAVA_SRC_DIR))
 	$(info JAVA_OUT_DIR is $(JAVA_OUT_DIR))
 	$(info JAVA_SRC is $(JAVA_SRC))
@@ -152,6 +154,10 @@ chmod:
 	$(Q)chmod -R go+r index.html
 	$(Q)chmod -R go+rx `find $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) -type d`
 
+.PHONY: validate
+validate:
+	$(info doing [$@])
+
 .PHONY: install
 install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
@@ -166,6 +172,10 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 # rules #
 #########
+$(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
 	$(Q)scripts/keynote_xml_to_pdf.py --input $< --output $@

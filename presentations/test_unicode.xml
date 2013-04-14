@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<presentation>
+<presentation
+	xmlns="http://veltzer.net/keynote"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://veltzer.net/keynote ../xsd/keynote.xsd "
+	>
 	<meta>
+		<title>Unicode test</title>
 		<author>
 			<firstname value="מרק"/>
 			<surname value="ולצר"/>
@@ -11,16 +16,14 @@
 			<keyword value="שלוש"/>
 		</keywords>
 	</meta>
-	<topic name="Introduction">
-		<slide type="bullet" rund="rtl" name="כותרת ללא צידוד?">
-			<bullet align="center" rund="rtl">אלמנט ממורכז</bullet>
-			<bullet align="left" rund="rtl">אלמנט מצודד לימין</bullet>
-			<bullet align="right" rund="rtl">אלמנט מצודד לשמאל</bullet>
-			<bullet align="right">right bullet</bullet>
-			<bullet align="left">left bullet</bullet>
-			<bullet align="center">center bullet</bullet>
-		</slide>
-		<slide type="bullet" name="some english too?">
-		</slide>
-	</topic>
+	<slide layout="bullet" rund="rtl" name="כותרת ללא צידוד?">
+		<bullet align="center" rund="rtl">אלמנט ממורכז</bullet>
+		<bullet align="left" rund="rtl">אלמנט מצודד לימין</bullet>
+		<bullet align="right" rund="rtl">אלמנט מצודד לשמאל</bullet>
+		<bullet align="right">right bullet</bullet>
+		<bullet align="left">left bullet</bullet>
+		<bullet align="center">center bullet</bullet>
+	</slide>
+	<slide type="bullet" name="some english too?">
+	</slide>
 </presentation>
