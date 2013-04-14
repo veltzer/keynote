@@ -145,7 +145,7 @@ debug:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
+	$(Q)rm -rf $(XML_PDF) $(XML_STAMP) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
 
 .PHONY: chmod
 chmod:
@@ -174,7 +174,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 $(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)scripts/wrapper.py xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])

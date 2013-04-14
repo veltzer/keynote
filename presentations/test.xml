@@ -7,9 +7,9 @@
 	<meta>
 		<title>This is the title</title>
 	</meta>
-	<slide layout="center">
+	<slide template="centered">
 		<title>jQuery</title>
 		<bullet>Mark Veltzer</bullet>
-		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
+		<bullet><email>mark.veltzer@gmail.com</email></bullet>
 	</slide>
 </presentation>

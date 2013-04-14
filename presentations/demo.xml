@@ -19,14 +19,15 @@
 			<keyword value="three" />
 		</keywords>
 	</meta>
-	<slide layout="center">
+	<slide template="center">
+		<title>This is the title</title>
 		<bullet align="center">The present slide making software</bullet>
 		<bullet align="center">
 			Mark Veltzer
 			<email>mark.veltzer@gmail.com</email>
 		</bullet>
 	</slide>
-	<slide layout="flowing">
+	<slide template="flowing">
 		<title>What is keynote ?</title>
 		<bullet>
 			<concept>Present</concept>
@@ -36,15 +37,18 @@
 			text editor.
 		</bullet>
 	</slide>
-	<slide layout="flowing">
+	<slide template="flowing">
 		<title>Why should I use keynote ?</title>
 		<bullet>You want to keep the source of your presentation in source
 			control.</bullet>
 		<bullet>You hate using a wysiwyg editor.</bullet>
 		<bullet>It allows many people to work on the same presentation at the
-			same time and resolve their differences using common tools.</bullet>
+			same time and resolve their differences using common tools.
+		</bullet>
+		<bullet>
 			<code>This is some C code</code>
-			<bullet>It separates content and presentation.
+		</bullet>
+		<bullet>It separates content and presentation.
 		</bullet>
 		<bullet>It forces same look and feel on all of your presentations.
 		</bullet>

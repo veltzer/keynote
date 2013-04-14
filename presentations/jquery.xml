@@ -20,13 +20,13 @@
 			<keyword value="keynotejs"/>
 		</keywords>
 	</meta>
-	<slide layout="center">
+	<slide template="center">
 		<title>jQuery</title>
 		<bullet>Mark Veltzer</bullet>
-		<bullet><email value='mark.veltzer@gmail.com'/></bullet>
+		<bullet><email>mark.veltzer@gmail.com></email></bullet>
 		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
-	<slide layout="flow">
+	<slide template="flow">
 		<title>Second jQuery slide</title>
 		<bullet>this is a bullet</bullet>
 	</slide>

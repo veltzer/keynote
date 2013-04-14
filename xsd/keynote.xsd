@@ -15,13 +15,29 @@
 	<xsd:complexType name="Slide">
 		<xsd:sequence>
 			<xsd:element name="title" maxOccurs="1" minOccurs="1">
-				<xsd:complexType>
-					<xsd:sequence></xsd:sequence>
-				</xsd:complexType>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+					</xsd:restriction>
+				</xsd:simpleType>
 			</xsd:element>
-			<xsd:element name="bullet" maxOccurs="unbounded" minOccurs="1">
-				<xsd:complexType>
-					<xsd:sequence></xsd:sequence>
+			<xsd:element name="bullet" minOccurs="1" maxOccurs="unbounded">
+				<xsd:complexType mixed="true">
+					<xsd:sequence>
+						<xsd:element name="email" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+						</xsd:element>
+						<xsd:element name="code" minOccurs="0" maxOccurs="unbounded">
+							<xsd:complexType mixed="true">
+								<xsd:sequence></xsd:sequence>
+								<xsd:attribute name="language" type="xsd:string"></xsd:attribute>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element name="concept" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+						</xsd:element>
+						<xsd:element name="emphasis" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+						</xsd:element>
+					</xsd:sequence>
+					<xsd:attribute name="size" type="xsd:string"></xsd:attribute>
+					<xsd:attribute name="align" type="xsd:string"></xsd:attribute>
 				</xsd:complexType>
 			</xsd:element>
 		</xsd:sequence>
@@ -65,11 +81,16 @@
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="title" maxOccurs="1" minOccurs="0">
-				<xsd:complexType></xsd:complexType>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+					</xsd:restriction>
+				</xsd:simpleType>
 			</xsd:element>
 			<xsd:element name="author" type="tns:Author" maxOccurs="1" minOccurs="0"></xsd:element>	
 			<xsd:element name="copyright" maxOccurs="1" minOccurs="0">
-				<xsd:complexType></xsd:complexType>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string"></xsd:restriction>
+				</xsd:simpleType>
 			</xsd:element>
 			<xsd:element name="keywords" type="tns:Keywords" maxOccurs="1" minOccurs="0"></xsd:element>
 		</xsd:sequence>

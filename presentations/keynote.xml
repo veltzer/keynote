@@ -19,11 +19,12 @@
 		</keywords>
 	</meta>
 	<slide template="center">
+		<title>This is the first title</title>
 		<bullet><concept>Keynote</concept></bullet>
 		<bullet>slides made right</bullet>
-		<vspace/>
+		<!-- <vspace/> -->
 		<bullet size="small">Mark Veltzer</bullet>
-		<bullet size="small"><email value='mark.veltzer@gmail.com'/></bullet>
+		<bullet size="small"><email>mark.veltzer@gmail.com</email></bullet>
 	</slide>
 	<slide template="flowing">
 		<title>This is the title</title>
@@ -62,12 +63,14 @@
 	<slide template="flowing">
 		<title>This is a code slide</title>
 		<bullet>This is a sample of code:</bullet>
-		<code language="c"><![CDATA[
-		int main(int argc,char** argv, char** envp) {
-			printf("Hello, World!\n");
-			return 0;
-		}
-		]]></code>
+		<bullet>
+			<code language="c"><![CDATA[
+			int main(int argc,char** argv, char** envp) {
+				printf("Hello, World!\n");
+				return 0;
+			}
+			]]></code>
+		</bullet>
 		<bullet>And this is a discussion of it</bullet>
 	</slide>
 	<slide template="flowing">
@@ -93,13 +96,15 @@
 		<title>Writing presentations in keynote</title>
 		<bullet>You can use any editor you like (I use vim)</bullet>
 		<bullet>An empty presentation would look like this:</bullet>
-		<code language="xml"><![CDATA[
-		<?xml version="1.0" encoding="ISO-8859-1"?>
-		<presentation
-			xmlns:xsi="http://veltzer.net/keynote/"
-			xsi:noNamespaceSchemaLocation="keynote.xsd">
-		</presentation>
-		]]></code>
+		<bullet>
+			<code language="xml"><![CDATA[
+			<?xml version="1.0" encoding="ISO-8859-1"?>
+			<presentation
+				xmlns:xsi="http://veltzer.net/keynote/"
+				xsi:noNamespaceSchemaLocation="keynote.xsd">
+			</presentation>
+			]]></code>
+		</bullet>
 	</slide>
 	<slide template="flowing">
 		<title>Comparison to other solutions</title>

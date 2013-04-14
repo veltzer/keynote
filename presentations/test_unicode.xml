@@ -16,14 +16,17 @@
 			<keyword value="שלוש"/>
 		</keywords>
 	</meta>
-	<slide layout="bullet" rund="rtl" name="כותרת ללא צידוד?">
-		<bullet align="center" rund="rtl">אלמנט ממורכז</bullet>
-		<bullet align="left" rund="rtl">אלמנט מצודד לימין</bullet>
-		<bullet align="right" rund="rtl">אלמנט מצודד לשמאל</bullet>
+	<slide template="bullet">
+		<title>כותרת ללא צידוד?</title>
+		<bullet align="center">אלמנט ממורכז</bullet>
+		<bullet align="left">אלמנט מצודד לימין</bullet>
+		<bullet align="right">אלמנט מצודד לשמאל</bullet>
 		<bullet align="right">right bullet</bullet>
 		<bullet align="left">left bullet</bullet>
 		<bullet align="center">center bullet</bullet>
 	</slide>
-	<slide type="bullet" name="some english too?">
+	<slide template="bullet">
+		<title>some english too?</title>
+		<bullet>must have one bullet, at least</bullet>
 	</slide>
 </presentation>
