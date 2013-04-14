@@ -168,6 +168,13 @@ install: $(ALL) $(ALL_DEP)
 	$(Q)cp -r index.html $(XSD_DIR) $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) $(WEB_DIR)
 	$(Q)chmod -R go+rx $(WEB_DIR)
 
+.PHONY: install_xsd
+install_xsd:
+	$(info doing [$@])
+	$(Q)mkdir -p $(WEB_DIR)
+	$(Q)cp -r $(XSD_DIR) $(WEB_DIR)
+	$(Q)chmod -R go+rx $(WEB_DIR)
+
 .PHONY: java_compile
 java_compile: $(JAVA_COMPILE_STAMP)
 
