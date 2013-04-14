@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://veltze.net/keynote" xmlns:tns="http://www.example.org/keynote" elementFormDefault="qualified">
+	<element name="presentation">
+		<complexType>
+			<sequence>
+    			<element name="orderperson" type="string"/>
+    			<element name="shipto" type="string"/>
+    			<element name="item" maxOccurs="unbounded" type="string"/>
+  			</sequence>
+  		</complexType>
+	</element>
+</schema>
