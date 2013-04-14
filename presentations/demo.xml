@@ -4,7 +4,7 @@
 <presentation
 	xmlns="http://veltzer.net/keynote"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://veltzer.net/keynote ../xsd/keynote.xsd ">
+	xsi:schemaLocation="http://veltzer.net/keynote http://veltzer.net/keynote/xsd/keynote.xsd">
 	<meta>
 		<title>
 			This is the title
