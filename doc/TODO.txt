@@ -1,1 +1,7 @@
-- install the xsd file to the web.
+- move to prototype.js in this project.
+- do some tightening up of the schema.
+- make sure that code looks right and that the first presentation looks right.
+- pressing the email in the first slide of keynote.xml does not work. Check it out
+	and fix it.
+- make the code in the mgr.js more forgiving: if there is no copyright then dont
+	have it, same for title.

@@ -128,28 +128,28 @@ Mgr.prototype.hookKeyboard = function() {
 Mgr.prototype.getTextFromSingleXpath = function(doc, xpath_expr) {
   Utils.fakeUse(doc);
   Utils.fakeUse(xpath_expr);
-  /*
-   * TODO: this code throws an exception...
-  //var l = doc.evaluate(xpath_expr, doc.documentElement, null,
-  var l = doc.evaluate(xpath_expr, doc, null,
+  var l = doc.evaluate(xpath_expr, doc.documentElement, null,
       window.XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
   if (l.snapshotLength != 1) {
+    return '[-----------no title-------------]';
     //this.debug(l.snapshotLength);
     //this.debug(typeof(l));
     //this.debug(l.constructor);
-    throw 'wrong number (' + l.snapshotLength + ') of elements for expr ' +
-        xpath_expr;
+    //throw 'wrong number (' + l.snapshotLength + ') of elements for expr ' +
+    //    xpath_expr;
+  } else {
+    return l.snapshotItem(0).textContent;
   }
-  return l.snapshotItem(0).textContent;
-  */
-  return 'foobar';
 };
 Mgr.prototype.getTextFromSingleNode = function(doc, name) {
   var l = doc.getElementsByTagName(name);
   if (l.length != 1) {
-    throw 'too many elements of name ' + name;
+    return '[-----------no copyright-------------]';
+    //throw 'wrong number (' + l.length + ') of elements of type ['
+    //+ name + ']';
+  } else {
+    return l[0].textContent;
   }
-  return l[0].textContent;
 };
 Mgr.prototype.checkOneChild = function(node) {
   //this.debug(node);
@@ -226,10 +226,10 @@ Mgr.prototype.createElement = function(node) {
         if (this.doClickableLinks) {
           e_item_span.click(function(e) {
             Utils.fakeUse(e);
-            window.location = 'mailto:' + node.getAttribute('value');
+            window.location = 'mailto:' + node.textContent;
           });
         }
-        e_item_span.text(node.getAttribute('value'));
+        e_item_span.text(node.textContent);
         return e_item_span;
       }
     }

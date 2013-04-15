@@ -13,6 +13,7 @@
 			<firstname value="Mark" />
 			<surname value="Veltzer" />
 		</author>
+		<copyright>this is the copyright</copyright>
 		<keywords>
 			<keyword value="one" />
 			<keyword value="two" />
