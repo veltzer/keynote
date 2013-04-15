@@ -13,6 +13,8 @@ Create a layout mananger for each object. They are small anyway.
 
 Templates in keynotejs are based on the following ideas:
 ========================================================
+Template: an object which gets the data of a slide and knows how to show it on the screen.
+
 Each template is a bunch of layout managers arranged together to get a certain effect.
 Examples of templates are:
 1. Title with Bullets

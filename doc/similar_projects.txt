@@ -1,9 +1,0 @@
-Landslide:
-	https://github.com/n1k0/landslide
-	https://github.com/adamzap/landslide
-Reveal.js:
-	http://lab.hakim.se/reveal-js/#/
-beamer:
-	http://www.informatik.uni-freiburg.de/~frank/ENG/latex-course/latex-course-3/latex-course-3_en.html
-Reveal.io:
-	http://www.rvl.io

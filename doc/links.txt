@@ -1,0 +1,35 @@
+java
+====
+itext:
+	http://threadbarecanvas.com/java/creating-a-pdf-programmatically-with-itext/
+	/usr/share/doc/libitext5-java/api/index.html
+	http://itextpdf.com/book/examples.php
+
+args4j:
+	/usr/share/doc/libargs4j-java/api/index.html
+	http://www.whenbrainsfly.com/2009/05/args4j-is-magic/
+odftoolkit:
+	http://incubator.apache.org/odftoolkit/
+rsyntaxtextarea:
+	http://fifesoft.com/rsyntaxtextarea/
+antlr:
+	http://www.antlr.org/
+
+javascript
+==========
+syntaxhighligher:
+	http://alexgorbatchev.com/SyntaxHighlighter/
+highlight.js:
+	http://softwaremaniacs.org/soft/highlight/en/
+
+similar projects
+================
+Landslide:
+	https://github.com/n1k0/landslide
+	https://github.com/adamzap/landslide
+Reveal.js:
+	http://lab.hakim.se/reveal-js/#/
+beamer:
+	http://www.informatik.uni-freiburg.de/~frank/ENG/latex-course/latex-course-3/latex-course-3_en.html
+Reveal.io:
+	http://www.rvl.io

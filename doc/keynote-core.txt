@@ -2,17 +2,49 @@ Core functionality:
 ===================
 Core functionality refers to the xml file for presentations, it's semantics, writing and validating it,
 
+Have my own tool (java) that checks the presentations and does spell checking on their content.
+	This tool would be able to read a list of spell checker exclusions at the start of the presentation.
+
 This is a discussion of the presentation.xml syntax and it's reasoning:
 =======================================================================
 
-titles should be in their own <title>.
-- because I may want to do <title>this is <emphasis>my</emphasis> slide</title>
+titles should be in their own <title> because I may want to do <title>this is <emphasis>my</emphasis> slide</title>
+and other things.
+same is for <copyright> and any other complex content
 
-lists should be done so:
-	<list template='presentation template'>
-		<listtitle>this is <strong>my</strong> list:</listtitle>
-		<listitem>one</listitem>
-		<listitem>two</listitem>
-		<listitem>three</listitem>
-	</list>
-lists inside lists are allowed.
+<bullet> inside <bullet> should be allowed to have sub bullets.
+The template will arrange them.
+
+<bullet> should be in <bulletlist>. This would give a place where I could put styles about the list
+of bullets (numbered, size of fonts, etc...).
+
+Links between bullets:
+======================
+We don't want a boring slide show that only goes to the next slide.
+Each slide could point to many slides as next slide (only the next as default).
+On the screen it will enable the user to select where to go.
+The slide could have many exists, one would be marked as default (and will be the
+one which one goes to if one just presses the "next" button on a slide transition
+dongle...).
+
+Time for slide
+==============
+The user could attach time attributes to slides, bullets or topicss so this
+will enable time measuring features.
+
+topics
+======
+A topic is a higher level division of a presentation. A topics is just
+a collection of slides.
+This will enable to jump to a specific topic and the like.
+This will require a <topic> element.
+
+stats
+=====
+A tool should be provided that gets statistics from a presentation. It will get
+the number of slides etc.
+
+Including between presentation:
+===============================
+Presentations should be able to include parts or slides from other presentations easily.
+This should be enabled using some kind of XML inclusion technology. xinclude ?!?

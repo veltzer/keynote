@@ -9,6 +9,7 @@ packs=[
 	'libitext5-java-doc',
 	'libargs4j-java',
 	'libargs4j-java-doc',
+	'libxml2-utils', # for xmllint command line tool for validating the presentations
 ]
 args=['sudo','apt-get','install']
 args.extend(packs)
