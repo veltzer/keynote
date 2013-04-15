@@ -18,7 +18,7 @@
 		</keywords>
 	</meta>
 	<slide template="bullet">
-		<title>כותרת ללא צידוד?</title>
+		<title>?כותרת ללא צידוד</title>
 		<bullet align="center">אלמנט ממורכז</bullet>
 		<bullet align="left">אלמנט מצודד לימין</bullet>
 		<bullet align="right">אלמנט מצודד לשמאל</bullet>
