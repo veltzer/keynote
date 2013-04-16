@@ -3,3 +3,5 @@ presentations/*.pdf
 jsout/*
 jsdoc/*
 *.stamp
+# stub files left by aspell when correcting mistakes
+#*.bak

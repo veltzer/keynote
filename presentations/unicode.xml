@@ -22,12 +22,14 @@
 		<bullet align="center">אלמנט ממורכז</bullet>
 		<bullet align="left">אלמנט מצודד לימין</bullet>
 		<bullet align="right">אלמנט מצודד לשמאל</bullet>
+		<bullet align="right">יאת כתיב נאה</bullet>
 		<bullet align="right">right bullet</bullet>
 		<bullet align="left">left bullet</bullet>
 		<bullet align="center">center bullet</bullet>
 	</slide>
 	<slide template="bullet">
-		<title>some english too?</title>
+		<title>some English too?</title>
 		<bullet>must have one bullet, at least</bullet>
+		<bullet>misspell</bullet>
 	</slide>
 </presentation>

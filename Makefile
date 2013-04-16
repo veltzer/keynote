@@ -184,6 +184,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 $(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)scripts/wrapper.py xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
 	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
