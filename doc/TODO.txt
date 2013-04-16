@@ -72,6 +72,11 @@ website
 	- page about writing it on the command line in linux
 		and validating via some command line tools (xmllint?!?).
 
+spelling
+========
+move the local dictionary file for aspell from ~/.aspell.[en|he].pws
+to this folder (under support?!?)
+
 build system
 ============
 - release the flags for documentation checks on the code.
