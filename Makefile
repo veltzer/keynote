@@ -152,9 +152,9 @@ clean:
 .PHONY: chmod
 chmod:
 	$(info doing [$@])
-	$(Q)chmod -R go+r `find $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) -type f`
+	$(Q)chmod -R go+r `find . -type f`
 	$(Q)chmod -R go+r index.html
-	$(Q)chmod -R go+rx `find $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) -type d`
+	$(Q)chmod -R go+rx `find . -type d`
 
 .PHONY: validate
 validate:
