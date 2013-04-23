@@ -2,19 +2,15 @@
 	<head>
 		<title>Keynote: No presentation loaded...</title>
 
-		<!-- prototype - we use this a lot -->
+		<!-- prototype -->
 		<script src="toolkits/prototype.js"></script>
-		<!-- jQuery - we use this a lot -->
+		<!-- jQuery -->
 		<script src="toolkits/jquery/jquery.js"></script>
-
 		<!-- syntax highlighter stuff -->
-		<!-- -->
 		<link href="toolkits/sh/styles/shCore.css" rel="stylesheet" type="text/css"/>
 		<link href="toolkits/sh/styles/shThemeDefault.css" rel="stylesheet" type="text/css"/>
 		<script src="toolkits/sh/scripts/shCore.js"></script>
 		<script src="toolkits/sh/scripts/shAutoloader.js"></script>
-		<!-- -->
-		
 		<!-- hljs stuff -->
 		<!--
 		<link href="toolkits/hljs/default.min.css" rel="stylesheet" type="text/css"/>
@@ -24,7 +20,9 @@
 		<!-- my code -->
 		<link rel="stylesheet" type="text/css" href="keynote.css" media="screen"/>
 		<!-- minified version -->
-		<!--script src="../jsout/keynotejs-test.min.js"></script-->
+		<!--
+		<script src="../jsout/keynotejs-test.min.js"></script>
+		-->
 		<!-- full version -->
 		<script src="../jsout/keynotejs-test.js"></script>
 		<!--

@@ -46,6 +46,10 @@ JS_DOC_STAMP:=js_doc.stamp
 # what is the xsd folder ?
 XSD_DIR:=xsd
 
+# tools
+TOOL_JSL:=~/install/jsl/jsl
+TOOL_GJSLINT:=/usr/local/bin/gjslint
+
 #####################
 # end of parameters #
 #####################
@@ -91,8 +95,8 @@ jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
 # real js targets
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)~/install/jsl/jsl --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
-	$(Q)scripts/wrapper.py gjslint --flagfile support/gjslint.cfg $(JS_SRC)
+	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
+	$(Q)scripts/wrapper.py $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
 $(JS_FULL): $(JS_SRC) $(ALL_DEP)

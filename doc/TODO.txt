@@ -1,3 +1,10 @@
+now:
+====
+- check that this works even though I am now using prototype.
+- return checking for docs and document everything.
+- install the docs on the site and link to it from the main page of the site.
+
+
 javascript
 ==========
 - move to prototype.js in this project.
