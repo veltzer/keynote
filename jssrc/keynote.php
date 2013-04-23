@@ -2,10 +2,9 @@
 	<head>
 		<title>Keynote: No presentation loaded...</title>
 
-		<!-- prototype -->
+		<!-- third party -->
 		<script src="toolkits/prototype.js"></script>
-		<!-- jQuery -->
-		<script src="toolkits/jquery/jquery.js"></script>
+		<script src="toolkits/jquery.js"></script>
 		<!-- syntax highlighter stuff -->
 		<link href="toolkits/sh/styles/shCore.css" rel="stylesheet" type="text/css"/>
 		<link href="toolkits/sh/styles/shThemeDefault.css" rel="stylesheet" type="text/css"/>
