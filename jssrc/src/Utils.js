@@ -119,4 +119,3 @@ Utils.checkContains = function(s1, s2) {
     }
   }
 };
-Utils.key_class = 'class';
