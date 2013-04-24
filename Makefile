@@ -156,9 +156,9 @@ clean:
 .PHONY: chmod
 chmod:
 	$(info doing [$@])
-	$(Q)chmod -R go+r `find . -type f`
-	$(Q)chmod -R go+r index.html
-	$(Q)chmod -R go+rx `find . -type d`
+	$(Q)chmod go+r `find . -type f`
+	$(Q)chmod go+r index.html
+	$(Q)chmod go+rx `find . -type d`
 
 .PHONY: validate
 validate:
