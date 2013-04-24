@@ -302,6 +302,12 @@ var Mgr = Class.create(/** @lends Mgr# */{
     this.gotoSlide(this.getSlideNum() - 1);
   }
 });
+
+
+/**
+  TODO
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.highlight = function() {
   function path() {
     var args = arguments;
@@ -340,6 +346,15 @@ Mgr.highlight = function() {
   SyntaxHighlighter.defaults['toolbar'] = false;
   SyntaxHighlighter.all();
 };
+
+
+/**
+  Get text from a DOM document using a single xpath expression.
+  @param {DOM} doc the document to work on.
+  @param {String} xpath_expr the expression to use.
+  @return {String} the text of the node in question.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.getTextFromSingleXpath = function(doc, xpath_expr) {
   Utils.fakeUse(doc);
   Utils.fakeUse(xpath_expr);
@@ -353,6 +368,15 @@ Mgr.getTextFromSingleXpath = function(doc, xpath_expr) {
     return l.snapshotItem(0).textContent;
   }
 };
+
+
+/**
+  Get text from a single XML node.
+  @param {DOM} doc the document to work on.
+  @param {object} name the tag name to get the text from.
+  @return {String} the text of the node in question.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.getTextFromSingleNode = function(doc, name) {
   var l = doc.getElementsByTagName(name);
   if (l.length != 1) {
@@ -363,15 +387,35 @@ Mgr.getTextFromSingleNode = function(doc, name) {
     return l[0].textContent;
   }
 };
+
+
+/**
+  @param {DOMNODE} node The node to check.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.checkOneChild = function(node) {
   if (node.nodeType != 3 && node.childNodes.length != 1) {
     throw 'wrong number of childern for node ' + node;
   }
 };
+
+
+/**
+  Get the single child of a DOM node.
+  @param {DOMNODE} node the node in question.
+  @return {DOMNODE} the single child of the node in question.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.getOneChild = function(node) {
   Mgr.checkOneChild(node);
   return node.childNodes[0];
 };
+
+
+/**
+  @param {DOMNODE} node The node to check.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 Mgr.checkNoChildren = function(node) {
   if (node.childNodes.length != 0) {
     throw 'too many children for node ' + node;

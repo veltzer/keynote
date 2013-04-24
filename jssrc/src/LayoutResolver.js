@@ -38,10 +38,18 @@ var LayoutResolver = Class.create(/** @lends LayoutResolver# */{
 });
 
 
-/*
- * A singleton access pattern
- */
+/**
+  A singleton access pattern
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 LayoutResolver.instance = new LayoutResolver();
+
+
+/**
+  The singleton accessor.
+  @return {LayourResolver} the singleton object.
+  @author mark.veltzer@gmail.com (Mark Veltzer)
+*/
 LayoutResolver.getInstance = function() {
   return LayoutResolver.instance;
 };
