@@ -5,20 +5,19 @@
   @class the hide/show transition manager.
   @author mark.veltzer@gmail.com (Mark Veltzer)
 */
-var TransitionHideShow = Class.create(/** @lends Utils# */{
+var TransHideShow = Class.create(/** @lends TransHideShow# */{
   /**
     Create a new instance of this class.
     @param {object} configuration options.
-    @return {TransitionHideShow} a new instance of this class.
+    @return {TransHideShow} a new instance of this class.
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(options) {
     Utils.fakeUse(options);
-    // no internal state
   },
   /**
     postCreate hook.
-    @param {Element} elem the element that was created.
+    @param {Element} elem the element to work on.
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   postCreate: function(elem) {
@@ -26,7 +25,7 @@ var TransitionHideShow = Class.create(/** @lends Utils# */{
   },
   /**
     transitionIn hook.
-    @param {Element} elem the element that is to be transitioned in.
+    @param {Element} elem the element to work on.
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   transitionIn: function(elem) {
@@ -34,7 +33,7 @@ var TransitionHideShow = Class.create(/** @lends Utils# */{
   },
   /**
     transitionOut hook.
-    @param {Element} elem the element that is to be transitioned out.
+    @param {Element} elem the element to work on.
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   transitionOut: function(elem) {

@@ -2,7 +2,7 @@
 /*jsl:import jqutils.js*/
 /*jsl:import Slide.js*/
 /*jsl:import LayoutResolver.js*/
-/*jsl:import TransitionHideShow.js*/
+/*jsl:import TransHideShow.js*/
 
 /*
  * The presentation manager object
@@ -17,7 +17,7 @@ function Mgr(options) {
   checkMustHave(options, new Set('source'));
   this.source = options.source;
   if (!('transition' in options)) {
-    this.transition = new TransitionHideShow();
+    this.transition = new TransHideShow();
   } else {
     this.transition = options.transition;
   }

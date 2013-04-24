@@ -28,9 +28,9 @@
 		<script src="src/Set.js"></script>
 		<script src="src/jqutils.js"></script>
 		<script src="src/Utils.js"></script>
-		<script src="src/TransitionHideShow.js"></script>
-		<script src="src/TransitionFadeoutFadein.js"></script>
-		<script src="src/TransitionBlend.js"></script>
+		<script src="src/TransHideShow.js"></script>
+		<script src="src/TransFadeoutFadein.js"></script>
+		<script src="src/TransBlend.js"></script>
 		<script src="src/LayoutResolver.js"></script>
 		<script src="src/LayoutCenter.js"></script>
 		<script src="src/LayoutFlow.js"></script>
@@ -45,8 +45,8 @@
 		<script>
 			$(document).ready(function() {
 				var p_source='<?php echo $_GET['presentation'] ?>'
-				var p_transition=new TransitionBlend({'delay':1000})
-				//var p_transition=new TransitionFadeoutFadein({'delay':1000})
+				var p_transition=new TransBlend({'delay':1000})
+				//var p_transition=new TransFadeoutFadein({'delay':1000})
 				var mgr=new Mgr({
 					source:p_source,
 					transition:p_transition

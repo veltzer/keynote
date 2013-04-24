@@ -1,9 +1,9 @@
 jssrc/src/Set.js
 jssrc/src/jqutils.js
 jssrc/src/Utils.js
-jssrc/src/TransitionHideShow.js
-jssrc/src/TransitionFadeoutFadein.js
-jssrc/src/TransitionBlend.js
+jssrc/src/TransHideShow.js
+jssrc/src/TransFadeoutFadein.js
+jssrc/src/TransBlend.js
 jssrc/src/LayoutResolver.js
 jssrc/src/LayoutCenter.js
 jssrc/src/LayoutFlow.js
