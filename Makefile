@@ -169,7 +169,7 @@ install: $(ALL) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)rm -rf $(WEB_DIR)
 	$(Q)mkdir $(WEB_DIR)
-	$(Q)cp -r index.html $(XSD_DIR) $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(WEB_LOCAL) $(WEB_DIR)
+	$(Q)cp -r index.html $(XSD_DIR) $(XML_SRC_DIR) $(JS_DIR) $(JS_OUT_DIR) $(JS_DOC_DIR) $(WEB_LOCAL) $(WEB_DIR)
 	$(Q)chmod -R go+rx $(WEB_DIR)
 
 .PHONY: install_xsd
