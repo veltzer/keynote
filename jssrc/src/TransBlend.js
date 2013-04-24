@@ -11,7 +11,7 @@ var TransBlend = Class.create(/** @lends TransBlend# */{
     @return {TransBlend} a new instance of this class.
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
-  initialize: function (options) {
+  initialize: function(options) {
     if (!('delay' in options)) {
       options.delay = 1000;
     }
