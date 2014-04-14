@@ -13,4 +13,4 @@ editor about writing your presentations.
 You can find more info about it in http://www.veltzer.net/keynote and also
 see a live demo there.
 
-Mark Veltzer, 2012-2013, mark.veltzer@gmail.com
+Mark Veltzer, 2012-2014, mark.veltzer@gmail.com

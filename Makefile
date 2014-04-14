@@ -91,6 +91,13 @@ jsdoc: $(JS_DOC_STAMP) $(ALL_DEP)
 .PHONY: jscheck
 jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
 	$(info doing [$@])
+.PHONY: check_veltzer_https
+check_veltzer_https:
+	$(info doing [$@])
+	$(Q)scripts/ok_wrapper.pl git grep "http:\/\/veltzer.net"
+.PHONY: check_all
+check_all: check_veltzer_https
+
 
 # real js targets
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
