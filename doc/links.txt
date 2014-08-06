@@ -37,3 +37,5 @@ Reveal.io:
 	http://www.rvl.io
 free-electrons produce their slides from latex:
 	http://git.free-electrons.com/training-materials
+slides:
+	http://slides.com/
