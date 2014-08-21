@@ -14,6 +14,6 @@ packs=[
 	'aspell-en', # english dictionary for aspell
 	'aspell-he', # hebrew dictionary for aspell
 ]
-args=['sudo','apt-get','install']
+args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)
 subprocess.check_call(args)
