@@ -48,7 +48,7 @@ XSD_DIR:=xsd
 
 # tools
 TOOL_JSL:=~/install/jsl/jsl
-TOOL_GJSLINT:=/usr/local/bin/gjslint
+TOOL_GJSLINT:=gjslint
 
 #####################
 # end of parameters #
