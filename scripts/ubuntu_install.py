@@ -14,6 +14,7 @@ packs=[
 	'aspell', # aspell tool for spell checking the xml files
 	'aspell-en', # english dictionary for aspell
 	'aspell-he', # hebrew dictionary for aspell
+	'closure-linter',
 ]
 args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)
