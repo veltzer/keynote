@@ -2,9 +2,7 @@
 # parameters #
 ##############
 # do you want to show the commands executed ?
-# Since we are using ?= for assignment it means that you can just
-# set this from the command line and avoid changing the makefile...
-DO_MKDBG?=0
+DO_MKDBG:=0
 # do you want dependency on the makefile itself ?!?
 DO_ALL_DEP:=1
 # what is the version number ?
