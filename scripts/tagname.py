@@ -1,13 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # this scripts retuns the tagname for the build
 
-import subprocess # for subprocess.check_output
+import subprocess # for check_output, DEVNULL
 
 def get_version():
 	try:
-		f=open("/dev/null")
-		ver=subprocess.check_output(["git", "describe"],stderr=f).rstrip()
+		ver=subprocess.check_output(["git", "describe"],stderr=subprocess.DEVNULL).rstrip()
 		return ver
 	except:
 		return "test"
