@@ -101,7 +101,7 @@ check_all: check_veltzer_https
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
-	$(Q)scripts/wrapper.py $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
+	$(Q)scripts/wrapper_silent.py $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
 $(JS_FULL): $(JS_SRC) $(ALL_DEP)
@@ -192,7 +192,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 $(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)scripts/wrapper.py xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)scripts/wrapper_silent.py xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
 	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
