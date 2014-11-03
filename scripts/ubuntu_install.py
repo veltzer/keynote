@@ -17,6 +17,9 @@ packs=[
 	'aspell-en', # english dictionary for aspell
 	'aspell-he', # hebrew dictionary for aspell
 	'closure-linter',
+
+	# my own
+	'templar',
 ]
 args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)

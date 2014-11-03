@@ -11,4 +11,4 @@ def get_version():
 	except:
 		return "test"
 
-print get_version()
+print(get_version())
