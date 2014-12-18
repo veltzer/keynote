@@ -17,6 +17,8 @@ JAVA_SRC_DIR:=src
 JAVA_OUT_DIR:=bin
 # what is the java compile stamp file ?
 JAVA_COMPILE_STAMP:=java_compile.stamp
+# what is the java stamp file?
+IVY_STAMP:=ivy.stamp
 
 # what is the local web folder ?
 WEB_LOCAL:=web
@@ -54,7 +56,6 @@ TOOL_GJSLINT:=gjslint
 XML_SRC:=$(shell find $(XML_SRC_DIR) -name "*.xml")
 JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
-JAVA_CLASSPATH:=$(shell scripts/java_classpath.py)
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
 XML_STAMP:=$(addsuffix .stamp,$(basename $(XML_SRC)))
 ALL:=$(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
@@ -96,7 +97,6 @@ check_veltzer_https:
 .PHONY: check_all
 check_all: check_veltzer_https
 
-
 # real js targets
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
@@ -122,11 +122,14 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#$(Q)jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
 	$(Q)touch $(JS_DOC_STAMP)
-
-$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
+$(IVY_STAMP): $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)ant ivy_retrieve > /dev/null
+	$(Q)touch $@
+$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
-	$(Q)javac -Xlint:deprecation -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath $(JAVA_CLASSPATH)
+	$(Q)javac -Xlint:deprecation -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
 	$(Q)touch $@
 
 .PHONY: debug
@@ -142,7 +145,6 @@ debug:
 	$(info JAVA_SRC_DIR is $(JAVA_SRC_DIR))
 	$(info JAVA_OUT_DIR is $(JAVA_OUT_DIR))
 	$(info JAVA_SRC is $(JAVA_SRC))
-	$(info JAVA_CLASSPATH is $(JAVA_CLASSPATH))
 	$(info JS_SRC_DIR is $(JS_SRC_DIR))
 	$(info JS_SRC is $(JS_SRC))
 	$(info JS_OUT_DIR is $(JS_OUT_DIR))
@@ -162,13 +164,6 @@ clean_soft:
 clean:
 	$(info doing [$@])
 	$(Q)git clean -xdf > /dev/null
-
-.PHONY: chmod
-chmod:
-	$(info doing [$@])
-	$(Q)chmod go+r `find . -type f`
-	$(Q)chmod go+r index.html
-	$(Q)chmod go+rx `find . -type d`
 
 .PHONY: validate
 validate:
