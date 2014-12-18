@@ -1,12 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-"""
+'''
 Print the classpath for this project
-"""
+'''
 
-import sys
-import subprocess
-import glob
+import glob # for glob
 
 files=glob.glob("lib/*.jar")
 files=':'.join(files)

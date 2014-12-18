@@ -1,0 +1,19 @@
+<ivy-module version="2.0">
+	<!--
+		to find more entries to put here use:
+			http://mvnrepository.com/
+			http://search.maven.org/
+	-->
+	<info organisation="org.meta" module="keynote"/>
+	<dependencies>
+		<dependency org="args4j" name="args4j" rev="2.0.29"/>
+		<dependency org="org.apache.odftoolkit" name="simple-odf" rev="0.7-incubating"/>
+		<dependency org="org.apache.odftoolkit" name="xslt-runner" rev="1.2.1-incubating"/>
+		<dependency org="org.apache.odftoolkit" name="xslt-runner-task" rev="1.2.1-incubating"/>
+		<dependency org="com.lowagie" name="itext" rev="4.2.1"/>
+		<!--
+			lib/itext-hyph-xml.jar
+			lib/itext5.jar
+		-->
+	</dependencies>
+</ivy-module>

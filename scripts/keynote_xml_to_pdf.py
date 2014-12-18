@@ -1,19 +1,18 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-"""
+'''
 This is a wrapper for running the keynote java pdf convertor tool.
 
 TODO:
-- parse the class file from the .classpath and not hardcode it here.
-"""
+- parse the class path from the .classpath and not hardcode it here.
+'''
 
-import sys
-import subprocess
-import glob
+import sys # for argv
+import subprocess # for check_call
+import glob # for glob
 
-files=glob.glob("lib/*.jar")
+files=glob.glob('lib/*.jar')
 files=':'.join(files)
-#print(files)
 args=[
 	'java',
 	'-classpath','bin:'+files,

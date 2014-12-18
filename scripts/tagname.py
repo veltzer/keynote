@@ -6,9 +6,9 @@ import subprocess # for check_output, DEVNULL
 
 def get_version():
 	try:
-		ver=subprocess.check_output(["git", "describe"],stderr=subprocess.DEVNULL).rstrip()
+		ver=subprocess.check_output(['git', 'describe'],stderr=subprocess.DEVNULL).rstrip()
 		return ver
 	except:
-		return "test"
+		return 'test'
 
 print(get_version())

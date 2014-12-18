@@ -92,7 +92,7 @@ jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
 .PHONY: check_veltzer_https
 check_veltzer_https:
 	$(info doing [$@])
-	$(Q)wrapper_ok git grep "http:\/\/veltzer.net"
+	$(Q)make_helper wrapper-ok git grep "http:\/\/veltzer.net"
 .PHONY: check_all
 check_all: check_veltzer_https
 
@@ -101,7 +101,7 @@ check_all: check_veltzer_https
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
-	$(Q)wrapper_silent $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
+	$(Q)make_helper wrapper-silent $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
 $(JS_FULL): $(JS_SRC) $(ALL_DEP)
@@ -192,7 +192,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 $(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)wrapper_silent xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)make_helper wrapper-silent xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
 	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)

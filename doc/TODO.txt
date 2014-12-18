@@ -1,5 +1,7 @@
 now:
 ====
+- convert this project to templar.
+- add website on github for this project.
 - return checking for docs and document everything.
 - turn everything to use prototype.js.
 

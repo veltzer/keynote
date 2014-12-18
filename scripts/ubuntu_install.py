@@ -19,7 +19,11 @@ packs=[
 	'closure-linter',
 
 	# my own
-	'templar',
+	'templar', # for make_helper
+
+	# to bring dependencies
+	'ivy',
+	'ivy-doc',
 ]
 args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)

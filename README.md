@@ -8,7 +8,7 @@ You then get to see them inside your browser and translate them to pdf.
 I plan, and have started work on, conversion tools from keynote/XML
 to pdf, odp and other formats.
 A schema is provided so that you will get help from any decent XML
-editor about writing your presentations.
+editor with writing your presentations.
 
 You can find more info about it in http://www.veltzer.net/keynote and also
 see a live demo there.
