@@ -153,10 +153,15 @@ debug:
 	$(info JS_DOC_DIR is $(JS_DOC_DIR))
 	$(info JS_DOC_STAMP is $(JS_DOC_STAMP))
 
+.PHONY: clean_soft
+clean_soft:
+	$(info doing [$@])
+	$(Q)rm -rf $(XML_STAMP) $(XML_PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
+	
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)rm -rf $(XML_STAMP) $(XML_PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
+	$(Q)git clean -xdf > /dev/null
 
 .PHONY: chmod
 chmod:
