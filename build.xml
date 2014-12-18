@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="hello-ivy" default="build">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="keynote" default="ivy_retrieve">
 	<!-- tasks -->
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
 		<classpath>
@@ -6,13 +6,12 @@
 		</classpath>
 	</taskdef>
 	<!-- targets -->
-	<target name="retrieve" description="--> retrieve dependencies with ivy">
+	<target name="ivy_retrieve" description="retrieve dependencies with ivy">
 		<delete dir="lib"/>
-		<!--ivy:settings file="ivysettings.xml" /-->
 		<ivy:resolve refresh="true" showprogress="true"/>
-		<ivy:retrieve sync="true" symlink="true" conf="default"/>
-		<!--ivy:retrieve type="jar" /-->
-		<!--ivy:retrieve sync="true"/-->
-		<!--ivy:retrieve pattern="lib/[artifact].[ext]" type="jar" sync="true"/-->
+		<ivy:retrieve sync="true" symlink="true"/>
+	</target>
+	<target name="ivy_cleancache" depends="" description="purge ivy cache">
+		<ivy:cleancache/>
 	</target>
 </project>

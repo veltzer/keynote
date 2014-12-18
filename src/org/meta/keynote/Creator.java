@@ -25,7 +25,7 @@ public class Creator {
     private Font font_bullet;
     private PdfPTable table;
     private List l;
- 
+
     public Creator(String output_file,Config config) {
         if(config.getUseRectange()) {
             Rectangle r=new Rectangle(config.getRectangleSize());
@@ -48,7 +48,7 @@ public class Creator {
 		    writer.setFullCompression();
             } catch (Exception e) {
                  throw new RuntimeException(e);
-            } 
+            }
         }
         if(config.getTagged()) {
             writer.setTagged();

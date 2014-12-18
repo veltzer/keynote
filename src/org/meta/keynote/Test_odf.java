@@ -29,7 +29,7 @@ public class Test_odf {
         Textbox tb=slide.addTextbox();
         tb.setRectangle(new FrameRectangle(2, 6.6, 23, 4.2, SupportedLinearMeasure.CM));
         tb.setTextContent("this is my content");
-        
+
         pd.deleteSlideByIndex(0);
         int numSlides=pd.getSlideCount();
         System.out.println("num slides is "+numSlides);

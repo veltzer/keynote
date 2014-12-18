@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class Emitter {
-    
+
     private String input_file;
     //private Config config;
     private Creator creator;
