@@ -44,7 +44,11 @@ public class Creator {
             writer.setPdfVersion(config.getPdfVersion());
         }
         if(config.getFullCompressin()) {
-            writer.setFullCompression();
+	    try {
+		    writer.setFullCompression();
+            } catch (Exception e) {
+                 throw new RuntimeException(e);
+            } 
         }
         if(config.getTagged()) {
             writer.setTagged();

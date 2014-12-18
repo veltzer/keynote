@@ -6,14 +6,11 @@
 	-->
 	<info organisation="org.meta" module="keynote"/>
 	<dependencies>
-		<dependency org="args4j" name="args4j" rev="2.0.29"/>
-		<dependency org="org.apache.odftoolkit" name="simple-odf" rev="0.7-incubating"/>
-		<dependency org="org.apache.odftoolkit" name="xslt-runner" rev="1.2.1-incubating"/>
-		<dependency org="org.apache.odftoolkit" name="xslt-runner-task" rev="1.2.1-incubating"/>
-		<dependency org="com.lowagie" name="itext" rev="4.2.1"/>
-		<!--
-			lib/itext-hyph-xml.jar
-			lib/itext5.jar
-		-->
+		<dependency org="args4j" name="args4j" rev="latest.integration"/>
+		<dependency org="org.apache.odftoolkit" name="simple-odf" rev="latest.integration"/>
+		<dependency org="org.apache.odftoolkit" name="xslt-runner" rev="latest.integration"/>
+		<dependency org="org.apache.odftoolkit" name="xslt-runner-task" rev="latest.integration"/>
+		<dependency org="com.itextpdf" name="itextpdf" rev="latest.integration"/>
+		<dependency org="com.itextpdf" name="itext-hyph-xml" rev="latest.integration"/>
 	</dependencies>
 </ivy-module>

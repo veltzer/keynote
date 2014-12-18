@@ -11,7 +11,7 @@ public class Main {
 	public static void main(String[] args) {
         CmdLineValues values=new CmdLineValues();
 		CmdLineParser parser = new CmdLineParser(values);
-        parser.setUsageWidth(80);
+        //parser.setUsageWidth(80);
         try {
 			parser.parseArgument(args);
 		} catch (CmdLineException e) {

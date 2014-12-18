@@ -126,7 +126,7 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
-	$(Q)javac -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath $(JAVA_CLASSPATH)
+	$(Q)javac -Xlint:deprecation -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath $(JAVA_CLASSPATH)
 	$(Q)touch $@
 
 .PHONY: debug

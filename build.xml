@@ -9,7 +9,7 @@
 	<target name="retrieve" description="--> retrieve dependencies with ivy">
 		<delete dir="lib"/>
 		<!--ivy:settings file="ivysettings.xml" /-->
-		<ivy:resolve />
+		<ivy:resolve refresh="true" showprogress="true"/>
 		<ivy:retrieve sync="true" symlink="true" conf="default"/>
 		<!--ivy:retrieve type="jar" /-->
 		<!--ivy:retrieve sync="true"/-->
