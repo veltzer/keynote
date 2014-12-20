@@ -1,4 +1,4 @@
-package org.meta.keynote.tests;
+package org.meta.keynote.test;
 
 import org.meta.keynote.exceptions.IOUtils;
 import org.meta.keynote.exceptions.ItexUtils;

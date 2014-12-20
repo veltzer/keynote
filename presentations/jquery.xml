@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <presentation
 	xmlns="https://veltzer.net/keynote"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="https://veltzer.net/keynote https://veltzer.net/keynote/xsd/keynote.xsd"
+	xsi:schemaLocation="https://veltzer.net/keynote file://keynote.xsd"
 	>
+	<!-- 
+	xsi:schemaLocation="https://veltzer.net/keynote https://veltzer.net/keynote/xsd/keynote.xsd
+	 -->
 	<meta>
 		<title>jQuery</title>
 		<author>
@@ -27,7 +31,7 @@
 		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
 	<slide template="flow">
-		<title>Second jQuery slide</title>
+	    <title>Second jQuery slide</title>
 		<bullet>this is a bullet</bullet>
 	</slide>
 </presentation>

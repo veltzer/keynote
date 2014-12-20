@@ -1,4 +1,4 @@
-package org.meta.keynote.tests;
+package org.meta.keynote.test;
 
 import java.util.List;
 
