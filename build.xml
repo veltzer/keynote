@@ -5,6 +5,16 @@
 			<pathelement location="/usr/share/java/ivy.jar" />
 		</classpath>
 	</taskdef>
+	<taskdef resource="checkstyletask.properties">
+		<classpath>
+			<pathelement location="lib/checkstyle-6.1.1.jar"/>
+			<pathelement location="lib/guava-18.0.jar"/>
+			<pathelement location="lib/commons-beanutils-1.9.0.jar"/>
+			<pathelement location="lib/commons-logging-1.2.jar"/>
+			<pathelement location="lib/commons-collections-3.2.1.jar"/>
+			<pathelement location="lib/antlr-2.7.7.jar"/>
+		</classpath>
+	</taskdef>
 	<!-- targets -->
 	<target name="ivy_retrieve" description="retrieve dependencies with ivy">
 		<delete dir="lib"/>
@@ -13,5 +23,10 @@
 	</target>
 	<target name="ivy_cleancache" depends="" description="purge ivy cache">
 		<ivy:cleancache/>
+	</target>
+	<target name="checkstyle" description="check the style of the files">
+		<checkstyle config="support/checkstyle_config.xml">
+			<fileset dir="." includes="**/*.java"/>
+		</checkstyle>
 	</target>
 </project>
