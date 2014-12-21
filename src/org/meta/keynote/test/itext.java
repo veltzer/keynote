@@ -26,9 +26,9 @@ abstract class IText {
 		PdfContentByte cb = writer.getDirectContent();
 		cb.beginText();
 		BaseFont bf = ItexUtils.createFont(
-		    BaseFont.HELVETICA,
-		    BaseFont.CP1252,
-		    BaseFont.NOT_EMBEDDED
+			BaseFont.HELVETICA,
+			BaseFont.CP1252,
+			BaseFont.NOT_EMBEDDED
 		);
 		cb.setFontAndSize(bf, 39);
 		cb.setRGBColorFill(0xcc, 0x66, 0x66);
@@ -36,7 +36,7 @@ abstract class IText {
 		cb.endText();
 		cb.setRGBColorFill(0x9a, 0xe4, 0xe8);
 		for (int i = 0, j = 55; i < (j * 8); i += j) {
-		    cb.roundRectangle(36 + i, 718, 50, 50, 5);
+			cb.roundRectangle(36 + i, 718, 50, 50, 5);
 		}
 		cb.eoFill();
 		d.close();

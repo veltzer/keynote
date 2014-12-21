@@ -1,5 +1,7 @@
 now:
 ====
+- get ridd of the php in this project and move to javascript
+	on the client side.
 - convert this project to templar.
 - add website on github for this project.
 - return checking for docs and document everything.
@@ -7,10 +9,8 @@ now:
 
 javascript
 ==========
-- move to prototype.js in this project.
 - pressing the email in the first slide of keynote.xml does not work. Check it out
 	and fix it.
-- use prototype.js for object oriented (it's already here)
 - the long bullet in the test of the new template doesn't look good.
 - fix the stuff that doesnt look good.
 - there are a lot of paramters.

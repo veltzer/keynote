@@ -20,7 +20,7 @@ abstract class Odf {
 		List<Textbox> tbl = slide.getTextboxByUsage(PresentationClass.TITLE);
 		for (Textbox tb: tbl) {
 			tb.setTextContent("foobar");
-		    OdfUtils.printRectangle(System.out, tb.getRectangle());
+			OdfUtils.printRectangle(System.out, tb.getRectangle());
 		}
 		Textbox tb = slide.addTextbox();
 		tb.setRectangle(new FrameRectangle(2, 6.6, 23, 4.2, SupportedLinearMeasure.CM));
