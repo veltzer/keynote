@@ -1,5 +1,8 @@
 now:
 ====
+- add the checkstyle as part of the build process.
+- get ridd of the warnings that I have when compiling with the RELEASE_6
+	stuff.
 - get ridd of the php in this project and move to javascript
 	on the client side.
 - convert this project to templar.
