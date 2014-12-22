@@ -19,6 +19,8 @@ JAVA_OUT_DIR:=bin
 JAVA_COMPILE_STAMP:=java_compile.stamp
 # what is the java stamp file?
 IVY_STAMP:=ivy.stamp
+# what is the checkstyle stamp file?
+CHECKSTYLE_STAMP:=checkstyle.stamp
 
 # what is the local web folder ?
 WEB_LOCAL:=web
@@ -58,7 +60,7 @@ JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
 XML_STAMP:=$(addsuffix .stamp,$(basename $(XML_SRC)))
-ALL:=$(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
+ALL:=$(CHECKSTYLE_STAMP) $(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -122,9 +124,13 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#$(Q)jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
 	$(Q)touch $(JS_DOC_STAMP)
+$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) $(ALL_DEP)
+	$(info doing [$@])
+	$(Q)ant checkstyle > /dev/null
+	$(Q)touch $@
 $(IVY_STAMP): $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)ant ivy_retrieve > /dev/null
+	$(Q)ant ivy_retrieve_local > /dev/null
 	$(Q)touch $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])

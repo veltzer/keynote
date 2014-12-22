@@ -21,6 +21,11 @@
 		<ivy:resolve refresh="true" showprogress="true"/>
 		<ivy:retrieve sync="true" symlink="true"/>
 	</target>
+	<target name="ivy_retrieve_local" description="retrieve dependencies with ivy from local">
+		<delete dir="lib"/>
+		<ivy:resolve useCacheOnly="true" showprogress="true"/>
+		<ivy:retrieve sync="true" symlink="true"/>
+	</target>
 	<target name="ivy_cleancache" depends="" description="purge ivy cache">
 		<ivy:cleancache/>
 	</target>
