@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="keynote" default="ivy_retrieve">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="keynote" default="build">
 	<!-- tasks -->
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
 		<classpath>
@@ -33,5 +33,7 @@
 		<checkstyle config="support/checkstyle_config.xml">
 			<fileset dir="." includes="**/*.java"/>
 		</checkstyle>
+	</target>
+	<target name="build" description="build the java part">
 	</target>
 </project>
