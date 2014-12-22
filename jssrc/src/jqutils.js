@@ -77,6 +77,7 @@ function measureElem(e, fontsize) {
   elem.detach();
   return ret;
 }
+
 function checkMustHave(o, set) {
   for (var item in set.items) {
     if (!(item in o)) {
@@ -84,6 +85,7 @@ function checkMustHave(o, set) {
     }
   }
 }
+
 function checkHasOnly(o, set) {
   for (var item in o) {
     if (!(item in set.items)) {
@@ -91,10 +93,12 @@ function checkHasOnly(o, set) {
     }
   }
 }
+
 function checkExact(o, set) {
   checkMustHave(o, set);
   checkHasOnly(o, set);
 }
+
 function checkCloseTo(v, u, e) {
   if (!(u - e < v && v < u + e)) {
     throw 'value out of bounds';
