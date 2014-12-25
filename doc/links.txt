@@ -13,6 +13,8 @@ rsyntaxtextarea:
 	http://fifesoft.com/rsyntaxtextarea/
 antlr:
 	http://www.antlr.org/
+jcommander (command line parsing):
+	http://jcommander.org/
 
 javascript
 ==========

@@ -8,8 +8,13 @@
 		<title>This is the title</title>
 	</meta>
 	<slide template="centered">
-		<title>jQuery</title>
+		<title>This is the first slide</title>
 		<bullet>Mark Veltzer</bullet>
 		<bullet><email>mark.veltzer@gmail.com</email></bullet>
+	</slide>
+	<slide template="bullets">
+		<title>This is slide 2</title>
+		<bullet>This is the first bullet</bullet>
+		<bullet>This is the second bullet</bullet>
 	</slide>
 </presentation>

@@ -11,13 +11,29 @@ abstract class Main {
 		try {
 			parser.parseArgument(args);
 		} catch (CmdLineException e) {
-			System.err.print(e.getMessage());
+			if (values.isHelp()) {
+				parser.printUsage(System.err);
+				return;
+			}
+			System.err.println(e.getMessage());
+            parser.printUsage(System.err);
+			return;
+		}
+		if (values.isHelp()) {
 			parser.printUsage(System.err);
 			return;
 		}
-		Config config = new Config();
-		Creator creator = new Creator(values.getOutputFile(), config);
-		Emitter e = new Emitter(values.getInputFile(), config, creator);
-		e.parse();
+		switch (values.getOperation()) {
+		case convert:
+                Config config = new Config();
+                Creator creator = new Creator(values.getOutputFile(), config);
+                Emitter e = new Emitter(values.getInputFile(), config, creator);
+                e.parse();
+                break;
+		case printfonts:
+				ListAllFonts.listFonts();
+				break;
+		default:
+		}
 	}
 }

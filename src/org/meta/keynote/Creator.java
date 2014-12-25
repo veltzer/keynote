@@ -20,11 +20,11 @@ public class Creator {
 	private Document d;
 	private PdfWriter writer;
 	private Config config;
-	//private PdfContentByte canvas;
 	private Font fontHeader;
 	private Font fontBullet;
 	private PdfPTable table;
 	private List l;
+	private int slideNumber;
 
 	public Creator(String outputFile, Config iconfig) {
 		config = iconfig;
@@ -65,10 +65,8 @@ public class Creator {
 			writer.setCompressionLevel(config.getCompressionLevel());
 		}
 		d.open();
-		// I did not see a difference between the next two...
-		//canvas = writer.getDirectContent();
-		//canvas = writer.getDirectContentUnder();
 		createFonts();
+		slideNumber = 0;
 	}
 	private void createFonts() {
 		fontHeader = FontFactory.getFont(
@@ -239,14 +237,21 @@ public class Creator {
 		ItexUtils.add(d, p);
 		l = new List();
 	}
-	public void finishSlide() {
+	public void finishSlideOld() {
 		//ItexUtils.add(d, l);
+	}
+	public void finishSlide() {
 		ItexUtils.add(d, table);
-		d.newPage();
+		slideNumber++;
 	}
 	public void finish() {
 		d.close();
 	}
 	public void start() {
+	}
+	public void startSlide() {
+		if (slideNumber > 0) {
+			d.newPage();
+		}
 	}
 }

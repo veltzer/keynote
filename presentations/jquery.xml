@@ -31,7 +31,7 @@
 		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
 	<slide template="flow">
-	    <title>Second jQuery slide</title>
+		<title>Second jQuery slide</title>
 		<bullet>this is a bullet</bullet>
 	</slide>
 </presentation>

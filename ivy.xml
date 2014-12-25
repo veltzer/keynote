@@ -25,5 +25,6 @@
 		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="latest.integration"/>
 		<dependency org="org.apache.logging.log4j" name="log4j-1.2-api" rev="latest.integration" />
 		<dependency org="org.quartz-scheduler" name="quartz" rev="latest.integration"/>
+		<dependency org="com.beust" name="jcommander" rev="latest.integration" />
 	</dependencies>
 </ivy-module>

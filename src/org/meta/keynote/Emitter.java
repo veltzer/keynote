@@ -28,18 +28,21 @@ public class Emitter {
 		Document doc = XMLUtils.parse(inputFile);
 		doc.getDocumentElement().normalize();
 		creator.start();
-		NodeList nList = doc.getElementsByTagName("slide");
+		NodeList nList = doc.getElementsByTagName(ElementNames.slide.name());
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			Element nNode = (Element) nList.item(temp);
 			String align = getOrDefault(nNode, "align", "center");
 			String rund = getOrDefault(nNode, "rund", "default");
-			creator.makeHeader(nNode.getAttribute("name"), align, rund);
+			creator.startSlide();
 			NodeList children = nNode.getChildNodes();
 			for (int c = 0; c < children.getLength(); c++) {
 				Node n = children.item(c);
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
 					Element cNode = (Element) n;
-					if (cNode.getNodeName().equals("bullet")) {
+					if (cNode.getNodeName().equals(ElementNames.title.name())) {
+                                creator.makeHeader(cNode.getTextContent(), align, rund);
+					}
+					if (cNode.getNodeName().equals(ElementNames.bullet.name())) {
 						align = getOrDefault(cNode, "align", "left");
 						rund = getOrDefault(cNode, "rund", "default");
 						creator.makeBullet(cNode.getTextContent(), align, rund);
