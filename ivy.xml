@@ -6,6 +6,7 @@
 	-->
 	<info organisation="org.meta" module="keynote"/>
 	<dependencies>
+		<!--
 		<dependency org="org.springframework" name="spring-context" rev="latest.integration"/>
 		<dependency org="org.springframework" name="spring-core" rev="latest.integration"/>
 		<dependency org="org.springframework" name="spring-aop" rev="latest.integration"/>
@@ -13,6 +14,7 @@
 		<dependency org="org.springframework" name="spring-orm" rev="latest.integration"/>
 		<dependency org="org.springframework" name="spring-test" rev="latest.integration"/>
 		<dependency org="org.springframework.security" name="spring-security-core" rev="latest.integration"/>
+		-->
 		<dependency org="args4j" name="args4j" rev="latest.integration"/>
 		<dependency org="org.apache.odftoolkit" name="simple-odf" rev="latest.integration"/>
 		<dependency org="org.apache.odftoolkit" name="xslt-runner" rev="latest.integration"/>
@@ -24,7 +26,9 @@
 		<dependency org="org.apache.logging.log4j" name="log4j-api" rev="latest.integration"/>
 		<dependency org="org.apache.logging.log4j" name="log4j-core" rev="latest.integration"/>
 		<dependency org="org.apache.logging.log4j" name="log4j-1.2-api" rev="latest.integration" />
+		<dependency org="commons-beanutils" name="commons-beanutils-core" rev="latest.integration" />
 		<dependency org="org.quartz-scheduler" name="quartz" rev="latest.integration"/>
 		<dependency org="com.beust" name="jcommander" rev="latest.integration" />
+		<dependency org="org.slf4j" name="slf4j-api" rev="latest.integration" />
 	</dependencies>
 </ivy-module>

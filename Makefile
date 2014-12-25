@@ -120,22 +120,22 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
 	$(Q)mkdir -p $(dir $@)
-	$(Q)~/install/jsdoc/jsdoc -d $(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
+	$(Q)make_helper wrapper-silent ~/install/jsdoc/jsdoc -d $(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)# 2.4 (ubuntu default) jsdoc
-	$(Q)#$(Q)jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR) 1> /dev/null
+	$(Q)#make_helper wrapper-silent jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)
 $(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)ant checkstyle > /dev/null
+	$(Q)make_helper wrapper-silent ant checkstyle
 	$(Q)touch $@
 $(IVY_STAMP): $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)ant ivy_retrieve_local > /dev/null
+	$(Q)make_helper wrapper-silent ant ivy_retrieve_local
 	$(Q)touch $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
-	$(Q)javac -Xlint:deprecation -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
+	$(Q)javac -proc:none -Xlint:all -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
 	$(Q)touch $@
 
 .PHONY: debug
@@ -169,7 +169,7 @@ clean_soft:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)git clean -xdf > /dev/null
+	$(Q)make_helper wrapper-silent git clean -xdf
 
 .PHONY: validate
 validate:
