@@ -135,7 +135,7 @@ $(IVY_STAMP): $(ALL_DEP)
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
-	$(Q)javac -proc:none -Xlint:all -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
+	$(Q)javac -proc:none -Xlint:all -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
 	$(Q)touch $@
 
 .PHONY: debug
