@@ -1,11 +1,10 @@
 now:
 ====
-- get ridd of the warnings that I have when compiling with the RELEASE_6
-	stuff.
-	rm -f lib/openjpa-2.2.2.jar
-	rm -f lib/antlr4-annotations-4.3.jar
-	how do I get to depend on this stuff?
-- there is a printing that takes place when printing.
+- move to jcommander for command line parsing which is nicer.
+	get ridd of args4j.
+	(move the example to demos-java).
+- there is a printing that takes place when building all.
+	get ridd of it.
 - get ridd of the php in this project and move to javascript
 	on the client side.
 - convert this project to templar.
