@@ -27,7 +27,7 @@
 	<slide template="center">
 		<title>jQuery</title>
 		<bullet>Mark Veltzer</bullet>
-		<bullet><email>mark.veltzer@gmail.com></email></bullet>
+		<bullet><email>mark.veltzer@gmail.com</email></bullet>
 		<!--image url='jquery.png' description='the jQuery logo'/-->
 	</slide>
 	<slide template="flow">
