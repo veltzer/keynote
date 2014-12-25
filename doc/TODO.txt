@@ -1,5 +1,7 @@
 now:
 ====
+- turn the "eclipse_java.sh" script into python with proper error
+	handling.
 - do a better utility for opening stuff on the command line than gnome-open.
 	(with no errors to the screen).
 - bring a good slide show to compare my results with.
