@@ -4,7 +4,7 @@ import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 
 abstract class Main {
-	public static void main(String[] args) {
+	public static void oldmain(String[] args) {
 		CmdLineValues values = new CmdLineValues();
 		CmdLineParser parser = new CmdLineParser(values);
 		//parser.setUsageWidth(80);
@@ -33,6 +33,21 @@ abstract class Main {
 		case printfonts:
 				ListAllFonts.listFonts();
 				break;
+		default:
+		}
+	}
+	public static void main(String[] args) {
+		JCommanderContainer.process(args);
+		switch (JCommanderContainer.getJc().getParsedCommand()) {
+		case "process":
+                Config config = new Config();
+                Creator creator = new Creator(JCommanderContainer.getCommandProcess().getOutput(), config);
+                Emitter e = new Emitter(JCommanderContainer.getCommandProcess().getInput(), config, creator);
+                e.parse();
+			break;
+		case "listfonts":
+                ListAllFonts.listFonts();
+                break;
 		default:
 		}
 	}

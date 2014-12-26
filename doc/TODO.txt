@@ -5,8 +5,7 @@ now:
 - do a better utility for opening stuff on the command line than gnome-open.
 	(with no errors to the screen).
 - bring a good slide show to compare my results with.
-- move to jcommander for command line parsing which is nicer.
-	get ridd of args4j.
+- get ridd of args4j.
 	(move the example to demos-java).
 - there is a printing that takes place when building all.
 	get ridd of it.

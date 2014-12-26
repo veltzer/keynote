@@ -203,4 +203,4 @@ $(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
 	$(Q)touch $@
 $(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
-	$(Q)scripts/keynote_java_wrapper.py convert --input $< --output $@
+	$(Q)scripts/keynote_java_wrapper.py process --input $< --output $@

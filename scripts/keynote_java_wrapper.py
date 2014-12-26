@@ -7,7 +7,7 @@ TODO:
 - parse the class path from the .classpath and not hardcode it here.
 '''
 
-import sys # for argv
+import sys # for argv, exit
 import subprocess # for check_call
 import glob # for glob
 
@@ -20,4 +20,4 @@ args=[
 ]
 # give all command line args passed to the wrapper excluding the first (the program name)
 args.extend(sys.argv[1:])
-subprocess.check_call(args)
+sys.exit(subprocess.call(args))
