@@ -8,7 +8,7 @@ TODO:
 '''
 
 import sys # for argv, exit
-import subprocess # for check_call
+import subprocess # for call
 import glob # for glob
 
 files=glob.glob('lib/*.jar')
