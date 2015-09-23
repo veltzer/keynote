@@ -16,7 +16,7 @@ abstract class Main {
 				return;
 			}
 			System.err.println(e.getMessage());
-            parser.printUsage(System.err);
+			parser.printUsage(System.err);
 			return;
 		}
 		if (values.isHelp()) {
@@ -24,30 +24,30 @@ abstract class Main {
 			return;
 		}
 		switch (values.getOperation()) {
-		case convert:
-                Config config = new Config();
-                Creator creator = new Creator(values.getOutputFile(), config);
-                Emitter e = new Emitter(values.getInputFile(), config, creator);
-                e.parse();
-                break;
-		case printfonts:
+			case convert:
+				Config config = new Config();
+				Creator creator = new Creator(values.getOutputFile(), config);
+				Emitter e = new Emitter(values.getInputFile(), config, creator);
+				e.parse();
+				break;
+			case printfonts:
 				ListAllFonts.listFonts();
 				break;
-		default:
+			default:
 		}
 	}
 	public static void main(String[] args) {
 		JCommanderContainer.process(args);
 		switch (JCommanderContainer.getJc().getParsedCommand()) {
 		case "process":
-                Config config = new Config();
-                Creator creator = new Creator(JCommanderContainer.getCommandProcess().getOutput(), config);
-                Emitter e = new Emitter(JCommanderContainer.getCommandProcess().getInput(), config, creator);
-                e.parse();
+			Config config = new Config();
+			Creator creator = new Creator(JCommanderContainer.getCommandProcess().getOutput(), config);
+			Emitter e = new Emitter(JCommanderContainer.getCommandProcess().getInput(), config, creator);
+			e.parse();
 			break;
 		case "listfonts":
-                ListAllFonts.listFonts();
-                break;
+			ListAllFonts.listFonts();
+			break;
 		default:
 		}
 	}

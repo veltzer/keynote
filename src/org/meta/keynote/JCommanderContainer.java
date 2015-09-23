@@ -50,7 +50,7 @@ public abstract class JCommanderContainer {
 		commandListFonts = new CommandListFonts();
 		jc.addCommand("listfonts", commandListFonts);
 		try {
-                jc.parse(args);
+			jc.parse(args);
 		} catch (ParameterException pe) {
 			System.err.println(pe.getMessage());
 			jc.usage();

@@ -40,7 +40,7 @@ public class Emitter {
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
 					Element cNode = (Element) n;
 					if (cNode.getNodeName().equals(ElementNames.title.name())) {
-                                creator.makeHeader(cNode.getTextContent(), align, rund);
+						creator.makeHeader(cNode.getTextContent(), align, rund);
 					}
 					if (cNode.getNodeName().equals(ElementNames.bullet.name())) {
 						align = getOrDefault(cNode, "align", "left");
