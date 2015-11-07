@@ -25,6 +25,6 @@ packs=[
 	'ivy',
 	'ivy-doc',
 ]
-args=['sudo','apt-get','install','--assume-yes']
+args=['sudo','apt-get','install','--assume-yes', '--force-yes']
 args.extend(packs)
 subprocess.check_call(args)
