@@ -1,30 +1,16 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="keynote" default="build">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="keynote" default="nothing">
 	<!-- tasks -->
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant">
 		<classpath>
 			<pathelement location="/usr/share/java/ivy.jar" />
 		</classpath>
 	</taskdef>
-	<taskdef resource="checkstyletask.properties">
+	<taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties">
 		<classpath>
 			<fileset dir="lib" erroronmissingdir="false">
 				<include name="*.jar"/>
 			</fileset>
-			<fileset dir="static" erroronmissingdir="false">
-				<include name="*.jar"/>
-			</fileset>
-			<dirset dir="support"/>
 		</classpath>
-		<!--
-		<classpath>
-			<pathelement location="lib/checkstyle-6.1.1.jar"/>
-			<pathelement location="lib/guava-18.0.jar"/>
-			<pathelement location="lib/commons-beanutils-1.9.0.jar"/>
-			<pathelement location="lib/commons-logging-1.2.jar"/>
-			<pathelement location="lib/commons-collections-3.2.1.jar"/>
-			<pathelement location="lib/antlr-2.7.7.jar"/>
-		</classpath>
-		-->
 	</taskdef>
 	<!-- targets -->
 	<target name="ivy_retrieve" description="retrieve dependencies with ivy">
@@ -45,6 +31,6 @@
 			<fileset dir="." includes="**/*.java"/>
 		</checkstyle>
 	</target>
-	<target name="build" description="build the java part">
+	<target name="nothing" description="target that does nothing">
 	</target>
 </project>
