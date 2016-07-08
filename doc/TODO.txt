@@ -1,5 +1,11 @@
 now:
 ====
+- checkstyle stopped working
+	we can run checkstyle on the command line.
+	try to do it and pass --info or --debug to it to see why it's not running.
+	have an option of running checkstyle from the command line.
+- get to clean build.
+
 - use apache pdfbox to emit the output pdf.
 - find java library to correctly handle code coloring
 	and use it.
