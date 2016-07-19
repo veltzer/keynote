@@ -124,7 +124,7 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#make_helper wrapper-silent jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)
-$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) $(ALL_DEP)
+$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)make_helper wrapper-silent ant checkstyle
 	$(Q)touch $@
@@ -135,7 +135,7 @@ $(IVY_STAMP): $(ALL_DEP)
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
-	$(Q)javac -proc:none -Xlint:all -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
+	$(Q)javac -proc:none -Xlint:all -Xlint:-path -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
 	$(Q)touch $@
 
 .PHONY: debug
