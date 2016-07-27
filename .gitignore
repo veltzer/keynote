@@ -1,8 +1,6 @@
-/bin/
-/presentations/*.pdf
-/jsout/
-/jsdoc/
-/lib/
-*.stamp
+/out
+
+# java libraries are here
+/lib
 # stub files left by aspell when correcting mistakes
 #*.bak

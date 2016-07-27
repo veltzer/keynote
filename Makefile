@@ -8,19 +8,22 @@ DO_ALL_DEP:=1
 # what is the version number ?
 VER:=$(shell scripts/tagname.py)
 
+# what is the output folder?
+OUT:=out
+
 # what is the xml source folder ?
 XML_SRC_DIR:=presentations
 
 # what is the java source folder ?
 JAVA_SRC_DIR:=src
 # what is the java target folder ?
-JAVA_OUT_DIR:=bin
+JAVA_OUT_DIR:=$(OUT)/bin
 # what is the java compile stamp file ?
-JAVA_COMPILE_STAMP:=java_compile.stamp
+JAVA_COMPILE_STAMP:=$(OUT)/java_compile.stamp
 # what is the java stamp file?
-IVY_STAMP:=ivy.stamp
+IVY_STAMP:=$(OUT)/ivy.stamp
 # what is the checkstyle stamp file?
-CHECKSTYLE_STAMP:=checkstyle.stamp
+CHECKSTYLE_STAMP:=$(OUT)/checkstyle.stamp
 
 # what is the local web folder ?
 WEB_LOCAL:=web
@@ -32,19 +35,19 @@ JS_DIR:=jssrc
 # what is our source folder ?
 JS_SRC_DIR:=$(JS_DIR)/src
 # where is the out folder ?
-JS_OUT_DIR:=jsout
+JS_OUT_DIR:=$(OUT)/js
 # what is the project name ?
 JS_PROJECT_NAME:=keynotejs
 # what is the check file ?
-JS_CHECK_STAMP:=js_check.stamp
+JS_CHECK_STAMP:=$(OUT)/js_check.stamp
 # what is the out full file ?
 JS_FULL:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).js
 # what is the minified file name ?
 JS_MIN:=$(JS_OUT_DIR)/$(JS_PROJECT_NAME)-$(VER).min.js
 # where to put javascript documentation ?
-JS_DOC_DIR:=jsdoc
+JS_DOC_DIR:=$(OUT)/jsdoc
 # what file to check for modifications ?
-JS_DOC_STAMP:=js_doc.stamp
+JS_DOC_STAMP:=$(OUT)/js_doc.stamp
 # what is the xsd folder ?
 XSD_DIR:=xsd
 
@@ -58,8 +61,8 @@ TOOL_GJSLINT:=gjslint
 XML_SRC:=$(shell find $(XML_SRC_DIR) -name "*.xml")
 JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
-XML_PDF:=$(addsuffix .pdf,$(basename $(XML_SRC)))
-XML_STAMP:=$(addsuffix .stamp,$(basename $(XML_SRC)))
+XML_PDF:=$(addprefix $(OUT)/,$(addsuffix .pdf,$(basename $(XML_SRC))))
+XML_STAMP:=$(addprefix $(OUT)/,$(addsuffix .stamp,$(basename $(XML_SRC))))
 ALL:=$(CHECKSTYLE_STAMP) $(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
 
 # silent stuff
@@ -127,15 +130,18 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 $(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)make_helper wrapper-silent ant checkstyle
+	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 $(IVY_STAMP): $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)make_helper wrapper-silent ant ivy_retrieve_local
+	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
 	$(Q)javac -proc:none -Xlint:all -Xlint:-path -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
+	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 
 .PHONY: debug
@@ -196,11 +202,13 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 # rules #
 #########
-$(XML_STAMP): %.stamp: %.xml $(ALL_DEP)
+$(XML_STAMP): $(OUT)/%.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)make_helper wrapper-silent xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
+	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(XML_PDF): %.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
+$(XML_PDF): $(OUT)/%.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
+	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/keynote_java_wrapper.py process --input $< --output $@

@@ -15,7 +15,7 @@ files=glob.glob('lib/*.jar')
 files=':'.join(files)
 args=[
 	'java',
-	'-classpath','bin:'+files,
+	'-classpath','out/bin:'+files,
 	'org.meta.keynote.Main',
 ]
 # give all command line args passed to the wrapper excluding the first (the program name)
