@@ -1,5 +1,6 @@
 now:
 ====
+- move this project to templar
 - get ridd of php dependency, do everything in javascript.
 - do a github io page for this.
 
