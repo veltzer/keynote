@@ -24,7 +24,13 @@ packs=[
 	# to bring dependencies
 	'ivy',
 	'ivy-doc',
+
+	# for ant(1)
+	'ant',
+
+	# for javac(1)
+	'openjdk-8-jdk-headless',
 ]
-args=['sudo','apt-get','install','--assume-yes', '--force-yes']
+args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)
 subprocess.check_call(args)
