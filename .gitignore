@@ -4,3 +4,6 @@
 /lib
 # stub files left by aspell when correcting mistakes
 #*.bak
+
+# script installed tools
+/tools

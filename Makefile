@@ -52,7 +52,7 @@ JS_DOC_STAMP:=$(OUT)/js_doc.stamp
 XSD_DIR:=xsd
 
 # tools
-TOOL_JSL:=~/install/jsl/jsl
+TOOL_JSL:=tools/jsl/jsl
 TOOL_GJSLINT:=gjslint
 
 #####################
