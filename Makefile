@@ -118,12 +118,12 @@ $(JS_MIN): $(JS_FULL) $(ALL_DEP)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)#jsmin < $< > $@
 	$(Q)#yui-compressor $< -o $@
-	$(Q)~/install/closure/compiler.jar $< --js_output_file $@
+	$(Q)tools/closure-compiler-v20160713.jar $< --js_output_file $@
 $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
 	$(Q)mkdir -p $(dir $@)
-	$(Q)make_helper wrapper-silent ~/install/jsdoc/jsdoc -d $(JS_DOC_DIR) $(JS_SRC_DIR)
+	$(Q)make_helper wrapper-silent node_modules/jsdoc/jsdoc.js -d $(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#make_helper wrapper-silent jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)

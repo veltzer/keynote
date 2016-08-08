@@ -1,3 +1,4 @@
+# our output folder
 /out
 
 # java libraries are here
@@ -5,5 +6,7 @@
 # stub files left by aspell when correcting mistakes
 #*.bak
 
+# nodejs downloaded code
+/node_modules
 # script installed tools
 /tools

@@ -53,6 +53,15 @@ def install_jsl():
 	os.system('cd tools; svn -q co https://javascriptlint.svn.sourceforge.net/svnroot/javascriptlint/trunk jsl')
 	os.system('cd tools/jsl; python setup.py build > /dev/null')
 
+def install_closure():
+	print('installing tool [{0}]'.format('closure'))
+	if not os.path.isdir(tools):
+		os.mkdir(tools)
+	#jar_name='compiler.jar'
+	jar_name='closure-compiler-v20160713'
+	os.system('wget -qO- https://dl.google.com/closure-compiler/compiler-latest.zip | (cd tools; bsdtar -xf- {jar_name}.jar)'.format(jar_name=jar_name))
+	os.chmod('tools/{jar_name}.jar'.format(jar_name=jar_name), 0o0775)
+
 ########
 # code #
 ########
@@ -60,3 +69,10 @@ args=['sudo','apt-get','install','--assume-yes']
 args.extend(packs)
 subprocess.check_call(args)
 install_jsl()
+install_closure()
+
+print('installing node packages...')
+subprocess.check_call([
+	'npm',
+	'install',
+], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
