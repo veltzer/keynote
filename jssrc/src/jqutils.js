@@ -4,7 +4,7 @@
   Put an element in an absolute position.
   @param {int} pos_left left position of the element.
   @param {int} pos_top top position of the element.
-  @return {jQuery elements} the elements the op was done on.
+  @return {elements} the elements the op was done on.
   @this jQuery
   @author mark.veltzer@gmail.com (Mark Veltzer)
 */
