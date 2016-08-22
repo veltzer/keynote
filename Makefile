@@ -87,6 +87,7 @@ endif
 
 .PHONY: all
 all: $(ALL) $(ALL_DEP)
+	@true
 
 # phony js targets
 .PHONY: jsdoc
