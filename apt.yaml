@@ -13,10 +13,10 @@ packages:
         - name: aspell-he
           reason: hebrew dictionary for aspell
         - name: closure-linter
-	# to bring dependencies
+        # to bring dependencies
         - name: ivy
         - name: ivy-doc
-	# for ant(1)
+        # for ant(1)
         - name: ant
-	# for javac(1)
+        # for javac(1)
         - name: openjdk-8-jdk-headless

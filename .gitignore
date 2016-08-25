@@ -12,3 +12,5 @@
 /tools
 # stamp file
 /tools.stamp
+# python
+__pycache__

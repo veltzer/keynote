@@ -5,6 +5,8 @@
 DO_MKDBG:=0
 # do you want dependency on the makefile itself ?!?
 DO_ALL_DEP:=1
+# install tools
+DO_TOOLS:=1
 # what is the version number ?
 VER:=$(shell scripts/tagname.py)
 
@@ -79,7 +81,12 @@ ifeq ($(DO_ALL_DEP),1)
 ALL_DEP:=Makefile
 else
 ALL_DEP:=
-endif
+endif # DO_ALL_DEP
+
+# tools
+ifeq ($(DO_TOOLS),1)
+ALL_DEP+=$(OUT)/tools.stamp
+endif # DO_TOOLS
 
 ###########
 # targets #
@@ -88,6 +95,11 @@ endif
 .PHONY: all
 all: $(ALL) $(ALL_DEP)
 	@true
+
+$(OUT)/tools.stamp: apt.yaml templardefs/deps.py
+	$(info doing [$@])
+	$(Q)templar_cmd install_deps
+	$(Q)make_helper touch-mkdir $@
 
 # phony js targets
 .PHONY: jsdoc
