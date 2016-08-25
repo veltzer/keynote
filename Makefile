@@ -131,7 +131,7 @@ $(JS_MIN): $(JS_FULL) $(ALL_DEP)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)#jsmin < $< > $@
 	$(Q)#yui-compressor $< -o $@
-	$(Q)tools/closure-compiler-v20160713.jar $< --js_output_file $@
+	$(Q)tools/closure-compiler-v20160822.jar $< --js_output_file $@
 $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)

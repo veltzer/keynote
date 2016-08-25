@@ -3,7 +3,7 @@ dependencies for this project
 '''
 
 def populate(d):
-    d.tools=['jsl']
+    d.tools=['jsl','closure']
 
 def getdeps():
     return [
