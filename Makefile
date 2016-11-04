@@ -96,7 +96,7 @@ endif # DO_TOOLS
 all: $(ALL) $(ALL_DEP)
 	@true
 
-$(OUT)/tools.stamp: apt.yaml templardefs/deps.py
+$(OUT)/tools.stamp: templardefs/deps.py
 	$(info doing [$@])
 	$(Q)templar_cmd install_deps
 	$(Q)make_helper touch-mkdir $@

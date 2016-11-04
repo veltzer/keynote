@@ -12,5 +12,7 @@
 /tools
 # stamp file
 /tools.stamp
-# python
+# python related
 __pycache__
+*.pyo
+*.pyc
