@@ -89,7 +89,6 @@ endif # DO_ALL_DEP
 
 .PHONY: all
 all: $(ALL) $(ALL_DEP)
-	@true
 
 # phony js targets
 .PHONY: jsdoc
@@ -147,8 +146,8 @@ $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 
-.PHONY: debug
-debug:
+.PHONY: debug_me
+debug_me:
 	$(info ALL_DEP is $(ALL_DEP))
 	$(info VER is $(VER))
 	$(info WEB_LOCAL is $(WEB_LOCAL))
@@ -175,8 +174,8 @@ clean_soft:
 	$(info doing [$@])
 	$(Q)rm -rf $(XML_STAMP) $(XML_PDF) $(JS_OUT_DIR) $(JS_CHECK_STAMP) $(JS_DOC_STAMP) $(JAVA_COMPILE_STAMP) $(JAVA_OUT_DIR) $(JS_DOC_DIR)
 	
-.PHONY: clean
-clean:
+.PHONY: clean_me
+clean_me:
 	$(info doing [$@])
 	$(Q)make_helper wrapper-silent git clean -xdf
 
