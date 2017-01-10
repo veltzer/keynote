@@ -30,7 +30,7 @@ def populate(d):
         'openjdk-8-jdk-headless',
     ]
 
-def getdeps():
+def get_deps():
     return [
         __file__, # myself
     ]
