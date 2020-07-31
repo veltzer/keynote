@@ -175,7 +175,7 @@ clean_soft:
 .PHONY: clean_me
 clean_me:
 	$(info doing [$@])
-	$(Q)make_helper wrapper-silent git clean -xdf
+	$(Q)git clean -xdf
 
 .PHONY: validate
 validate:
