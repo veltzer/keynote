@@ -41,3 +41,5 @@ free-electrons produce their slides from latex:
 	http://git.free-electrons.com/training-materials
 slides:
 	http://slides.com/
+
+https://hypersay.com/live-presentations/
