@@ -98,7 +98,7 @@ jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
 .PHONY: check_veltzer_https
 check_veltzer_https:
 	$(info doing [$@])
-	$(Q)make_helper wrapper-ok git grep "http:\/\/veltzer.net"
+	$(Q)pymakehelper only_print_on_error git grep "http:\/\/veltzer.net"
 .PHONY: check_all
 check_all: check_veltzer_https
 
@@ -106,7 +106,7 @@ check_all: check_veltzer_https
 $(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
-	$(Q)make_helper wrapper-silent $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
+	$(Q)pymakehelper only_print_on_error $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
 $(JS_FULL): $(JS_SRC) $(ALL_DEP)
@@ -123,18 +123,18 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
 	$(Q)mkdir -p $(dir $@)
-	$(Q)make_helper wrapper-silent node_modules/jsdoc/jsdoc.js -d $(JS_DOC_DIR) $(JS_SRC_DIR)
+	$(Q)pymakehelper only_print_on_error node_modules/jsdoc/jsdoc.js -d $(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)# 2.4 (ubuntu default) jsdoc
-	$(Q)#make_helper wrapper-silent jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
+	$(Q)#pymakehelper only_print_on_error jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)
 $(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)make_helper wrapper-silent ant checkstyle
+	$(Q)pymakehelper only_print_on_error ant checkstyle
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 $(IVY_STAMP): $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)make_helper wrapper-silent ant ivy_retrieve_local
+	$(Q)pymakehelper only_print_on_error ant ivy_retrieve_local
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
@@ -204,7 +204,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 $(XML_STAMP): $(OUT)/%.stamp: %.xml $(ALL_DEP)
 	$(info doing [$@])
-	$(Q)make_helper wrapper-silent xmllint --noout --schema xsd/keynote.xsd $<
+	$(Q)pymakehelper only_print_on_error xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
