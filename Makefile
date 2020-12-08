@@ -175,7 +175,7 @@ clean_soft:
 .PHONY: clean_me
 clean_me:
 	$(info doing [$@])
-	$(Q)git clean -xdf
+	$(Q)git clean -qffxd
 
 .PHONY: validate
 validate:
