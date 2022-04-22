@@ -4,7 +4,7 @@
 # do you want to show the commands executed ?
 DO_MKDBG:=0
 # do you want dependency on the makefile itself ?!?
-DO_ALL_DEP:=1
+DO_ALLDEP:=1
 # what is the version number ?
 VER:=$(shell scripts/tagname.py)
 
@@ -75,25 +75,23 @@ Q:=@
 endif # DO_MKDBG
 
 # dependency on the makefile itself
-ifeq ($(DO_ALL_DEP),1)
-ALL_DEP:=Makefile
-else
-ALL_DEP:=
-endif # DO_ALL_DEP
+ifeq ($(DO_ALLDEP),1)
+.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
+endif
 
 ###########
 # targets #
 ###########
 
 .PHONY: all
-all: $(ALL) $(ALL_DEP)
+all: $(ALL)
 
 # phony js targets
 .PHONY: jsdoc
-jsdoc: $(JS_DOC_STAMP) $(ALL_DEP)
+jsdoc: $(JS_DOC_STAMP)
 	$(info doing [$@])
 .PHONY: jscheck
-jscheck: $(JS_CHECK_STAMP) $(ALL_DEP)
+jscheck: $(JS_CHECK_STAMP)
 	$(info doing [$@])
 .PHONY: check_veltzer_https
 check_veltzer_https:
@@ -103,23 +101,23 @@ check_veltzer_https:
 check_all: check_veltzer_https
 
 # real js targets
-$(JS_CHECK_STAMP): $(JS_SRC) $(ALL_DEP)
+$(JS_CHECK_STAMP): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
 	$(Q)pymakehelper only_print_on_error $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $(JS_CHECK_STAMP)
-$(JS_FULL): $(JS_SRC) $(ALL_DEP)
+$(JS_FULL): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
 	$(Q)cat `cat support/order.txt` > $@
-$(JS_MIN): $(JS_FULL) $(ALL_DEP)
+$(JS_MIN): $(JS_FULL)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
 	$(Q)#jsmin < $< > $@
 	$(Q)#yui-compressor $< -o $@
 	$(Q)tools/closure.jar $< --js_output_file $@
-$(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
+$(JS_DOC_STAMP): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
 	$(Q)mkdir -p $(dir $@)
@@ -127,17 +125,17 @@ $(JS_DOC_STAMP): $(JS_SRC) $(ALL_DEP)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#pymakehelper only_print_on_error jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)
-$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml $(ALL_DEP)
+$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant checkstyle
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(IVY_STAMP): $(ALL_DEP)
+$(IVY_STAMP):
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant ivy_retrieve_local
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
+$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
 	$(Q)javac -proc:none -Xlint:all -Xlint:-path -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
@@ -146,7 +144,6 @@ $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP) $(ALL_DEP)
 
 .PHONY: debug_me
 debug_me:
-	$(info ALL_DEP is $(ALL_DEP))
 	$(info VER is $(VER))
 	$(info WEB_LOCAL is $(WEB_LOCAL))
 	$(info WEB_DIR is $(WEB_DIR))
@@ -182,7 +179,7 @@ validate:
 	$(info doing [$@])
 
 .PHONY: install
-install: $(ALL) $(ALL_DEP)
+install: $(ALL)
 	$(info doing [$@])
 	$(Q)rm -rf $(WEB_DIR)
 	$(Q)mkdir $(WEB_DIR)
@@ -202,13 +199,13 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 # rules #
 #########
-$(XML_STAMP): $(OUT)/%.stamp: %.xml $(ALL_DEP)
+$(XML_STAMP): $(OUT)/%.stamp: %.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(XML_PDF): $(OUT)/%.pdf: %.xml $(ALL_DEP) $(JAVA_COMPILE_STAMP)
+$(XML_PDF): $(OUT)/%.pdf: %.xml $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/keynote_java_wrapper.py process --input $< --output $@
