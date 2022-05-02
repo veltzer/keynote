@@ -8,10 +8,7 @@
 
 # nodejs downloaded code
 /node_modules
-# script installed tools
-/tools
-# stamp file
-/tools.stamp
+*.stamp
 # python related
 __pycache__
 *.pyo
