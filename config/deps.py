@@ -15,7 +15,8 @@ packages=[
     'aspell-en',
     # hebrew dictionary for aspell
     'aspell-he',
-    'closure-linter',
+    # closure linter is not available now
+    # 'closure-linter',
     # to bring dependencies
     'ivy',
     'ivy-doc',
