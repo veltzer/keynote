@@ -5,12 +5,21 @@
 DO_MKDBG:=0
 # do you want dependency on the makefile itself ?!?
 DO_ALLDEP:=1
+# do you want to fetch all deps using ivy?
+DO_CHECKSTYLE:=0
+# do you want to check XML?
+DO_XML_CHECK:=0
+# do you want to fetch with ivy?
+DO_IVY_FETCH:=0
+
+
+########
+# code #
+########
 # what is the version number ?
 VER:=$(shell scripts/tagname.py)
-
 # what is the output folder?
 OUT:=out
-
 # what is the xml source folder ?
 XML_SRC_DIR:=presentations
 
@@ -21,7 +30,7 @@ JAVA_OUT_DIR:=$(OUT)/bin
 # what is the java compile stamp file ?
 JAVA_COMPILE_STAMP:=$(OUT)/java_compile.stamp
 # what is the java stamp file?
-IVY_STAMP:=$(OUT)/ivy.stamp
+IVY_FETCH:=$(OUT)/ivy.stamp
 # what is the checkstyle stamp file?
 CHECKSTYLE_STAMP:=$(OUT)/checkstyle.stamp
 
@@ -55,15 +64,24 @@ XSD_DIR:=xsd
 TOOL_JSL:=tools/jsl/jsl
 TOOL_GJSLINT:=gjslint
 
-#####################
-# end of parameters #
-#####################
 XML_SRC:=$(shell find $(XML_SRC_DIR) -name "*.xml")
 JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 XML_PDF:=$(addprefix $(OUT)/,$(addsuffix .pdf,$(basename $(XML_SRC))))
-XML_STAMP:=$(addprefix $(OUT)/,$(addsuffix .stamp,$(basename $(XML_SRC))))
-ALL:=$(CHECKSTYLE_STAMP) $(XML_STAMP) $(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
+XML_CHECK:=$(addprefix $(OUT)/,$(addsuffix .stamp,$(basename $(XML_SRC))))
+
+
+ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
+
+ifeq ($(DO_CHECKSTYLE),1)
+ALL+=$(CHECKSTYLE_STAMP)
+endif # DO_CHECKSTYLE
+ifeq ($(DO_XML_CHECK),1)
+ALL+=$(XML_CHECK)
+endif # DO_XML_CHECK
+ifeq ($(DO_IVY_FETCH),1)
+ALL+=$(IVY_FETCH)
+endif # DO_IVY_FETCH
 
 # silent stuff
 ifeq ($(DO_MKDBG),1)
@@ -82,9 +100,9 @@ endif
 ###########
 # targets #
 ###########
-
 .PHONY: all
 all: $(ALL)
+	@true
 
 # phony js targets
 .PHONY: jsdoc
@@ -125,17 +143,17 @@ $(JS_DOC_STAMP): $(JS_SRC)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#pymakehelper only_print_on_error jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)touch $(JS_DOC_STAMP)
-$(CHECKSTYLE_STAMP): $(IVY_STAMP) $(JAVA_SRC) support/checkstyle_config.xml
+$(CHECKSTYLE_STAMP): $(IVY_FETCH) $(JAVA_SRC) support/checkstyle_config.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant checkstyle
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(IVY_STAMP):
+$(IVY_FETCH):
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant ivy_retrieve_local
 	$(Q)mkdir -p $(dir $@)
 	$(Q)touch $@
-$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_STAMP)
+$(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_FETCH)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
 	$(Q)javac -proc:none -Xlint:all -Xlint:-path -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
@@ -199,7 +217,7 @@ java_compile: $(JAVA_COMPILE_STAMP)
 #########
 # rules #
 #########
-$(XML_STAMP): $(OUT)/%.stamp: %.xml
+$(XML_CHECK): $(OUT)/%.stamp: %.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
