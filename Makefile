@@ -11,7 +11,8 @@ DO_CHECKSTYLE:=0
 DO_XML_CHECK:=0
 # do you want to fetch with ivy?
 DO_IVY_FETCH:=0
-
+# do js docs?
+DO_JS_DOC_STAMP:=0
 
 ########
 # code #
@@ -64,15 +65,26 @@ XSD_DIR:=xsd
 TOOL_JSL:=tools/jsl/jsl
 TOOL_GJSLINT:=gjslint
 
+ALL:=
+
 XML_SRC:=$(shell find $(XML_SRC_DIR) -name "*.xml")
 JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
 JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
 XML_PDF:=$(addprefix $(OUT)/,$(addsuffix .pdf,$(basename $(XML_SRC))))
 XML_CHECK:=$(addprefix $(OUT)/,$(addsuffix .stamp,$(basename $(XML_SRC))))
 
-
-ALL:=$(XML_PDF) $(JS_CHECK_STAMP) $(JS_MIN) $(JS_DOC_STAMP)
-
+ifeq ($(DO_JS_DOC_STAMP),1)
+ALL+=$(JS_DOC_STAMP)
+endif # DO_JS_DOC_STAMP
+ifeq ($(DO_JS_CHECK_STAMP),1)
+ALL+=$(JS_CHECK_STAMP)
+endif # DO_JS_CHECK_STAMP
+ifeq ($(DO_JS_MIN),1)
+ALL+=$(JS_MIN)
+endif # DO_JS_MIN
+ifeq ($(DO_XML_PDF),1)
+ALL+=$(XML_PDF)
+endif # DO_XML_PDF
 ifeq ($(DO_CHECKSTYLE),1)
 ALL+=$(CHECKSTYLE_STAMP)
 endif # DO_CHECKSTYLE
