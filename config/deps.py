@@ -1,27 +1,27 @@
 tools=[
-    'jsl',
-    'closure',
+    "jsl",
+    "closure",
 ]
 packages=[
-    'libitext5-java',
-    'libitext5-java-doc',
-    'libargs4j-java',
-    'libargs4j-java-doc',
+    "libitext5-java",
+    "libitext5-java-doc",
+    "libargs4j-java",
+    "libargs4j-java-doc",
     # for xmllint command line tool for validating the presentations
-    'libxml2-utils',
+    "libxml2-utils",
     # aspell tool for spell checking the xml files
-    'aspell',
+    "aspell",
     # english dictionary for aspell
-    'aspell-en',
+    "aspell-en",
     # hebrew dictionary for aspell
-    'aspell-he',
+    "aspell-he",
     # closure linter is not available now
-    # 'closure-linter',
+    # "closure-linter",
     # to bring dependencies
-    'ivy',
-    'ivy-doc',
+    "ivy",
+    "ivy-doc",
     # for ant(1)
-    'ant',
+    "ant",
     # for javac(1)
-    'openjdk-8-jdk-headless',
+    "openjdk-8-jdk-headless",
 ]
