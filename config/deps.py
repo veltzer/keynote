@@ -4,9 +4,7 @@ tools=[
 ]
 packages=[
     "libitext5-java",
-    "libitext5-java-doc",
     "libargs4j-java",
-    "libargs4j-java-doc",
     # for xmllint command line tool for validating the presentations
     "libxml2-utils",
     # aspell tool for spell checking the xml files
