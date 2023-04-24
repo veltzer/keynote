@@ -43,5 +43,7 @@ slides:
 	http://slides.com/
 codimd:
 	https://github.com/hackmdio/codimd
+slidev
+	https://sli.dev
 
 https://hypersay.com/live-presentations/
