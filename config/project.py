@@ -1,3 +1,8 @@
 name = "keynote"
 description_short = "Slide persentation system"
-keywords = []
+keywords = [
+    "presentation",
+    "powerpoint",
+    "slides",
+    "javascript",
+]
