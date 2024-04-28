@@ -226,9 +226,9 @@ install_xsd:
 .PHONY: java_compile
 java_compile: $(JAVA_COMPILE_STAMP)
 
-#########
-# rules #
-#########
+############
+# patterns #
+############
 $(XML_CHECK): $(OUT)/%.stamp: %.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error xmllint --noout --schema xsd/keynote.xsd $<
