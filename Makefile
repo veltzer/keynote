@@ -104,14 +104,9 @@ Q:=@
 #.SILENT:
 endif # DO_MKDBG
 
-# dependency on the makefile itself
-ifeq ($(DO_ALLDEP),1)
-.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
-endif
-
-###########
-# targets #
-###########
+#########
+# rules #
+#########
 .PHONY: all
 all: $(ALL)
 	@true
@@ -239,3 +234,10 @@ $(XML_PDF): $(OUT)/%.pdf: %.xml $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
 	$(Q)scripts/keynote_java_wrapper.py process --input $< --output $@
+
+##########
+# alldep #
+##########
+ifeq ($(DO_ALLDEP),1)
+.EXTRA_PREREQS+=$(foreach mk, ${MAKEFILE_LIST},$(abspath ${mk}))
+endif # DO_ALLDEP
