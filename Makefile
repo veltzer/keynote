@@ -67,9 +67,9 @@ TOOL_GJSLINT:=gjslint
 
 ALL:=
 
-XML_SRC:=$(shell find $(XML_SRC_DIR) -name "*.xml")
-JS_SRC:=$(shell find $(JS_SRC_DIR) -name "*.js")
-JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -name "*.java")
+XML_SRC:=$(shell find $(XML_SRC_DIR) -type f -and -name "*.xml")
+JS_SRC:=$(shell find $(JS_SRC_DIR) -type f -and -name "*.js")
+JAVA_SRC:=$(shell find $(JAVA_SRC_DIR) -type f -and -name "*.java")
 XML_PDF:=$(addprefix $(OUT)/,$(addsuffix .pdf,$(basename $(XML_SRC))))
 XML_CHECK:=$(addprefix $(OUT)/,$(addsuffix .stamp,$(basename $(XML_SRC))))
 
