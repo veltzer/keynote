@@ -5,7 +5,7 @@
 DO_MKDBG:=0
 # do you want dependency on the makefile itself ?!?
 DO_ALLDEP:=1
-# do you want to fetch all deps using ivy?
+# do you want to fetch deps using ivy?
 DO_CHECKSTYLE:=0
 # do you want to check XML?
 DO_XML_CHECK:=0
