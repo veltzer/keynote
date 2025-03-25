@@ -1,7 +1,7 @@
-tools=[
-    "jsl",
-    "closure",
-]
+"""
+os level dependencies for this project
+"""
+
 packages=[
     "libitext5-java",
     "libargs4j-java",
@@ -22,4 +22,9 @@ packages=[
     "ant",
     # for javac(1)
     "openjdk-8-jdk-headless",
+]
+
+tools=[
+    "jsl",
+    "closure",
 ]
