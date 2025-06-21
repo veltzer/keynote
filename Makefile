@@ -130,8 +130,7 @@ $(JS_CHECK_STAMP): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)$(TOOL_JSL) --conf=support/jsl.conf --quiet --nologo --nosummary --nofilelisting $(JS_SRC)
 	$(Q)pymakehelper only_print_on_error $(TOOL_GJSLINT) --flagfile support/gjslint.cfg $(JS_SRC)
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $(JS_CHECK_STAMP)
+	$(Q)pymakehelper touch_mkdir $@
 $(JS_FULL): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
@@ -145,27 +144,23 @@ $(JS_MIN): $(JS_FULL)
 $(JS_DOC_STAMP): $(JS_SRC)
 	$(info doing [$@])
 	$(Q)-rm -rf $(JS_DOC_DIR)
-	$(Q)mkdir -p $(dir $@)
 	$(Q)pymakehelper only_print_on_error node_modules/jsdoc/jsdoc.js -d $(JS_DOC_DIR) $(JS_SRC_DIR)
 	$(Q)# 2.4 (ubuntu default) jsdoc
 	$(Q)#pymakehelper only_print_on_error jsdoc -d=$(JS_DOC_DIR) $(JS_SRC_DIR)
-	$(Q)touch $(JS_DOC_STAMP)
+	$(Q)pymakehelper touch_mkdir $@
 $(CHECKSTYLE_STAMP): $(IVY_FETCH) $(JAVA_SRC) support/checkstyle_config.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant checkstyle
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 $(IVY_FETCH):
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error ant ivy_retrieve_local
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 $(JAVA_COMPILE_STAMP): $(JAVA_SRC) $(IVY_FETCH)
 	$(info doing [$@])
 	$(Q)mkdir -p $(JAVA_OUT_DIR)
 	$(Q)javac -proc:none -Xlint:all -Xlint:-path -Werror -sourcepath $(JAVA_SRC_DIR) -d $(JAVA_OUT_DIR) $(JAVA_SRC) -classpath `scripts/java_classpath.py`
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 
 .PHONY: debug_me
 debug_me:
@@ -228,8 +223,7 @@ $(XML_CHECK): $(OUT)/%.stamp: %.xml
 	$(info doing [$@])
 	$(Q)pymakehelper only_print_on_error xmllint --noout --schema xsd/keynote.xsd $<
 	$(Q)aspell --dont-backup --mode=sgml --check $< --lang=en
-	$(Q)mkdir -p $(dir $@)
-	$(Q)touch $@
+	$(Q)pymakehelper touch_mkdir $@
 $(XML_PDF): $(OUT)/%.pdf: %.xml $(JAVA_COMPILE_STAMP)
 	$(info doing [$@])
 	$(Q)mkdir -p $(dir $@)
