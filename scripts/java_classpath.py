@@ -6,6 +6,5 @@ Print the classpath for this project
 
 import glob # for glob
 
-files=glob.glob("lib/*.jar")
-files=':'.join(files)
-print(files)
+CLASSPATH = ':'.join(glob.glob("lib/*.jar"))
+print(CLASSPATH)

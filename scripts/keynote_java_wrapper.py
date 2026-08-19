@@ -11,11 +11,10 @@ import sys # for argv, exit
 import subprocess # for call
 import glob # for glob
 
-files=glob.glob('lib/*.jar')
-files=':'.join(files)
+CLASSPATH = ':'.join(glob.glob('lib/*.jar'))
 args=[
     'java',
-    '-classpath','out/bin:'+files,
+    '-classpath','out/bin:'+CLASSPATH,
     'org.meta.keynote.Main',
 ]
 # give all command line args passed to the wrapper excluding the first (the program name)
