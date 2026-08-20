@@ -7,9 +7,9 @@ TODO:
 - parse the class path from the .classpath and not hardcode it here.
 '''
 
-import sys # for argv, exit
-import subprocess # for call
-import glob # for glob
+import glob  # for glob
+import subprocess  # for call
+import sys  # for argv, exit
 
 CLASSPATH = ':'.join(glob.glob('lib/*.jar'))
 args=[

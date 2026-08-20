@@ -2,7 +2,8 @@
 
 """ Print the tag name for the build. """
 
-import subprocess # for check_output, DEVNULL
+import subprocess  # for check_output, DEVNULL
+
 
 def get_version():
     """ Return git describe output, or 'test' when unavailable. """
