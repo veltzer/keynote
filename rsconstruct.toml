@@ -53,8 +53,8 @@ src_dirs = ["src", "scripts", "config", "tests", "exercises", "animations"]
 [processor.mypy]
 src_dirs = ["src", "scripts", "config", "tests", "exercises", "animations"]
 
-[processor.requirements]
-src_dirs = ["src", "scripts", "config", "tests", "animations"]
+# [processor.requirements]
+# src_dirs = ["src", "scripts", "config", "tests", "animations"]
 
 [processor.pytest]
 src_dirs = ["tests"]
