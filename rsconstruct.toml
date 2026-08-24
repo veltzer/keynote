@@ -1,15 +1,5 @@
-# Canonical shared rsconstruct.toml — this file is IDENTICAL in every repo.
-#
-# Do not edit per-repo copies. Edit the canonical copy
-# (/home/mark/git/rsconstruct.canonical.toml) and sync it out.
-# Repo-specific configuration (dependencies, explicit generators, excludes,
-# one-off workarounds) lives in rsconstruct.local.toml, which rsconstruct
-# deep-merges over this file at load time.
-#
-# This file is a menu: src_dirs entries that don't exist in a given repo are
-# skipped (default behavior since 0.9.46), so a processor whose directories
-# are all absent simply matches no files there. The directory layout of each
-# repo decides which checks run.
+# rsconstruct configuration for this repository — shared defaults plus
+# repo-specific config (merged from the former rsconstruct.local.toml).
 
 # ─── analyzers ───────────────────────────────────────────────────────────────
 
@@ -37,81 +27,89 @@ dep_auto = [
 # ─── markdown ────────────────────────────────────────────────────────────────
 
 [processor.rumdl]
-src_dirs = ["src", "docs", "exercises", "notes", "marp"]
+src_dirs = ["src"]
 
 [processor.zspell]
-src_dirs = ["src", "docs", "exercises", "notes", "marp", "syllabi", "out/generator"]
+src_dirs = ["src"]
 
 # ─── python ──────────────────────────────────────────────────────────────────
 
 [processor.ruff]
-src_dirs = ["src", "scripts", "config", "tests", "exercises", "animations"]
+src_dirs = ["src", "scripts"]
 
 [processor.pylint]
-src_dirs = ["src", "scripts", "config", "tests", "exercises", "animations"]
+src_dirs = ["src", "scripts"]
 
 [processor.mypy]
-src_dirs = ["src", "scripts", "config", "tests", "exercises", "animations"]
-
-# [processor.requirements]
-# src_dirs = ["src", "scripts", "config", "tests", "animations"]
-
-[processor.pytest]
-src_dirs = ["tests"]
+src_dirs = ["src", "scripts"]
 
 # ─── shell ───────────────────────────────────────────────────────────────────
 
 [processor.shellcheck]
-src_dirs = ["scripts", "src", "misc", "exercises", "docs", "config"]
+src_dirs = ["scripts", "src"]
 args = ["--severity=error", "--shell=bash"]
-
-# ─── lua ─────────────────────────────────────────────────────────────────────
-
-[processor.luacheck]
-src_dirs = ["config", "print"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
 [processor.taplo]
 src_dirs = ["."]
 
-[processor.iyamllint]
-src_dirs = ["yaml", "tracks"]
-
-[processor.ijsonlint]
-src_dirs = ["json"]
-
-# ─── web ─────────────────────────────────────────────────────────────────────
-
-[processor.stylelint]
-src_dirs = ["resources", "site-resources", "print"]
-
 [processor.htmlhint]
-src_dirs = ["src", "site-resources"]
+src_dirs = ["src"]
 
 [processor.tidy]
-src_dirs = ["src", "blog"]
+src_dirs = ["src"]
 
-[processor.eslint]
-src_dirs = ["site-resources", "shared", "config", "blog"]
-args = ["-c", "config/eslint.config.js"]
+# ─── merged from rsconstruct.local.toml ─────────────────────────────────────
 
-# ─── teaching content ────────────────────────────────────────────────────────
+# Validate the presentations against the keynote schema, as the Makefile's
+# XML_CHECK rule did with `xmllint --noout --schema xsd/keynote.xsd`.
+[processor.xmllint]
+src_dirs = ["presentations"]
+args = ["--schema", "xsd/keynote.xsd"]
+dep_inputs = ["xsd/keynote.xsd"]
 
-[processor.tags]
-src_dirs = ["syllabi", "out/generator"]
-required_fields = ["tags", "level", "category", "audience"]
-required_field_groups = [["duration_hours"], ["duration_hours_long", "duration_hours_short"]]
+# Spellcheck the presentation text, replacing the Makefile's interactive
+# `aspell --mode=sgml --check` (sgml mode comes from .aspell.conf). Accepted
+# jargon lives in .aspell.en.pws. Not zspell: its markdown extractor skips
+# tab-indented lines as code blocks, and these XML files are tab-indented
+# throughout, so zspell would silently check nothing.
+[processor.aspell]
+src_dirs = ["presentations"]
+src_extensions = [".xml"]
+# --mode must be on the command line; aspell ignores a `mode` line in the
+# conf file and would then spell-check the markup itself (xmlns, xsi, ...).
+args = ["--mode=sgml"]
 
-[processor.terms]
-src_dirs = ["syllabi", "out/generator"]
+# ─── link hygiene ────────────────────────────────────────────────────────────
 
-[processor.pandoc.syllabi]
-src_dirs = ["syllabi"]
-formats = ["pdf", "html", "docx"]
-
-[processor.script.check_md]
-command = "scripts/check_md.py"
-src_extensions = [".md"]
-src_dirs = ["syllabi", "marp", "out/generator"]
+# All links to veltzer.net must be https; see the script's docstring.
+[processor.script.check_veltzer_https]
+command = "scripts/check_veltzer_https.py"
+src_extensions = [".xml", ".xsd", ".js", ".html", ".php", ".css", ".md", ".java", ".py", ".txt"]
+src_dirs = ["."]
 batch = true
+
+# The tool registry installs the aspell binary itself, but the English
+# dictionary is a separate apt package; without it aspell fails with
+# "No word lists can be found for the language en" in CI.
+[dependencies]
+system = ["aspell-en"]
+
+# ─── web install ─────────────────────────────────────────────────────────────
+
+# The Makefile's install/install_xsd targets copied the site into
+# ~/public_html/public/keynote. `rsconstruct symlink-install` links the same
+# folders there. The root index.html (a one-line redirect to web/index.php)
+# is not covered -- symlink-install takes folders only; copy it by hand on a
+# machine that actually serves ~/public_html. The Makefile also shipped the
+# out/js bundle and out/jsdoc, which no longer exist (dead JS pipeline, see
+# above).
+[command.symlink_install]
+sources = ["xsd", "presentations", "jssrc", "web"]
+targets = [
+    "~/public_html/public/keynote/xsd",
+    "~/public_html/public/keynote/presentations",
+    "~/public_html/public/keynote/jssrc",
+    "~/public_html/public/keynote/web",
+]
